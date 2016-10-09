@@ -1,5 +1,6 @@
 package org.uaso.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,8 +15,10 @@ import javax.persistence.UniqueConstraint;
 
 @Entity
 @Table(name = "users", uniqueConstraints = @UniqueConstraint(columnNames = {"username"}))
-public class User {
+public class User implements Serializable {
 
+	private static final long serialVersionUID = 1L;
+	
 	Date created;
 	
 	@Id
@@ -35,10 +38,28 @@ public class User {
 	};
 	
 	@Column(name="username", updatable = false, nullable=false)
-	private String username;
+	private String userName;
+	
+	@Column(name = "email")
+	private String email;
 	
 	@Column(name="password", updatable = false, nullable=false)
 	private String password;
+	
+	@Column(name ="enabled")
+	private int enabled;
+	
+	public User() {
+		
+	}
+	
+	public User(User user) {
+		this.id = user.id;
+		this.userName = user.userName;
+		this.email = user.email;
+		this.password = user.password;
+		this.enabled=user.enabled;
+	}
 	
 	public Date getCreated() {
 		return created;
@@ -56,12 +77,12 @@ public class User {
 		this.id = id;
 	}
 
-	public String getUsername() {
-		return username;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public String getPassword() {
@@ -71,4 +92,25 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	public int getEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(int enabled) {
+		this.enabled = enabled;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+	
 }

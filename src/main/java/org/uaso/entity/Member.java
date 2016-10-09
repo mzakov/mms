@@ -67,6 +67,9 @@ public class Member {
 	@Column
 	private String phoneNumber;
 	
+	@Column
+	private String email;
+	
 	@ManyToOne(optional=false, fetch=FetchType.EAGER)
 	@JoinColumn(name="city_id")
 	private City city;
@@ -203,6 +206,14 @@ public class Member {
 
 	public void setGear(Set<Gear> gear) {
 		this.gear = gear;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	
