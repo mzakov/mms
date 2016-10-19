@@ -2,68 +2,64 @@
 export default
 /* @ngInject */
 class AppController {
-	constructor ($log, $http, AppService, $scope, $timeout, $location, $state, $rootScope, $mdDialog, apiUrl) {
+	constructor ($log, $http, AppService, AuthSharedService, $window, $scope, $timeout, $location, $state, $rootScope, $mdDialog, apiUrl) {
   $log.debug('AppController instantiated!')
-
-	this.apiUrl = apiUrl
+  this.apiUrl = apiUrl
   let ctrl = this
-  this.loggedIn = AppService.loggedIn
-  this.user = AppService.user
-  this.users = []
-  this.showProfile = false
-  $scope.flights = []
 
-  $scope.routes = []
-  $scope.newBooking = {
-    user: {},
-    flights: []
-  }
- ///////////////////////////////////////////
- $http.get(this.apiUrl + '/resource/').then(function(response) {
-				ctrl.greeting = response.data
-	})
- ///////////////////////////////////////////
+////////////////////////////////////////////////////
+	ctrl.test = function(){
+		console.dir('test')
+		$log.debug('TEST!')
+	}
 
-  // this.cities = AppService.getCities().then((result) => {
-  //   return result.data
-  //   .map((location) => { return location.city })
-  //   .map((city) => {
-  //     return city
-  //   })
-  // })
+	var originatorEv;
 
-  this.logout = function () {
-    this.user = {}
-    AppService.user = {}
-    AppService.loggedIn = false
-    $state.reload()
+    this.openMenu = function($mdOpenMenu, ev) {
+      originatorEv = ev;
+      $mdOpenMenu(ev);
+    };
+
+	ctrl.redirect = function(url, refresh) {
+		console.dir('It gets to the controller')
+    if(refresh || $scope.$$phase) {
+        $window.location.href = url;
+    } else {
+        $location.path(url);
+        $scope.$apply();
+    }
+	}
+
+/////////////////////////////////////////////////
+  ctrl.tab = function(state) {
+  	return $state.current && state === $state.current.controller
   }
 
-  this.drawPath = function (item) {
-    let color = '#' + Math.floor(Math.random() * 16777215).toString(16)
-    $scope.$broadcast('drawPathEvent', {
-      origin: item.origin,
-      destination: item.destination,
-      color: color
-    })
-  }
+  var authenticate = function(credentials, callback) {
+			console.dir('authenticate RAN')
+				var headers = credentials ? {
+					authorization : "Basic "
+							+ btoa(credentials.username + ":"
+									+ credentials.password)
+				} : {}
 
-  this.clearPath = function (item) {
-    $scope.$broadcast('clearPathEvent', item)
-  }
+				$http.get('user', {
+					headers : headers
+				}).then(function(response) {
+					if (response.data.name) {
+						$rootScope.authenticated = true
+					} else {
+						$rootScope.authenticated = false
+					}
+					callback && callback($rootScope.authenticated);
+				}, function() {
+					$rootScope.authenticated = false
+					callback && callback(false)
+				})
 
-  this.getProfile = function () {
-    AppService.getBookings(ctrl.user.id).then((result) => {
-      AppService.bookings = result.data
-      $scope.$broadcast('updateBookings', result.data)
-    }).then(() => {
-      this.showProfile = true
-    })
-  }
+			}
 
-  this.getHome = function () {
-    this.showProfile = false
-  }
+			authenticate()
 
 }
 }

@@ -12,7 +12,7 @@ const entry = {
 }
 
 const output = {
-  filename: '[name].js?[hash]',
+  filename: 'resources/js/[name].js?[hash]',
   path: '../src/main/resources/static/'
 }
 
@@ -46,7 +46,7 @@ const loaders = [{
 }]
 
 const plugins = [
-  new ExtractTextPlugin('[name].css'),
+  new ExtractTextPlugin('resources/css/[name].css?[hash]'),
   new HtmlWebpackPlugin({
     hash: true,
     template: './static/index.html',

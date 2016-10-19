@@ -9,13 +9,13 @@ export default
      this.bookings = []
    }
 
-getCities () { return this.$http.get(this.apiUrl + '/location/') }
+   login (user) {
+     return this.$http.post(this.apiUrl + '/users/login/', user)
+   }
 
-getBookings (user_id) { return this.$http.get(this.apiUrl + '/users/' + user_id + '/bookings') }
+   register (user) {
+     user.password = bcrypt.hashSync(user.password, 10)
+     return this.$http.post(this.apiUrl + '/users/', user)
+   }
 
-getAllFlights () { return this.$http.get(this.apiUrl + '/flights/') }
-
-addBooking (booking) { return this.$http.post(this.apiUrl + '/bookings/', booking) }
-
-getRoutes (origin, destination) { return this.$http.get(this.apiUrl + '/flights/itin/' + origin.display + '/' + destination.display) }
 }

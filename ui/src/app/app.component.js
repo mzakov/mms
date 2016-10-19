@@ -1,4 +1,4 @@
-import templateUrl from './app.component.html'
+import templateUrl from '../../static/index.html'
 import AppController from './app.controller.js'
 
 export default {

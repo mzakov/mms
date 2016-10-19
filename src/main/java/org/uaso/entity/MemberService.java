@@ -6,4 +6,8 @@ public interface MemberService {
 
 	List<Member> index();
 
+	Member create(Member member);
+
+	Member read(long id);
+
 }

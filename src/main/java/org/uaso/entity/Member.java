@@ -19,6 +19,7 @@ import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.UniqueConstraint;
 
 import org.uaso.activity.Course;
 import org.uaso.activity.Event;
@@ -28,7 +29,7 @@ import org.uaso.location.City;
 
 
 @Entity
-@Table (name="members")
+@Table (name="members", uniqueConstraints=@UniqueConstraint(columnNames={"firstName", "middleName", "lastName"}))
 public class Member {
 
 	Date created;
@@ -70,7 +71,7 @@ public class Member {
 	@Column
 	private String email;
 	
-	@ManyToOne(optional=false, fetch=FetchType.EAGER)
+	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="city_id")
 	private City city;
 	

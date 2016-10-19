@@ -1,15 +1,33 @@
 <!DOCTYPE html>
-<html ng-app="mms" ng-strict-di="true">
+<html ng-strict-di="true">
   <head>
     <meta charset="utf-8">
     <title>MMS</title>
-    <link rel="shortcut icon" href="./favicon.ico">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
   </head>
-  <body>
-    <ui-view>
-      Loading...
-    </ui-view>
+  <body ng-app="mms" ng-cloak class="ng-cloak">
+    <div ng-if="authenticated">
+      <md-toolbar>
+      <div layout="row" layout-align="center center" style="padding-top:20px;">
+        <md-button class="md-raised md-primary" href="#/home">Home</md-button>
+        <md-button class="md-raised md-primary" href="#/members">Members</md-button>
+        <md-button class="md-raised md-primary" href="#/apiDoc">API Doc.</md-button>
+        <md-button class="md-raised md-primary" href="#/tokens">Sessions</md-button>
+        <i md-menu-origin class="material-icons">perm_identity</i>
+          {{account.firstName}} {{account.lastName}}
+        <md-button class="md-raised md-primary" href="#/logout">Logout</md-button>
+      </div>
+    </md-toolbar>
+    </div>
+    <div class="container">
+      <div style="position: relative">
+        <div class="fade">
+          <ui-view>
+          Loading...
+          </ui-view>
+        </div>
+      </div>
+    </div>
   </body>
 </html>

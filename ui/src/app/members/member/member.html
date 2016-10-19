@@ -1,0 +1,77 @@
+<div class="container-fluid">
+	<div class="col-md-10 col-md-offset-1">
+
+		<div class="jumbotron">
+			<h1>{{ctrl.member.firstName}}</h1>
+		</div>
+				<div><button type="submit" class="btn btn-success" ng-click="ctrl.back()"
+						value="Save">Back</button>
+		<button type="submit" class="btn btn-success" ng-click="reloadRoute()"
+						value="Save">Refresh!</button>
+		</div>
+		<div>
+			<form novalidate class="form-horizontal">
+
+				<div class="form-group">
+					<label for="name" class="col-sm-2 control-label">Name</label>
+					<div class="col-sm-8">
+						<input type="text" class="form-control" id="name"
+							placeholder="Name" ng-model="ctrl.person.name">
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label for="state" class="col-sm-2 control-label">State</label>
+					<div class="col-sm-8" >
+					<h4>{{ctrl.person.city.state.name}}</h4>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label for="city" class="col-sm-2 control-label">City</label>
+					<div class="col-sm-8" ng-model="ctrl.person.city" group-by="state"
+					checkboxes="true" ng-dropdown-multiselect="" extra-settings="statesConfig"
+					options="ctrl.cities" selected-model="ctrl.person.city">
+					</div>
+				</div>
+					<div class="form-group">
+          			<label for="groups" class="col-sm-2 control-label">Groups</label>
+          			<div class="col-sm-8" >
+            			<div  >
+              				<div class="checkbox" >
+                 			<label ng-repeat="group in ctrl.AllGroups" ng-show="ctrl.person.city.id === group.city.id">
+                 			<input  checklist-model="ctrl.person.groups"  type="checkbox" name="{{group.name}}"
+                 			checklist-value="group"
+                 			ng-disabled="!isMember(ctrl.person.interests, group.interest.id)"
+                 			ng-checked="isMember(ctrl.person.groups, group.id)">{{group.name}}
+                 			</label>
+              				</div>
+            			</div>
+          			</div>
+       			</div>
+				<div class="form-group">
+					<label for="interests" class="col-sm-2 control-label">Interests</label>
+					<div class="col-sm-8" >
+						<div ng-model="ctrl.person.interests" checkboxes="true" ng-dropdown-multiselect=""
+						extra-settings="interestsConfig" options="ctrl.interests" selected-model="ctrl.person.interests">
+
+						</div>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<div class="col-sm-offset-2 col-sm-8">
+						<button type="submit" class="btn btn-success" ng-click="ctrl.update(ctrl.person)"
+						value="Save">Save!</button>
+						<button type="submit" class="btn btn-success" ng-click="ctrl.post(ctrl.person)"
+						value="Save">Add as new person!</button>
+						<button type="submit" class="btn btn-success" ng-click="ctrl.deletePerson(ctrl.person.id)"
+						value="Save">Delete!</button>
+					</div>
+				</div>
+			</form>
+			<pre>person = {{ctrl.person | json}}</pre>
+		</div>
+
+	</div>
+</div>

@@ -1,0 +1,76 @@
+<md-content>
+    <md-subheader class="md-no-sticky">Members</md-subheader>
+		<md-whiteframe class="md-whiteframe-1dp" layout="row" layout-align="center center" >
+          <div class="form-group">
+			<div class="col-sm-8">
+				<input type="text" class="form-control" id="name"
+				placeholder="First Name" ng-model="ctrl.member.firstName">
+			</div>
+			<div class="col-sm-8">
+				<input type="text" class="form-control" id="name"
+				placeholder="Last Name" ng-model="ctrl.member.lastName">
+			</div>
+			<div class="col-sm-8">
+				<input type="text" class="form-control" id="name"
+				placeholder="Phone Number" ng-model="ctrl.member.phoneNumber">
+			</div>
+			<div class="col-sm-8">
+				<input type="text" class="form-control" id="name"
+				placeholder="Email" ng-model="ctrl.member.email">
+			</div>
+		</div>
+
+		<div class="form-group">
+			<div class="col-sm-offset-2 col-sm-8">
+				<button type="submit" class="btn btn-success" ng-click="ctrl.addMember(ctrl.member)"
+				value="Save">Add!</button>
+			</div>
+		</div>
+		<pre>member = {{ctrl.member | json}}</pre>
+	</div>
+</div>
+
+<div>
+<md-list class="fixedRows">
+  <md-list-item layout-padding class="md-3-line" layout="row" layout-align="center center" ng-repeat="member in ctrl.members"
+  ng-click="ctrl.redirect('members/' + member.id)">
+  <i md-menu-origin class="material-icons">perm_identity</i>
+  <p>{{ member.firstName }} {{ member.lastName }}</p>
+  </md-list-item>
+
+
+<!--
+  <md-subheader class="md-no-sticky">Contacts</md-subheader>
+  <md-list-item class="md-2-line contact-item" ng-repeat="(index, member) in ctrl.allMembers"
+      ng-if="ctrl.members.indexOf(member) < 0">
+    <img ng-src="{{member.image}}" class="md-avatar" alt="{{member.name}}" />
+    <div class="md-list-item-text compact">
+      <h3>{{member.name}}</h3>
+      <p>{{member.email}}</p>
+    </div>
+  </md-list-item>
+  <md-list-item class="md-2-line contact-item selected" ng-repeat="(index, member) in ctrl.members">
+    <img ng-src="{{member.image}}" class="md-avatar" alt="{{member.name}}" />
+    <div class="md-list-item-text compact">
+      <h3>{{member.name}}</h3>
+      <p>{{member.email}}</p>
+    </div>
+  </md-list-item> -->
+</md-list>
+</div>
+<div>
+<br>
+<h2 class="md-title">Searching asynchronously.</h2>
+<md-contact-chips
+    ng-model="ctrl.asyncMembers"
+    md-contacts="ctrl.delayedQuerySearch($query)"
+    md-contact-name="name"
+    md-contact-image="image"
+    md-contact-email="email"
+    md-require-match="true"
+    md-highlight-flags="i"
+    filter-selected="ctrl.filterSelected"
+    placeholder="Member">
+</md-contact-chips>
+</div>
+</md-content>

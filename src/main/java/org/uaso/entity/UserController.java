@@ -1,30 +1,46 @@
 package org.uaso.entity;
 
-import java.security.Principal;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
+import java.util.List;
 
-import org.springframework.web.bind.annotation.CrossOrigin;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.swagger.annotations.Api;
+
 @RestController
-@CrossOrigin(origins = "*")
+@Api(description = "Users management API")
 public class UserController {
 
-	@RequestMapping("/user")
-	public Principal user(Principal user) {
-		return user;
-	}
+    private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 
-	@CrossOrigin
-	@RequestMapping("/resource")
-	public Map<String, Object> home() {
-		Map<String, Object> model = new HashMap<String, Object>();
-		model.put("id", UUID.randomUUID().toString());
-		model.put("content", "Hello World");
-		return model;
-	}
-	
+    @Autowired
+    private UserRepository userRepo;
+
+    @RequestMapping(value = "/users", method = RequestMethod.GET)
+    public @ResponseBody List<User> usersList() {
+        logger.debug("get users list");
+        return userRepo.findAll();
+    }
+
+    @RequestMapping(value = "/users/{userId}", method = RequestMethod.GET)
+    public @ResponseBody User getUser(@PathVariable Long userId) {
+        logger.debug("get user");
+        return userRepo.findOne(userId);
+    }
+
+    @RequestMapping(value = "/users", method = RequestMethod.POST)
+    public @ResponseBody User saveUser(@RequestBody User user) {
+        logger.debug("save user");
+        userRepo.save(user);
+        return user;
+    }
+
+
 }

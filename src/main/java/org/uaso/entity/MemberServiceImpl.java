@@ -20,5 +20,15 @@ public class MemberServiceImpl implements MemberService {
 	public List<Member> index() {
 		return memberRepo.findAll();
 	}
+	
+	@Override
+	public Member create(Member member) {
+		return memberRepo.save(member);
+	}
+
+	@Override
+	public Member read(long id) {
+		return memberRepo.findOne(id);
+	}
 
 }

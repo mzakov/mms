@@ -1,4 +1,4 @@
-import templateUrl from './login.template.html'
+import templateUrl from './login.html'
 import LoginController from './login.controller.js'
 
 export default {
