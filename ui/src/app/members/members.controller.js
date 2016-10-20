@@ -39,106 +39,170 @@ ctrl.redirect = function(url, refresh) {
  	$scope.reloadRoute = function() {
  	   $route.reload();
  	}
+////////////////////////////////////////////////////////////
+		ctrl.simulateQuery = false;
+    ctrl.isDisabled    = false;
 
- 	//	Autocompele //////////////////////////////////////////////////////////
+    ctrl.repos         = loadAll()
+		ctrl.repos.then(function(members){ ctrl.allMembers = members })
+		ctrl.querySearch   = querySearch;
+    ctrl.selectedItemChange = selectedItemChange;
+    ctrl.searchTextChange   = searchTextChange;
 
-	var pendingSearch, cancelSearch = angular.noop;
-    var cachedQuery, lastSearch;
+    // ******************************
+    // Internal methods
+    // ******************************
 
-		function loadMembers() {
+    /**
+     * Search for repos... use $timeout to simulate
+     * remote dataservice call.
+     */
+
+		 function querySearch (query) {
+			 console.dir(ctrl.repos)
+	 			ctrl.repos = ctrl.allMembers
+				console.dir(ctrl.repos)
+				 let result = query ? ctrl.repos.filter(createFilterFor(query)) : ctrl.repos
+	 			return result
+	     }
+
+    function searchTextChange(text) {
+      $log.info('Text changed to ' + text);
+    }
+
+    function selectedItemChange(item) {
+      $log.info('Item changed to ' + JSON.stringify(item));
+    }
+
+    /**
+     * Build `components` list of key/value pairs
+     */
+    function loadAll() {
 			let members
 			return MembersService.getAllMembers()
 				.then(function(res) {
 				members = res.data
-				return members.map(function (m, index) {
-							var member = {
-								name: m.firstName + ' ' + m.lastName,
-								email: m.email,
-								image: 'http://lorempixel.com/50/50/people?' + index
-							};
-							member._lowername = member.name.toLowerCase();
-							return member;
-						});
-					})
-					// .error(function(error) {
-					// 	console.dir("Error:"+error)
-					// })
-				}
 
-    ctrl.allMembers = loadMembers();
-		console.dir(ctrl.allMembers)
-		ctrl.allMembers.then(function(members){
-			ctrl.allMems = members
-		})
-    // ctrl.members = [ctrl.allMembers[0]];
-    ctrl.asyncMembers = [];
-    ctrl.filterSelected = true;
+				return members.map( function (member) {
+        member.value = member.firstName.toLowerCase() + ' ' + member.lastName.toLowerCase()
+        return member
+      })
+    })
+	}
 
-    ctrl.querySearch = querySearch;
-    ctrl.delayedQuerySearch = delayedQuerySearch;
-		/**
-		 * Search for members; use a random delay to simulate a remote call
-		 */
+    /**
+     * Create filter function for a query string
+     */
+    function createFilterFor(query) {
+      var lowercaseQuery = angular.lowercase(query);
 
-		 function querySearch (criteria) {
-			ctrl.allMembers = ctrl.allMems
-			console.dir(ctrl.allMembers)
-      cachedQuery = cachedQuery || criteria;
-      let result = cachedQuery ? ctrl.allMembers.filter(createFilterFor(cachedQuery)) : [];
-			return result
+      return function filterFn(item) {
+        return (item.value.indexOf(lowercaseQuery) === 0);
+      };
+
     }
 
-		/**
-		 * Async search for members
-		 * Also debounce the queries; since the md-contact-chips does not support this
-		 */
-		function delayedQuerySearch(criteria) {
-		      cachedQuery = criteria;
-		      if ( !pendingSearch || !debounceSearch() )  {
-		        cancelSearch();
 
-		        return pendingSearch = $q(function(resolve, reject) {
-		          // Simulate async search... (after debouncing)
-		          cancelSearch = reject;
-		          $timeout(function() {
 
-		            resolve( ctrl.querySearch() );
-
-		            refreshDebounce();
-		          }, Math.random() * 500, true)
-		        });
-		      }
-
-		      return pendingSearch;
-		    }
-
-		function refreshDebounce() {
-		      lastSearch = 0;
-		      pendingSearch = null;
-		      cancelSearch = angular.noop;
-		    }
-
-		    /**
-		     * Debounce if querying faster than 300ms
-		     */
-		function debounceSearch() {
-		      var now = new Date().getMilliseconds();
-		      lastSearch = lastSearch || now;
-
-		      return ((now - lastSearch) < 300);
-		    }
-
-		    /**
-		     * Create filter function for a query string
-		     */
-		function createFilterFor(query) {
-		      var lowercaseQuery = angular.lowercase(query);
-
-		      return function filterFn(member) {
-		        return (member._lowername.indexOf(lowercaseQuery) != -1);;
-		      };
-
-		    }
+ 	//	Autocompele //////////////////////////////////////////////////////////
+	//
+	// var pendingSearch, cancelSearch = angular.noop;
+  //   var cachedQuery, lastSearch;
+	//
+	// 	function loadMembers() {
+	// 		let members
+	// 		return MembersService.getAllMembers()
+	// 			.then(function(res) {
+	// 			members = res.data
+	// 			return members.map(function (m, index) {
+	// 						var member = {
+	// 							name: m.firstName + ' ' + m.lastName,
+	// 							email: m.email,
+	// 							image: 'http://lorempixel.com/50/50/people?' + index
+	// 						};
+	// 						member._lowername = member.name.toLowerCase();
+	// 						return member;
+	// 					});
+	// 				})
+	// 				// .error(function(error) {
+	// 				// 	console.dir("Error:"+error)
+	// 				// })
+	// 			}
+	//
+  //   ctrl.allMembers = loadMembers();
+	// 	console.dir(ctrl.allMembers)
+	// 	ctrl.allMembers.then(function(members){
+	// 		ctrl.allMems = members
+	// 	})
+  //   // ctrl.members = [ctrl.allMembers[0]];
+  //   ctrl.asyncMembers = [];
+  //   ctrl.filterSelected = true;
+	//
+  //   ctrl.querySearch = querySearch;
+  //   ctrl.delayedQuerySearch = delayedQuerySearch;
+	// 	/**
+	// 	 * Search for members; use a random delay to simulate a remote call
+	// 	 */
+	//
+	// 	 function querySearch (criteria) {
+	// 		ctrl.allMembers = ctrl.allMems
+	// 		console.dir(ctrl.allMembers)
+  //     cachedQuery = cachedQuery || criteria;
+  //     let result = cachedQuery ? ctrl.allMembers.filter(createFilterFor(cachedQuery)) : [];
+	// 		return result
+  //   }
+	//
+	// 	/**
+	// 	 * Async search for members
+	// 	 * Also debounce the queries; since the md-contact-chips does not support this
+	// 	 */
+	// 	function delayedQuerySearch(criteria) {
+	// 	      cachedQuery = criteria;
+	// 	      if ( !pendingSearch || !debounceSearch() )  {
+	// 	        cancelSearch();
+	//
+	// 	        return pendingSearch = $q(function(resolve, reject) {
+	// 	          // Simulate async search... (after debouncing)
+	// 	          cancelSearch = reject;
+	// 	          $timeout(function() {
+	//
+	// 	            resolve( ctrl.querySearch() );
+	//
+	// 	            refreshDebounce();
+	// 	          }, Math.random() * 500, true)
+	// 	        });
+	// 	      }
+	//
+	// 	      return pendingSearch;
+	// 	    }
+	//
+	// 	function refreshDebounce() {
+	// 	      lastSearch = 0;
+	// 	      pendingSearch = null;
+	// 	      cancelSearch = angular.noop;
+	// 	    }
+	//
+	// 	    /**
+	// 	     * Debounce if querying faster than 300ms
+	// 	     */
+	// 	function debounceSearch() {
+	// 	      var now = new Date().getMilliseconds();
+	// 	      lastSearch = lastSearch || now;
+	//
+	// 	      return ((now - lastSearch) < 300);
+	// 	    }
+	//
+	// 	    /**
+	// 	     * Create filter function for a query string
+	// 	     */
+	// 	function createFilterFor(query) {
+	// 	      var lowercaseQuery = angular.lowercase(query);
+	//
+	// 	      return function filterFn(member) {
+	// 	        return (member._lowername.indexOf(lowercaseQuery) != -1);;
+	// 	      };
+	//
+	// 	    }
 
 
 // End of autocomplete ///////////////////////////////////////////////////
