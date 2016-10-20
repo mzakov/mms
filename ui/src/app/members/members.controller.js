@@ -45,7 +45,31 @@ ctrl.redirect = function(url, refresh) {
 	var pendingSearch, cancelSearch = angular.noop;
     var cachedQuery, lastSearch;
 
+		function loadMembers() {
+			let members
+			return MembersService.getAllMembers()
+				.then(function(res) {
+				members = res.data
+				return members.map(function (m, index) {
+							var member = {
+								name: m.firstName + ' ' + m.lastName,
+								email: m.email,
+								image: 'http://lorempixel.com/50/50/people?' + index
+							};
+							member._lowername = member.name.toLowerCase();
+							return member;
+						});
+					})
+					// .error(function(error) {
+					// 	console.dir("Error:"+error)
+					// })
+				}
+
     ctrl.allMembers = loadMembers();
+		console.dir(ctrl.allMembers)
+		ctrl.allMembers.then(function(members){
+			ctrl.allMems = members
+		})
     // ctrl.members = [ctrl.allMembers[0]];
     ctrl.asyncMembers = [];
     ctrl.filterSelected = true;
@@ -56,10 +80,13 @@ ctrl.redirect = function(url, refresh) {
 		 * Search for members; use a random delay to simulate a remote call
 		 */
 
-		function querySearch (criteria) {
-		      cachedQuery = cachedQuery || criteria;
-		      return cachedQuery ? ctrl.allMembers.filter(createFilterFor(cachedQuery)) : [];
-		    }
+		 function querySearch (criteria) {
+			ctrl.allMembers = ctrl.allMems
+			console.dir(ctrl.allMembers)
+      cachedQuery = cachedQuery || criteria;
+      let result = cachedQuery ? ctrl.allMembers.filter(createFilterFor(cachedQuery)) : [];
+			return result
+    }
 
 		/**
 		 * Async search for members
@@ -113,33 +140,10 @@ ctrl.redirect = function(url, refresh) {
 
 		    }
 
-		function loadMembers() {
-		      var members = [
-		        'Marina Augustine',
-		        'Oddr Sarno',
-		        'Nick Giannopoulos',
-		        'Narayana Garner',
-		        'Anita Gros',
-		        'Megan Smith',
-		        'Tsvetko Metzger',
-		        'Hector Simek',
-		        'Some-guy withalongalastaname'
-		      ];
 
-		      return members.map(function (m, index) {
-		        var member = {
-		          name: m.firstName + ' ' + m.lastName,
-		          email: m.email,
-		          image: 'http://lorempixel.com/50/50/people?' + index
-		        };
-		        member._lowername = member.name.toLowerCase();
-		        return member;
-		      });
-		    }
 // End of autocomplete ///////////////////////////////////////////////////
 
  	$scope.loaded = true
- 	console.dir(this.members)
 //////////////////////////////////////////////
 }
 }

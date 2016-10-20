@@ -14586,7 +14586,7 @@
 /***/ function(module, exports) {
 
 	var path = 'C:/code/mms/ui/src/app/members/members.html';
-	var html = "<md-content>\n    <md-subheader class=\"md-no-sticky\">Members</md-subheader>\r\n\t\t<md-whiteframe class=\"md-whiteframe-1dp\" layout=\"row\" layout-align=\"center center\" >\r\n          <div class=\"form-group\">\r\n\t\t\t<div class=\"col-sm-8\">\r\n\t\t\t\t<input type=\"text\" class=\"form-control\" id=\"name\"\r\n\t\t\t\tplaceholder=\"First Name\" ng-model=\"ctrl.member.firstName\">\r\n\t\t\t</div>\r\n\t\t\t<div class=\"col-sm-8\">\r\n\t\t\t\t<input type=\"text\" class=\"form-control\" id=\"name\"\r\n\t\t\t\tplaceholder=\"Last Name\" ng-model=\"ctrl.member.lastName\">\r\n\t\t\t</div>\r\n\t\t\t<div class=\"col-sm-8\">\r\n\t\t\t\t<input type=\"text\" class=\"form-control\" id=\"name\"\r\n\t\t\t\tplaceholder=\"Phone Number\" ng-model=\"ctrl.member.phoneNumber\">\r\n\t\t\t</div>\r\n\t\t\t<div class=\"col-sm-8\">\r\n\t\t\t\t<input type=\"text\" class=\"form-control\" id=\"name\"\r\n\t\t\t\tplaceholder=\"Email\" ng-model=\"ctrl.member.email\">\r\n\t\t\t</div>\r\n\t\t</div>\r\n\r\n\t\t<div class=\"form-group\">\r\n\t\t\t<div class=\"col-sm-offset-2 col-sm-8\">\r\n\t\t\t\t<button type=\"submit\" class=\"btn btn-success\" ng-click=\"ctrl.addMember(ctrl.member)\"\r\n\t\t\t\tvalue=\"Save\">Add!</button>\r\n\t\t\t</div>\r\n\t\t</div>\r\n\t\t<pre>member = {{ctrl.member | json}}</pre>\r\n\t</div>\r\n</div>\n\n<div>\r\n<md-list class=\"fixedRows\">\r\n  <md-list-item layout-padding class=\"md-3-line\" layout=\"row\" layout-align=\"center center\" ng-repeat=\"member in ctrl.members\"\r\n  ng-click=\"ctrl.redirect('members/' + member.id)\">\r\n  <i md-menu-origin class=\"material-icons\">perm_identity</i>\r\n  <p>{{ member.firstName }} {{ member.lastName }}</p>\r\n  </md-list-item>\r\n\r\n\r\n<!--\r\n  <md-subheader class=\"md-no-sticky\">Contacts</md-subheader>\r\n  <md-list-item class=\"md-2-line contact-item\" ng-repeat=\"(index, member) in ctrl.allMembers\"\r\n      ng-if=\"ctrl.members.indexOf(member) < 0\">\r\n    <img ng-src=\"{{member.image}}\" class=\"md-avatar\" alt=\"{{member.name}}\" />\r\n    <div class=\"md-list-item-text compact\">\r\n      <h3>{{member.name}}</h3>\r\n      <p>{{member.email}}</p>\r\n    </div>\r\n  </md-list-item>\r\n  <md-list-item class=\"md-2-line contact-item selected\" ng-repeat=\"(index, member) in ctrl.members\">\r\n    <img ng-src=\"{{member.image}}\" class=\"md-avatar\" alt=\"{{member.name}}\" />\r\n    <div class=\"md-list-item-text compact\">\r\n      <h3>{{member.name}}</h3>\r\n      <p>{{member.email}}</p>\r\n    </div>\r\n  </md-list-item> -->\r\n</md-list>\r\n</div>\r\n<div>\r\n<br>\r\n<h2 class=\"md-title\">Searching asynchronously.</h2>\r\n<md-contact-chips\r\n    ng-model=\"ctrl.asyncMembers\"\r\n    md-contacts=\"ctrl.delayedQuerySearch($query)\"\r\n    md-contact-name=\"name\"\r\n    md-contact-image=\"image\"\r\n    md-contact-email=\"email\"\r\n    md-require-match=\"true\"\r\n    md-highlight-flags=\"i\"\r\n    filter-selected=\"ctrl.filterSelected\"\r\n    placeholder=\"Member\">\r\n</md-contact-chips>\n</div>\n</md-content>\r\n";
+	var html = "<md-content layout=\"column\" layout-align=\"center center\">\n    <md-subheader class=\"md-no-sticky\">Members</md-subheader>\r\n\t\t<md-whiteframe class=\"md-whiteframe-1dp\" layout=\"row\" layout-align=\"center center\" >\r\n          <div class=\"form-group\">\r\n\t\t\t<div class=\"col-sm-8\">\r\n\t\t\t\t<input type=\"text\" class=\"form-control\" id=\"name\"\r\n\t\t\t\tplaceholder=\"First Name\" ng-model=\"ctrl.member.firstName\">\r\n\t\t\t</div>\r\n\t\t\t<div class=\"col-sm-8\">\r\n\t\t\t\t<input type=\"text\" class=\"form-control\" id=\"name\"\r\n\t\t\t\tplaceholder=\"Last Name\" ng-model=\"ctrl.member.lastName\">\r\n\t\t\t</div>\r\n\t\t\t<div class=\"col-sm-8\">\r\n\t\t\t\t<input type=\"text\" class=\"form-control\" id=\"name\"\r\n\t\t\t\tplaceholder=\"Phone Number\" ng-model=\"ctrl.member.phoneNumber\">\r\n\t\t\t</div>\r\n\t\t\t<div class=\"col-sm-8\">\r\n\t\t\t\t<input type=\"text\" class=\"form-control\" id=\"name\"\r\n\t\t\t\tplaceholder=\"Email\" ng-model=\"ctrl.member.email\">\r\n\t\t\t</div>\r\n\t\t</div>\r\n\r\n\t\t<div class=\"form-group\">\r\n\t\t\t<div class=\"col-sm-offset-2 col-sm-8\">\r\n\t\t\t\t<button type=\"submit\" class=\"btn btn-success\" ng-click=\"ctrl.addMember(ctrl.member)\"\r\n\t\t\t\tvalue=\"Save\">Add!</button>\r\n\t\t\t</div>\r\n\t\t</div>\r\n\t\t<pre>member = {{ctrl.member | json}}</pre>\r\n\t</div>\r\n</div>\n</md-whiteframe>\n<div>\n<br>\n<h2 class=\"md-title\">Searching asynchronously.</h2>\n<md-contact-chips\n    ng-model=\"ctrl.asyncMembers\"\n    md-contacts=\"ctrl.delayedQuerySearch($query)\"\n    md-contact-name=\"name\"\n    md-contact-image=\"image\"\n    md-contact-email=\"email\"\n    md-require-match=\"true\"\n    md-highlight-flags=\"i\"\n    filter-selected=\"ctrl.filterSelected\"\n    placeholder=\"Member\">\n</md-contact-chips>\n</div>\n<div>\r\n<md-list class=\"fixedRows\">\r\n  <md-list-item layout-padding class=\"md-3-line\" layout=\"row\" layout-align=\"center center\" ng-repeat=\"member in ctrl.members\"\r\n  ng-click=\"ctrl.redirect('members/' + member.id)\">\r\n  <i md-menu-origin class=\"material-icons\">perm_identity</i>\r\n  <p>{{ member.firstName }} {{ member.lastName }}</p>\r\n  </md-list-item>\r\n\r\n  <md-content class=\"md-padding autocomplete\" layout=\"column\">\r\n      <md-contact-chips\r\n      ng-model=\"ctrl.asyncMembers\"\r\n      md-contacts=\"ctrl.querySearch($query)\"\r\n      md-contact-name=\"name\"\r\n      md-contact-image=\"image\"\r\n      md-contact-email=\"email\"\r\n      md-require-match=\"\"\r\n      filter-selected=\"ctrl.filterSelected\"\r\n      placeholder=\"To\">\r\n      </md-contact-chips>\r\n    <div ng-repeat=\"c in ctrl.allMems\">{{c.name}}</div>\r\n    </md-content>\r\n  </div>\r\n\r\n  <md-subheader class=\"md-no-sticky\">Contacts</md-subheader>\r\n  <md-list-item class=\"md-2-line contact-item\" ng-repeat=\"(index, member) in ctrl.allMems\"\r\n      ng-if=\"ctrl.members.indexOf(member) < 0\">\r\n    <img ng-src=\"{{member.image}}\" class=\"md-avatar\" alt=\"{{member.name}}\" />\r\n    <div class=\"md-list-item-text compact\">\r\n      <h3>{{member.name}}</h3>\r\n      <p>{{member.email}}</p>\r\n    </div>\r\n  </md-list-item>\r\n  <md-list-item class=\"md-2-line contact-item selected\" ng-repeat=\"(index, member) in ctrl.allMems\">\r\n    <img ng-src=\"{{member.image}}\" class=\"md-avatar\" alt=\"{{member.name}}\" />\r\n    <div class=\"md-list-item-text compact\">\r\n      <h3>{{member.name}}</h3>\r\n      <p>{{member.email}}</p>\r\n    </div>\r\n  </md-list-item>\r\n\r\n</md-list>\r\n</div>\n-->\n</md-content>\r\n";
 	window.angular.module('ng').run(['$templateCache', function(c) { c.put(path, html) }]);
 	module.exports = path;
 
@@ -14649,7 +14649,30 @@
 			    cancelSearch = angular.noop;
 			var cachedQuery, lastSearch;
 	
+			function loadMembers() {
+					var members = void 0;
+					return MembersService.getAllMembers().then(function (res) {
+							members = res.data;
+							return members.map(function (m, index) {
+									var member = {
+											name: m.firstName + ' ' + m.lastName,
+											email: m.email,
+											image: 'http://lorempixel.com/50/50/people?' + index
+									};
+									member._lowername = member.name.toLowerCase();
+									return member;
+							});
+					});
+					// .error(function(error) {
+					// 	console.dir("Error:"+error)
+					// })
+			}
+	
 			ctrl.allMembers = loadMembers();
+			console.dir(ctrl.allMembers);
+			ctrl.allMembers.then(function (members) {
+					ctrl.allMems = members;
+			});
 			// ctrl.members = [ctrl.allMembers[0]];
 			ctrl.asyncMembers = [];
 			ctrl.filterSelected = true;
@@ -14661,8 +14684,11 @@
 	   */
 	
 			function querySearch(criteria) {
+					ctrl.allMembers = ctrl.allMems;
+					console.dir(ctrl.allMembers);
 					cachedQuery = cachedQuery || criteria;
-					return cachedQuery ? ctrl.allMembers.filter(createFilterFor(cachedQuery)) : [];
+					var result = cachedQuery ? ctrl.allMembers.filter(createFilterFor(cachedQuery)) : [];
+					return result;
 			}
 	
 			/**
@@ -14716,23 +14742,9 @@
 					};
 			}
 	
-			function loadMembers() {
-					var members = ['Marina Augustine', 'Oddr Sarno', 'Nick Giannopoulos', 'Narayana Garner', 'Anita Gros', 'Megan Smith', 'Tsvetko Metzger', 'Hector Simek', 'Some-guy withalongalastaname'];
-	
-					return members.map(function (m, index) {
-							var member = {
-									name: m.firstName + ' ' + m.lastName,
-									email: m.email,
-									image: 'http://lorempixel.com/50/50/people?' + index
-							};
-							member._lowername = member.name.toLowerCase();
-							return member;
-					});
-			}
 			// End of autocomplete ///////////////////////////////////////////////////
 	
 			$scope.loaded = true;
-			console.dir(this.members);
 			//////////////////////////////////////////////
 	};
 	MembersController.$inject = ["$log", "MembersService", "$scope", "$timeout", "$location", "$state", "$rootScope", "$q"];
@@ -15180,4 +15192,4 @@
 
 /***/ }
 /******/ ]);
-//# sourceMappingURL=main.js.map?8fada21d2701da696920
+//# sourceMappingURL=main.js.map?74a726be3cbbc116af78

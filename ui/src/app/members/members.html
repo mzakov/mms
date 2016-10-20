@@ -1,4 +1,4 @@
-<md-content>
+<md-content layout="column" layout-align="center center">
     <md-subheader class="md-no-sticky">Members</md-subheader>
 		<md-whiteframe class="md-whiteframe-1dp" layout="row" layout-align="center center" >
           <div class="form-group">
@@ -29,35 +29,7 @@
 		<pre>member = {{ctrl.member | json}}</pre>
 	</div>
 </div>
-
-<div>
-<md-list class="fixedRows">
-  <md-list-item layout-padding class="md-3-line" layout="row" layout-align="center center" ng-repeat="member in ctrl.members"
-  ng-click="ctrl.redirect('members/' + member.id)">
-  <i md-menu-origin class="material-icons">perm_identity</i>
-  <p>{{ member.firstName }} {{ member.lastName }}</p>
-  </md-list-item>
-
-
-<!--
-  <md-subheader class="md-no-sticky">Contacts</md-subheader>
-  <md-list-item class="md-2-line contact-item" ng-repeat="(index, member) in ctrl.allMembers"
-      ng-if="ctrl.members.indexOf(member) < 0">
-    <img ng-src="{{member.image}}" class="md-avatar" alt="{{member.name}}" />
-    <div class="md-list-item-text compact">
-      <h3>{{member.name}}</h3>
-      <p>{{member.email}}</p>
-    </div>
-  </md-list-item>
-  <md-list-item class="md-2-line contact-item selected" ng-repeat="(index, member) in ctrl.members">
-    <img ng-src="{{member.image}}" class="md-avatar" alt="{{member.name}}" />
-    <div class="md-list-item-text compact">
-      <h3>{{member.name}}</h3>
-      <p>{{member.email}}</p>
-    </div>
-  </md-list-item> -->
-</md-list>
-</div>
+</md-whiteframe>
 <div>
 <br>
 <h2 class="md-title">Searching asynchronously.</h2>
@@ -73,4 +45,47 @@
     placeholder="Member">
 </md-contact-chips>
 </div>
+<div>
+<md-list class="fixedRows">
+  <md-list-item layout-padding class="md-3-line" layout="row" layout-align="center center" ng-repeat="member in ctrl.members"
+  ng-click="ctrl.redirect('members/' + member.id)">
+  <i md-menu-origin class="material-icons">perm_identity</i>
+  <p>{{ member.firstName }} {{ member.lastName }}</p>
+  </md-list-item>
+
+  <md-content class="md-padding autocomplete" layout="column">
+      <md-contact-chips
+      ng-model="ctrl.asyncMembers"
+      md-contacts="ctrl.querySearch($query)"
+      md-contact-name="name"
+      md-contact-image="image"
+      md-contact-email="email"
+      md-require-match=""
+      filter-selected="ctrl.filterSelected"
+      placeholder="To">
+      </md-contact-chips>
+    <div ng-repeat="c in ctrl.allMems">{{c.name}}</div>
+    </md-content>
+  </div>
+
+  <md-subheader class="md-no-sticky">Contacts</md-subheader>
+  <md-list-item class="md-2-line contact-item" ng-repeat="(index, member) in ctrl.allMems"
+      ng-if="ctrl.members.indexOf(member) < 0">
+    <img ng-src="{{member.image}}" class="md-avatar" alt="{{member.name}}" />
+    <div class="md-list-item-text compact">
+      <h3>{{member.name}}</h3>
+      <p>{{member.email}}</p>
+    </div>
+  </md-list-item>
+  <md-list-item class="md-2-line contact-item selected" ng-repeat="(index, member) in ctrl.allMems">
+    <img ng-src="{{member.image}}" class="md-avatar" alt="{{member.name}}" />
+    <div class="md-list-item-text compact">
+      <h3>{{member.name}}</h3>
+      <p>{{member.email}}</p>
+    </div>
+  </md-list-item>
+
+</md-list>
+</div>
+-->
 </md-content>
