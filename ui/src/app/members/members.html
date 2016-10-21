@@ -32,9 +32,12 @@
 </md-whiteframe>
 
 
-<md-content layout-padding="" layout="column">
+<md-content layout-padding="" layout="row">
     <form ng-submit="$event.preventDefault()">
       <p>Members</p>
+      <div layout="row">
+      <i md-menu-origin class="material-icons" ng-show="ctrl.selectedItem.value"
+          ng-click="ctrl.redirect('members/' + ctrl.selectedItem.id)">perm_identity</i>
       <md-autocomplete
       ng-disabled="ctrl.isDisabled"
       md-no-cache="ctrl.noCache"
@@ -43,25 +46,23 @@
       md-search-text="ctrl.searchText"
       md-selected-item-change="ctrl.selectedItemChange(item)"
       md-items="item in ctrl.querySearch(ctrl.searchText)"
-      md-item-text="item.name"
+      md-item-text="item.value"
       md-min-length="0"
       placeholder="Pick an Member"
       md-menu-class="autocomplete-custom-template">
         <md-item-template>
           <span class="item-title">
-            <md-icon md-svg-icon="img/icons/octicon-repo.svg"></md-icon>
-            <span> {{item.name}} </span>
+            <span> {{item.firstName}} {{item.lastName}} </span>
           </span>
-          <i md-menu-origin class="material-icons"
-          ng-click="ctrl.redirect('members/' + member.id)">perm_identity</i>
-          <span class="item-metadata">
+      </div>    
+      <!-- <span class="item-metadata">
             <span class="item-metastat">
               <strong>{{item.watchers}}</strong> watchers
             </span>
             <span class="item-metastat">
               <strong>{{item.forks}}</strong> forks
             </span>
-          </span>
+          </span>-->
         </md-item-template>
       </md-autocomplete>
     </form>
