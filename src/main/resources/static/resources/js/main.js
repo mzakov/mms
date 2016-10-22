@@ -8343,9 +8343,9 @@
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
-	var _mapComponent = __webpack_require__(303);
+	var _map = __webpack_require__(303);
 	
-	var _mapComponent2 = _interopRequireDefault(_mapComponent);
+	var _map2 = _interopRequireDefault(_map);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -8361,8 +8361,8 @@
 	
 	    _classCallCheck(this, MapController);
 	
-	    this.zoom = 7;
-	    this.center = [35.5175, -86.5804];
+	    this.zoom = 7.75;
+	    this.center = [42.7581215, 25.5572096];
 	    this.markers = [];
 	    this.paths = [];
 	
@@ -8478,7 +8478,7 @@
 	}();
 	
 	exports.default = {
-	  templateUrl: _mapComponent2.default,
+	  templateUrl: _map2.default,
 	  controller: MapController,
 	  controllerAs: '$mapCtrl'
 	};
@@ -8487,7 +8487,7 @@
 /* 303 */
 /***/ function(module, exports) {
 
-	var path = 'C:/code/mms/ui/src/app/map/map.component.html';
+	var path = 'C:/code/mms/ui/src/app/map/map.html';
 	var html = "\r\n<div style=\"height: 100%; width: 100%;\" map-lazy-load=\"https://maps.google.com/maps/api/js\">\r\n\t<ng-map ng-mousemove=\"$mapCtrl.updateMap()\" center=\"{{$mapCtrl.center}}\" zoom=\"{{$mapCtrl.zoom}}\">\r\n\t  <marker\r\n\t    ng-repeat=\"$mapMarker in $mapCtrl.markers\"\r\n\t    position=\"{{$mapMarker.position}}\">\r\n\t  </marker>\r\n\t  <shape\r\n\t    ng-repeat=\"$mapPath in $mapCtrl.paths\"\r\n\t    name=\"polyline\"\r\n\t    path=\"{{$mapPath.path}}\"\r\n\t    stroke-color=\"{{$mapPath.strokeColor}}\"\r\n\t    stroke-opacity=\"{{$mapPath.strokeOpacity}}\"\r\n\t    stroke-weight=\"{{$mapPath.strokeWeight}}\"\r\n\t    geodesic=\"{{$mapPath.geodesic}}\">\r\n\t  </shape>\r\n\t</ng-map>\r\n</div>\r\n";
 	window.angular.module('ng').run(['$templateCache', function(c) { c.put(path, html) }]);
 	module.exports = path;
@@ -8502,31 +8502,23 @@
 	  value: true
 	});
 	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
 	/* @ngInject */
-	var MapService = function () {
-	  MapService.$inject = ["$http", "apiUrl"];
-	  function MapService($http, apiUrl) {
-	    _classCallCheck(this, MapService);
+	var MapService = function MapService($http, apiUrl) {
+	  _classCallCheck(this, MapService);
 	
-	    this.$http = $http;
-	    this.apiUrl = apiUrl;
-	  }
+	  this.$http = $http;
+	  this.apiUrl = apiUrl;
+	}
 	
-	  _createClass(MapService, [{
-	    key: "getMarkerByCityName",
-	    value: function getMarkerByCityName(name) {
-	      return this.$http.get(this.apiUrl + "/location/name", { params: { name: name } }).then(function (result) {
-	        return result.data;
-	      });
-	    }
-	  }]);
-	
-	  return MapService;
-	}();
+	// getMarkerByCityName (name) {
+	//   return this.$http
+	//     .get(`${this.apiUrl}/location/name`, { params: { name } })
+	//     .then(result => result.data)
+	// }
+	;
+	MapService.$inject = ["$http", "apiUrl"];
 	
 	exports.default = MapService;
 
@@ -14586,7 +14578,7 @@
 /***/ function(module, exports) {
 
 	var path = 'C:/code/mms/ui/src/app/members/members.html';
-	var html = "<md-content layout=\"column\" layout-align=\"center center\">\n    <md-subheader class=\"md-no-sticky\">Members</md-subheader>\r\n\t\t<md-whiteframe class=\"md-whiteframe-1dp\" layout=\"row\" layout-align=\"center center\" >\r\n          <div class=\"form-group\">\r\n\t\t\t<div class=\"col-sm-8\">\r\n\t\t\t\t<input type=\"text\" class=\"form-control\" id=\"name\"\r\n\t\t\t\tplaceholder=\"First Name\" ng-model=\"ctrl.member.firstName\">\r\n\t\t\t</div>\r\n\t\t\t<div class=\"col-sm-8\">\r\n\t\t\t\t<input type=\"text\" class=\"form-control\" id=\"name\"\r\n\t\t\t\tplaceholder=\"Last Name\" ng-model=\"ctrl.member.lastName\">\r\n\t\t\t</div>\r\n\t\t\t<div class=\"col-sm-8\">\r\n\t\t\t\t<input type=\"text\" class=\"form-control\" id=\"name\"\r\n\t\t\t\tplaceholder=\"Phone Number\" ng-model=\"ctrl.member.phoneNumber\">\r\n\t\t\t</div>\r\n\t\t\t<div class=\"col-sm-8\">\r\n\t\t\t\t<input type=\"text\" class=\"form-control\" id=\"name\"\r\n\t\t\t\tplaceholder=\"Email\" ng-model=\"ctrl.member.email\">\r\n\t\t\t</div>\r\n\t\t</div>\r\n\r\n\t\t<div class=\"form-group\">\r\n\t\t\t<div class=\"col-sm-offset-2 col-sm-8\">\r\n\t\t\t\t<button type=\"submit\" class=\"btn btn-success\" ng-click=\"ctrl.addMember(ctrl.member)\"\r\n\t\t\t\tvalue=\"Save\">Add!</button>\r\n\t\t\t</div>\r\n\t\t</div>\r\n\t\t<pre>member = {{ctrl.member | json}}</pre>\r\n\t</div>\r\n</div>\n</md-whiteframe>\n\n\n<md-content layout-padding=\"\" layout=\"row\">\n    <form ng-submit=\"$event.preventDefault()\">\n      <p>Members</p>\n      <div layout=\"row\">\n      <i md-menu-origin class=\"material-icons\" ng-show=\"ctrl.selectedItem.value\"\n          ng-click=\"ctrl.redirect('members/' + ctrl.selectedItem.id)\">perm_identity</i>\n      <md-autocomplete\n      ng-disabled=\"ctrl.isDisabled\"\n      md-no-cache=\"ctrl.noCache\"\n      md-selected-item=\"ctrl.selectedItem\"\n      md-search-text-change=\"ctrl.searchTextChange(ctrl.searchText)\"\n      md-search-text=\"ctrl.searchText\"\n      md-selected-item-change=\"ctrl.selectedItemChange(item)\"\n      md-items=\"item in ctrl.querySearch(ctrl.searchText)\"\n      md-item-text=\"item.value\"\n      md-min-length=\"0\"\n      placeholder=\"Pick an Member\"\n      md-menu-class=\"autocomplete-custom-template\">\n        <md-item-template>\n          <span class=\"item-title\">\n            <span> {{item.firstName}} {{item.lastName}} </span>\n          </span>\n      </div>    \n      <!-- <span class=\"item-metadata\">\n            <span class=\"item-metastat\">\n              <strong>{{item.watchers}}</strong> watchers\n            </span>\n            <span class=\"item-metastat\">\n              <strong>{{item.forks}}</strong> forks\n            </span>\n          </span>-->\n        </md-item-template>\n      </md-autocomplete>\n    </form>\n  </md-content>\n</div>\n\n\n\n<!--\n<div>\n<br>\n<h2 class=\"md-title\">Searching asynchronously.</h2>\n<md-contact-chips\n    ng-model=\"ctrl.asyncMembers\"\n    md-contacts=\"ctrl.delayedQuerySearch($query)\"\n    md-contact-name=\"name\"\n    md-contact-image=\"image\"\n    md-contact-email=\"email\"\n    md-require-match=\"true\"\n    md-highlight-flags=\"i\"\n    filter-selected=\"ctrl.filterSelected\"\n    placeholder=\"Member\">\n</md-contact-chips>\n</div>\n<div>\r\n<md-list class=\"fixedRows\">\r\n  <md-list-item layout-padding class=\"md-3-line\" layout=\"row\" layout-align=\"center center\" ng-repeat=\"member in ctrl.members\"\r\n  ng-click=\"ctrl.redirect('members/' + member.id)\">\r\n  <i md-menu-origin class=\"material-icons\">perm_identity</i>\r\n  <p>{{ member.firstName }} {{ member.lastName }}</p>\r\n  </md-list-item>\r\n\r\n  <md-content class=\"md-padding autocomplete\" layout=\"column\">\r\n      <md-contact-chips\r\n      ng-model=\"ctrl.asyncMembers\"\r\n      md-contacts=\"ctrl.querySearch($query)\"\r\n      md-contact-name=\"name\"\r\n      md-contact-image=\"image\"\r\n      md-contact-email=\"email\"\r\n      md-require-match=\"\"\r\n      filter-selected=\"ctrl.filterSelected\"\r\n      placeholder=\"To\">\r\n      </md-contact-chips>\r\n    <div ng-repeat=\"c in ctrl.allMems\">{{c.name}}</div>\r\n    </md-content>\r\n  </div>\r\n\r\n  <md-subheader class=\"md-no-sticky\">Contacts</md-subheader>\r\n  <md-list-item class=\"md-2-line contact-item\" ng-repeat=\"(index, member) in ctrl.allMems\"\r\n      ng-if=\"ctrl.members.indexOf(member) < 0\">\r\n    <img ng-src=\"{{member.image}}\" class=\"md-avatar\" alt=\"{{member.name}}\" />\r\n    <div class=\"md-list-item-text compact\">\r\n      <h3>{{member.name}}</h3>\r\n      <p>{{member.email}}</p>\r\n    </div>\r\n  </md-list-item>\r\n  <md-list-item class=\"md-2-line contact-item selected\" ng-repeat=\"(index, member) in ctrl.allMems\">\r\n    <img ng-src=\"{{member.image}}\" class=\"md-avatar\" alt=\"{{member.name}}\" />\r\n    <div class=\"md-list-item-text compact\">\r\n      <h3>{{member.name}}</h3>\r\n      <p>{{member.email}}</p>\r\n    </div>\r\n  </md-list-item>\r\n\r\n</md-list>\r\n</div>\n-->\n</md-content>\r\n";
+	var html = "<md-content layout=\"column\" layout-align=\"center center\">\n  <div style=\"height: 300px; width: 100%;\">\n  <mms-map></mms-map>\n  </div>\n  <div>\n    <md-subheader class=\"md-no-sticky\">Members</md-subheader>\r\n\t\t<md-whiteframe class=\"md-whiteframe-1dp\" layout=\"row\" layout-align=\"center center\" >\r\n          <div class=\"form-group\">\r\n\t\t\t<div class=\"col-sm-8\">\r\n\t\t\t\t<input type=\"text\" class=\"form-control\" id=\"name\"\r\n\t\t\t\tplaceholder=\"First Name\" ng-model=\"ctrl.member.firstName\">\r\n\t\t\t</div>\r\n\t\t\t<div class=\"col-sm-8\">\r\n\t\t\t\t<input type=\"text\" class=\"form-control\" id=\"name\"\r\n\t\t\t\tplaceholder=\"Last Name\" ng-model=\"ctrl.member.lastName\">\r\n\t\t\t</div>\r\n\t\t\t<div class=\"col-sm-8\">\r\n\t\t\t\t<input type=\"text\" class=\"form-control\" id=\"name\"\r\n\t\t\t\tplaceholder=\"Phone Number\" ng-model=\"ctrl.member.phoneNumber\">\r\n\t\t\t</div>\r\n\t\t\t<div class=\"col-sm-8\">\r\n\t\t\t\t<input type=\"text\" class=\"form-control\" id=\"name\"\r\n\t\t\t\tplaceholder=\"Email\" ng-model=\"ctrl.member.email\">\r\n\t\t\t</div>\r\n\t\t</div>\r\n\r\n\t\t<div class=\"form-group\">\r\n\t\t\t<div class=\"col-sm-offset-2 col-sm-8\">\r\n\t\t\t\t<button type=\"submit\" class=\"btn btn-success\" ng-click=\"ctrl.addMember(ctrl.member)\"\r\n\t\t\t\tvalue=\"Save\">Add!</button>\r\n\t\t\t</div>\r\n\t\t</div>\r\n\t\t<pre>member = {{ctrl.member | json}}</pre>\r\n\t</div>\r\n</div>\n</md-whiteframe>\n</div>\n\n\n<div>\n<md-content layout-padding=\"\" layout=\"row\">\n    <form ng-submit=\"$event.preventDefault()\">\n      <p>Members</p>\n      <div layout=\"row\">\n      <i md-menu-origin class=\"material-icons\" ng-show=\"ctrl.selectedItem.value\"\n          ng-click=\"ctrl.redirect('members/' + ctrl.selectedItem.id)\">perm_identity</i>\n      <md-autocomplete\n      ng-disabled=\"ctrl.isDisabled\"\n      md-no-cache=\"ctrl.noCache\"\n      md-selected-item=\"ctrl.selectedItem\"\n      md-search-text-change=\"ctrl.searchTextChange(ctrl.searchText)\"\n      md-search-text=\"ctrl.searchText\"\n      md-selected-item-change=\"ctrl.selectedItemChange(item)\"\n      md-items=\"item in ctrl.querySearch(ctrl.searchText)\"\n      md-item-text=\"item.value\"\n      md-min-length=\"0\"\n      placeholder=\"Pick an Member\"\n      md-menu-class=\"autocomplete-custom-template\">\n        <md-item-template>\n          <span class=\"item-title\">\n            <span> {{item.firstName}} {{item.lastName}} </span>\n          </span>\n      </div>\n      <!-- <span class=\"item-metadata\">\n            <span class=\"item-metastat\">\n              <strong>{{item.watchers}}</strong> watchers\n            </span>\n            <span class=\"item-metastat\">\n              <strong>{{item.forks}}</strong> forks\n            </span>\n          </span>-->\n        </md-item-template>\n      </md-autocomplete>\n    </form>\n  </md-content>\n</div>\n\n\n\n\n<!--\n<div>\n<br>\n<h2 class=\"md-title\">Searching asynchronously.</h2>\n<md-contact-chips\n    ng-model=\"ctrl.asyncMembers\"\n    md-contacts=\"ctrl.delayedQuerySearch($query)\"\n    md-contact-name=\"name\"\n    md-contact-image=\"image\"\n    md-contact-email=\"email\"\n    md-require-match=\"true\"\n    md-highlight-flags=\"i\"\n    filter-selected=\"ctrl.filterSelected\"\n    placeholder=\"Member\">\n</md-contact-chips>\n</div>\n<div>\r\n<md-list class=\"fixedRows\">\r\n  <md-list-item layout-padding class=\"md-3-line\" layout=\"row\" layout-align=\"center center\" ng-repeat=\"member in ctrl.members\"\r\n  ng-click=\"ctrl.redirect('members/' + member.id)\">\r\n  <i md-menu-origin class=\"material-icons\">perm_identity</i>\r\n  <p>{{ member.firstName }} {{ member.lastName }}</p>\r\n  </md-list-item>\r\n\r\n  <md-content class=\"md-padding autocomplete\" layout=\"column\">\r\n      <md-contact-chips\r\n      ng-model=\"ctrl.asyncMembers\"\r\n      md-contacts=\"ctrl.querySearch($query)\"\r\n      md-contact-name=\"name\"\r\n      md-contact-image=\"image\"\r\n      md-contact-email=\"email\"\r\n      md-require-match=\"\"\r\n      filter-selected=\"ctrl.filterSelected\"\r\n      placeholder=\"To\">\r\n      </md-contact-chips>\r\n    <div ng-repeat=\"c in ctrl.allMems\">{{c.name}}</div>\r\n    </md-content>\r\n  </div>\r\n\r\n  <md-subheader class=\"md-no-sticky\">Contacts</md-subheader>\r\n  <md-list-item class=\"md-2-line contact-item\" ng-repeat=\"(index, member) in ctrl.allMems\"\r\n      ng-if=\"ctrl.members.indexOf(member) < 0\">\r\n    <img ng-src=\"{{member.image}}\" class=\"md-avatar\" alt=\"{{member.name}}\" />\r\n    <div class=\"md-list-item-text compact\">\r\n      <h3>{{member.name}}</h3>\r\n      <p>{{member.email}}</p>\r\n    </div>\r\n  </md-list-item>\r\n  <md-list-item class=\"md-2-line contact-item selected\" ng-repeat=\"(index, member) in ctrl.allMems\">\r\n    <img ng-src=\"{{member.image}}\" class=\"md-avatar\" alt=\"{{member.name}}\" />\r\n    <div class=\"md-list-item-text compact\">\r\n      <h3>{{member.name}}</h3>\r\n      <p>{{member.email}}</p>\r\n    </div>\r\n  </md-list-item>\r\n\r\n</md-list>\r\n</div>\n-->\n</md-content>\r\n";
 	window.angular.module('ng').run(['$templateCache', function(c) { c.put(path, html) }]);
 	module.exports = path;
 
@@ -14917,7 +14909,7 @@
 /***/ function(module, exports) {
 
 	var path = 'C:/code/mms/ui/src/app/members/member/member.html';
-	var html = "<div class=\"container-fluid\">\r\n\t<div class=\"col-md-10 col-md-offset-1\">\r\n\r\n\t\t<div class=\"jumbotron\">\r\n\t\t\t<h1>{{ctrl.member.firstName}}</h1>\r\n\t\t</div>\r\n\t\t\t\t<div><button type=\"submit\" class=\"btn btn-success\" ng-click=\"ctrl.back()\"\r\n\t\t\t\t\t\tvalue=\"Save\">Back</button>\r\n\t\t<button type=\"submit\" class=\"btn btn-success\" ng-click=\"reloadRoute()\"\r\n\t\t\t\t\t\tvalue=\"Save\">Refresh!</button>\r\n\t\t</div>\r\n\t\t<div>\r\n\t\t\t<form novalidate class=\"form-horizontal\">\r\n\r\n\t\t\t\t<div class=\"form-group\">\r\n\t\t\t\t\t<label for=\"name\" class=\"col-sm-2 control-label\">Name</label>\r\n\t\t\t\t\t<div class=\"col-sm-8\">\r\n\t\t\t\t\t\t<input type=\"text\" class=\"form-control\" id=\"name\"\r\n\t\t\t\t\t\t\tplaceholder=\"Name\" ng-model=\"ctrl.person.name\">\r\n\t\t\t\t\t</div>\r\n\t\t\t\t</div>\r\n\r\n\t\t\t\t<div class=\"form-group\">\r\n\t\t\t\t\t<label for=\"state\" class=\"col-sm-2 control-label\">State</label>\r\n\t\t\t\t\t<div class=\"col-sm-8\" >\r\n\t\t\t\t\t<h4>{{ctrl.person.city.state.name}}</h4>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t</div>\r\n\r\n\t\t\t\t<div class=\"form-group\">\r\n\t\t\t\t\t<label for=\"city\" class=\"col-sm-2 control-label\">City</label>\r\n\t\t\t\t\t<div class=\"col-sm-8\" ng-model=\"ctrl.person.city\" group-by=\"state\"\r\n\t\t\t\t\tcheckboxes=\"true\" ng-dropdown-multiselect=\"\" extra-settings=\"statesConfig\"\r\n\t\t\t\t\toptions=\"ctrl.cities\" selected-model=\"ctrl.person.city\">\r\n\t\t\t\t\t</div>\r\n\t\t\t\t</div>\r\n\t\t\t\t\t<div class=\"form-group\">\r\n          \t\t\t<label for=\"groups\" class=\"col-sm-2 control-label\">Groups</label>\r\n          \t\t\t<div class=\"col-sm-8\" >\r\n            \t\t\t<div  >\r\n              \t\t\t\t<div class=\"checkbox\" >\r\n                 \t\t\t<label ng-repeat=\"group in ctrl.AllGroups\" ng-show=\"ctrl.person.city.id === group.city.id\">\r\n                 \t\t\t<input  checklist-model=\"ctrl.person.groups\"  type=\"checkbox\" name=\"{{group.name}}\"\r\n                 \t\t\tchecklist-value=\"group\"\r\n                 \t\t\tng-disabled=\"!isMember(ctrl.person.interests, group.interest.id)\"\r\n                 \t\t\tng-checked=\"isMember(ctrl.person.groups, group.id)\">{{group.name}}\r\n                 \t\t\t</label>\r\n              \t\t\t\t</div>\r\n            \t\t\t</div>\r\n          \t\t\t</div>\r\n       \t\t\t</div>\r\n\t\t\t\t<div class=\"form-group\">\r\n\t\t\t\t\t<label for=\"interests\" class=\"col-sm-2 control-label\">Interests</label>\r\n\t\t\t\t\t<div class=\"col-sm-8\" >\r\n\t\t\t\t\t\t<div ng-model=\"ctrl.person.interests\" checkboxes=\"true\" ng-dropdown-multiselect=\"\"\r\n\t\t\t\t\t\textra-settings=\"interestsConfig\" options=\"ctrl.interests\" selected-model=\"ctrl.person.interests\">\r\n\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t</div>\r\n\r\n\t\t\t\t<div class=\"form-group\">\r\n\t\t\t\t\t<div class=\"col-sm-offset-2 col-sm-8\">\r\n\t\t\t\t\t\t<button type=\"submit\" class=\"btn btn-success\" ng-click=\"ctrl.update(ctrl.person)\"\r\n\t\t\t\t\t\tvalue=\"Save\">Save!</button>\r\n\t\t\t\t\t\t<button type=\"submit\" class=\"btn btn-success\" ng-click=\"ctrl.post(ctrl.person)\"\r\n\t\t\t\t\t\tvalue=\"Save\">Add as new person!</button>\r\n\t\t\t\t\t\t<button type=\"submit\" class=\"btn btn-success\" ng-click=\"ctrl.deletePerson(ctrl.person.id)\"\r\n\t\t\t\t\t\tvalue=\"Save\">Delete!</button>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t</div>\r\n\t\t\t</form>\r\n\t\t\t<pre>person = {{ctrl.person | json}}</pre>\r\n\t\t</div>\r\n\r\n\t</div>\r\n</div>\r\n";
+	var html = "<div layout-padding ng-cloak layout-align=\"center center\">\r\n<md-whiteframe class=\"md-whiteframe-10dp\" flex layout=\"column\" style=\"width: 700px;\" layout-align=\"center center\" >\r\n  <br/>\r\n  <md-content class=\"md-no-momentum\">\r\n\t\t<div layout=\"row\">\r\n\t\t\t<div>\r\n    \t\t<md-input-container class=\"md-icon-float md-block\">\r\n      \t\t<!-- Use floating label instead of placeholder -->\r\n      \t\t<label>First Name</label>\r\n\t\t\t\t\t<md-icon md-font-set=\"material-icons\"> perm_identity </md-icon>\r\n      \t\t<input ng-model=\"ctrl.member.firstName\" type=\"text\">\r\n    \t\t</md-input-container>\r\n\t\t\t</div>\r\n\t\t\t<div>\r\n\t\t\t\t<md-input-container class=\"md-icon-float md-block\">\r\n\t\t\t\t\t<label>Middle Name</label>\r\n\t\t\t\t\t<input ng-model=\"ctrl.member.middleName\" type=\"text\">\r\n\t\t\t\t</md-input-container>\r\n\t\t\t</div>\r\n\t\t\t<div>\r\n\t\t\t\t<md-input-container class=\"md-icon-float md-block\">\r\n\t\t\t\t\t<label>Last Name</label>\r\n\t\t\t\t\t<input ng-model=\"ctrl.member.lastName\" type=\"text\">\r\n\t\t\t\t</md-input-container>\r\n\t\t\t</div>\r\n\t\t</div>\n\r\n\t\t<div layout=\"row\">\r\n    \t<md-input-container md-no-float class=\"md-block\">\r\n\t\t\t\t<label>Phone Number</label>\r\n\t\t\t\t<md-icon md-font-set=\"material-icons\"> phone </md-icon>\r\n      \t<input ng-model=\"ctrl.member.phoneNumber\" type=\"text\">\r\n    \t</md-input-container>\r\n\r\n    \t<md-input-container class=\"md-block\">\r\n      \t<!-- Use floating placeholder instead of label -->\r\n\t\t\t\t<label>Email</label>\r\n\t\t\t\t<md-icon md-font-set=\"material-icons\"> email </md-icon>\r\n      \t<input ng-model=\"ctrl.member.email\" type=\"email\" ng-required=\"true\">\r\n    \t</md-input-container>\r\n\r\n\t\t\t<md-input-container md-no-float class=\"md-block\">\r\n\t\t\t\t<label>Birth date</label>\r\n\t\t\t\t<md-datepicker ng-model=\"ctrl.member.birthDate\"></md-datepicker>\r\n\t\t\t</md-input-container>\r\n\t\t</div>\r\n\r\n\t\t<div layout=\"row\">\r\n\t\t\t<div flex=\"20\">\r\n\t\t\t\t<md-input-container md-no-float class=\"md-block\">\r\n\t\t\t\t\t<label>City</label>\r\n\t\t\t\t\t<md-icon md-font-set=\"material-icons\"> home </md-icon>\r\n\t\t\t\t\t<input ng-model=\"ctrl.member.city\" type=\"text\">\r\n\t\t\t\t</md-input-container>\r\n\t\t\t</div>\r\n\t\t\t<div flex=\"60\">\r\n    \t\t<md-input-container md-no-float class=\"md-block\">\r\n\t\t\t\t\t<label>Address</label>\r\n      \t\t<input ng-model=\"ctrl.member.address\" type=\"text\">\r\n    \t\t</md-input-container>\r\n\t\t\t</div>\r\n\t\t</div>\n\r\n\t\t<md-input-container class=\"md-block\">\r\n      <label>Biography</label>\r\n\t\t\t<md-icon md-font-set=\"material-icons\"> textsms </md-icon>\r\n      <textarea ng-model=\"ctrl.member.bio\" md-maxlength=\"150\" rows=\"5\" md-select-on-focus></textarea>\r\n    </md-input-container>\r\n  </md-content>\r\n</md-whiteframe>\r\n</div>\r\n";
 	window.angular.module('ng').run(['$templateCache', function(c) { c.put(path, html) }]);
 	module.exports = path;
 
@@ -15256,4 +15248,4 @@
 
 /***/ }
 /******/ ]);
-//# sourceMappingURL=main.js.map?b81e99a8fbc236d9a181
+//# sourceMappingURL=main.js.map?d45687d295b950d76714

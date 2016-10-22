@@ -66,6 +66,9 @@ public class Member {
 	private String lastName;
 	
 	@Column
+	private Date birthDate;
+	
+	@Column
 	private String phoneNumber;
 	
 	@Column
@@ -143,6 +146,14 @@ public class Member {
 
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
+	}
+	
+	public Date getBirthDate() {
+		return birthDate;
+	}
+
+	public void setBirthDate(Date birthDate) {
+		this.birthDate = birthDate;
 	}
 
 	public String getPhoneNumber() {

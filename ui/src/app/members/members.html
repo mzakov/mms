@@ -1,4 +1,8 @@
 <md-content layout="column" layout-align="center center">
+  <div style="height: 300px; width: 100%;">
+  <mms-map></mms-map>
+  </div>
+  <div>
     <md-subheader class="md-no-sticky">Members</md-subheader>
 		<md-whiteframe class="md-whiteframe-1dp" layout="row" layout-align="center center" >
           <div class="form-group">
@@ -30,8 +34,10 @@
 	</div>
 </div>
 </md-whiteframe>
+</div>
 
 
+<div>
 <md-content layout-padding="" layout="row">
     <form ng-submit="$event.preventDefault()">
       <p>Members</p>
@@ -54,7 +60,7 @@
           <span class="item-title">
             <span> {{item.firstName}} {{item.lastName}} </span>
           </span>
-      </div>    
+      </div>
       <!-- <span class="item-metadata">
             <span class="item-metastat">
               <strong>{{item.watchers}}</strong> watchers
@@ -68,6 +74,7 @@
     </form>
   </md-content>
 </div>
+
 
 
 

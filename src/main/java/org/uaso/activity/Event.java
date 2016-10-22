@@ -56,7 +56,7 @@ public class Event {
 	@Column
 	private double longitude;
 	
-	@ManyToOne(optional=false, fetch=FetchType.EAGER)
+	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="city_id")
 	private City city;
 	

@@ -1,9 +1,9 @@
-import templateUrl from './map.component.html'
+import templateUrl from './map.html'
 
 /* @ngInject */
 class MapController {
-  zoom = 7
-  center = [35.5175, -86.5804]
+  zoom = 7.75
+  center = [42.7581215, 25.5572096]
   markers = []
   paths = []
 

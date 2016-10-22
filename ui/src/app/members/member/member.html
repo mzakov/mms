@@ -1,77 +1,71 @@
-<div class="container-fluid">
-	<div class="col-md-10 col-md-offset-1">
-
-		<div class="jumbotron">
-			<h1>{{ctrl.member.firstName}}</h1>
-		</div>
-				<div><button type="submit" class="btn btn-success" ng-click="ctrl.back()"
-						value="Save">Back</button>
-		<button type="submit" class="btn btn-success" ng-click="reloadRoute()"
-						value="Save">Refresh!</button>
-		</div>
-		<div>
-			<form novalidate class="form-horizontal">
-
-				<div class="form-group">
-					<label for="name" class="col-sm-2 control-label">Name</label>
-					<div class="col-sm-8">
-						<input type="text" class="form-control" id="name"
-							placeholder="Name" ng-model="ctrl.person.name">
-					</div>
-				</div>
-
-				<div class="form-group">
-					<label for="state" class="col-sm-2 control-label">State</label>
-					<div class="col-sm-8" >
-					<h4>{{ctrl.person.city.state.name}}</h4>
-					</div>
-				</div>
-
-				<div class="form-group">
-					<label for="city" class="col-sm-2 control-label">City</label>
-					<div class="col-sm-8" ng-model="ctrl.person.city" group-by="state"
-					checkboxes="true" ng-dropdown-multiselect="" extra-settings="statesConfig"
-					options="ctrl.cities" selected-model="ctrl.person.city">
-					</div>
-				</div>
-					<div class="form-group">
-          			<label for="groups" class="col-sm-2 control-label">Groups</label>
-          			<div class="col-sm-8" >
-            			<div  >
-              				<div class="checkbox" >
-                 			<label ng-repeat="group in ctrl.AllGroups" ng-show="ctrl.person.city.id === group.city.id">
-                 			<input  checklist-model="ctrl.person.groups"  type="checkbox" name="{{group.name}}"
-                 			checklist-value="group"
-                 			ng-disabled="!isMember(ctrl.person.interests, group.interest.id)"
-                 			ng-checked="isMember(ctrl.person.groups, group.id)">{{group.name}}
-                 			</label>
-              				</div>
-            			</div>
-          			</div>
-       			</div>
-				<div class="form-group">
-					<label for="interests" class="col-sm-2 control-label">Interests</label>
-					<div class="col-sm-8" >
-						<div ng-model="ctrl.person.interests" checkboxes="true" ng-dropdown-multiselect=""
-						extra-settings="interestsConfig" options="ctrl.interests" selected-model="ctrl.person.interests">
-
-						</div>
-					</div>
-				</div>
-
-				<div class="form-group">
-					<div class="col-sm-offset-2 col-sm-8">
-						<button type="submit" class="btn btn-success" ng-click="ctrl.update(ctrl.person)"
-						value="Save">Save!</button>
-						<button type="submit" class="btn btn-success" ng-click="ctrl.post(ctrl.person)"
-						value="Save">Add as new person!</button>
-						<button type="submit" class="btn btn-success" ng-click="ctrl.deletePerson(ctrl.person.id)"
-						value="Save">Delete!</button>
-					</div>
-				</div>
-			</form>
-			<pre>person = {{ctrl.person | json}}</pre>
+<div layout-padding ng-cloak layout-align="center center">
+<md-whiteframe class="md-whiteframe-10dp" flex layout="column" style="width: 700px;" layout-align="center center" >
+  <br/>
+  <md-content class="md-no-momentum">
+		<div layout="row">
+			<div>
+    		<md-input-container class="md-icon-float md-block">
+      		<!-- Use floating label instead of placeholder -->
+      		<label>First Name</label>
+					<md-icon md-font-set="material-icons"> perm_identity </md-icon>
+      		<input ng-model="ctrl.member.firstName" type="text">
+    		</md-input-container>
+			</div>
+			<div>
+				<md-input-container class="md-icon-float md-block">
+					<label>Middle Name</label>
+					<input ng-model="ctrl.member.middleName" type="text">
+				</md-input-container>
+			</div>
+			<div>
+				<md-input-container class="md-icon-float md-block">
+					<label>Last Name</label>
+					<input ng-model="ctrl.member.lastName" type="text">
+				</md-input-container>
+			</div>
 		</div>
 
-	</div>
+		<div layout="row">
+    	<md-input-container md-no-float class="md-block">
+				<label>Phone Number</label>
+				<md-icon md-font-set="material-icons"> phone </md-icon>
+      	<input ng-model="ctrl.member.phoneNumber" type="text">
+    	</md-input-container>
+
+    	<md-input-container class="md-block">
+      	<!-- Use floating placeholder instead of label -->
+				<label>Email</label>
+				<md-icon md-font-set="material-icons"> email </md-icon>
+      	<input ng-model="ctrl.member.email" type="email" ng-required="true">
+    	</md-input-container>
+
+			<md-input-container md-no-float class="md-block">
+				<label>Birth date</label>
+				<md-datepicker ng-model="ctrl.member.birthDate"></md-datepicker>
+			</md-input-container>
+		</div>
+
+		<div layout="row">
+			<div flex="20">
+				<md-input-container md-no-float class="md-block">
+					<label>City</label>
+					<md-icon md-font-set="material-icons"> home </md-icon>
+					<input ng-model="ctrl.member.city" type="text">
+				</md-input-container>
+			</div>
+			<div flex="60">
+    		<md-input-container md-no-float class="md-block">
+					<label>Address</label>
+      		<input ng-model="ctrl.member.address" type="text">
+    		</md-input-container>
+			</div>
+		</div>
+
+		<md-input-container class="md-block">
+      <label>Biography</label>
+			<md-icon md-font-set="material-icons"> textsms </md-icon>
+      <textarea ng-model="ctrl.member.bio" md-maxlength="150" rows="5" md-select-on-focus></textarea>
+    </md-input-container>
+  </md-content>
+</md-whiteframe>
 </div>
