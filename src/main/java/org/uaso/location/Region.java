@@ -7,7 +7,7 @@ import javax.persistence.*;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@Table(uniqueConstraints=@UniqueConstraint(columnNames = "name"))
+@Table(name = "regions", uniqueConstraints=@UniqueConstraint(columnNames = "name"))
 public class Region {
 
 	@Id

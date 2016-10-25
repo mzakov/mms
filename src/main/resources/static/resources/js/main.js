@@ -14909,7 +14909,7 @@
 /***/ function(module, exports) {
 
 	var path = 'C:/code/mms/ui/src/app/members/member/member.html';
-	var html = "<div layout-padding ng-cloak layout-align=\"center center\">\r\n<md-whiteframe class=\"md-whiteframe-10dp\" flex layout=\"column\" style=\"width: 700px;\" layout-align=\"center center\" >\r\n  <br/>\r\n  <md-content class=\"md-no-momentum\">\r\n\t\t<div layout=\"row\">\r\n\t\t\t<div>\r\n    \t\t<md-input-container class=\"md-icon-float md-block\">\r\n      \t\t<!-- Use floating label instead of placeholder -->\r\n      \t\t<label>First Name</label>\r\n\t\t\t\t\t<md-icon md-font-set=\"material-icons\"> perm_identity </md-icon>\r\n      \t\t<input ng-model=\"ctrl.member.firstName\" type=\"text\">\r\n    \t\t</md-input-container>\r\n\t\t\t</div>\r\n\t\t\t<div>\r\n\t\t\t\t<md-input-container class=\"md-icon-float md-block\">\r\n\t\t\t\t\t<label>Middle Name</label>\r\n\t\t\t\t\t<input ng-model=\"ctrl.member.middleName\" type=\"text\">\r\n\t\t\t\t</md-input-container>\r\n\t\t\t</div>\r\n\t\t\t<div>\r\n\t\t\t\t<md-input-container class=\"md-icon-float md-block\">\r\n\t\t\t\t\t<label>Last Name</label>\r\n\t\t\t\t\t<input ng-model=\"ctrl.member.lastName\" type=\"text\">\r\n\t\t\t\t</md-input-container>\r\n\t\t\t</div>\r\n\t\t</div>\n\r\n\t\t<div layout=\"row\">\r\n    \t<md-input-container md-no-float class=\"md-block\">\r\n\t\t\t\t<label>Phone Number</label>\r\n\t\t\t\t<md-icon md-font-set=\"material-icons\"> phone </md-icon>\r\n      \t<input ng-model=\"ctrl.member.phoneNumber\" type=\"text\">\r\n    \t</md-input-container>\r\n\r\n    \t<md-input-container class=\"md-block\">\r\n      \t<!-- Use floating placeholder instead of label -->\r\n\t\t\t\t<label>Email</label>\r\n\t\t\t\t<md-icon md-font-set=\"material-icons\"> email </md-icon>\r\n      \t<input ng-model=\"ctrl.member.email\" type=\"email\" ng-required=\"true\">\r\n    \t</md-input-container>\r\n\r\n\t\t\t<md-input-container md-no-float class=\"md-block\">\r\n\t\t\t\t<label>Birth date</label>\r\n\t\t\t\t<md-datepicker ng-model=\"ctrl.member.birthDate\"></md-datepicker>\r\n\t\t\t</md-input-container>\r\n\t\t</div>\r\n\r\n\t\t<div layout=\"row\">\r\n\t\t\t<div flex=\"20\">\r\n\t\t\t\t<md-input-container md-no-float class=\"md-block\">\r\n\t\t\t\t\t<label>City</label>\r\n\t\t\t\t\t<md-icon md-font-set=\"material-icons\"> home </md-icon>\r\n\t\t\t\t\t<input ng-model=\"ctrl.member.city\" type=\"text\">\r\n\t\t\t\t</md-input-container>\r\n\t\t\t</div>\r\n\t\t\t<div flex=\"60\">\r\n    \t\t<md-input-container md-no-float class=\"md-block\">\r\n\t\t\t\t\t<label>Address</label>\r\n      \t\t<input ng-model=\"ctrl.member.address\" type=\"text\">\r\n    \t\t</md-input-container>\r\n\t\t\t</div>\r\n\t\t</div>\n\r\n\t\t<md-input-container class=\"md-block\">\r\n      <label>Biography</label>\r\n\t\t\t<md-icon md-font-set=\"material-icons\"> textsms </md-icon>\r\n      <textarea ng-model=\"ctrl.member.bio\" md-maxlength=\"150\" rows=\"5\" md-select-on-focus></textarea>\r\n    </md-input-container>\r\n  </md-content>\r\n</md-whiteframe>\r\n</div>\r\n";
+	var html = "<div layout-padding ng-cloak layout-align=\"center center\">\r\n<md-whiteframe class=\"md-whiteframe-10dp\" flex layout=\"column\" style=\"width: 700px;\" layout-align=\"center center\" >\r\n  <br/>\r\n  <form ng-submit=\"ctrl.submit()\">\r\n  <md-content class=\"md-no-momentum\">\r\n\t\t<div layout=\"row\">\r\n\t\t\t<div>\r\n    \t\t<md-input-container class=\"md-icon-float md-block\">\r\n      \t\t<!-- Use floating label instead of placeholder -->\r\n      \t\t<label>First Name</label>\r\n\t\t\t\t\t<md-icon md-font-set=\"material-icons\"> perm_identity </md-icon>\r\n      \t\t<input ng-model=\"ctrl.member.firstName\" type=\"text\">\r\n    \t\t</md-input-container>\r\n\t\t\t</div>\r\n\t\t\t<div>\r\n\t\t\t\t<md-input-container class=\"md-icon-float md-block\">\r\n\t\t\t\t\t<label>Middle Name</label>\r\n\t\t\t\t\t<input ng-model=\"ctrl.member.middleName\" type=\"text\">\r\n\t\t\t\t</md-input-container>\r\n\t\t\t</div>\r\n\t\t\t<div>\r\n\t\t\t\t<md-input-container class=\"md-icon-float md-block\">\r\n\t\t\t\t\t<label>Last Name</label>\r\n\t\t\t\t\t<input ng-model=\"ctrl.member.lastName\" type=\"text\">\r\n\t\t\t\t</md-input-container>\r\n\t\t\t</div>\r\n\t\t</div>\n\r\n\t\t<div layout=\"row\">\r\n    \t<md-input-container md-no-float class=\"md-block\">\r\n\t\t\t\t<label>Phone Number</label>\r\n\t\t\t\t<md-icon md-font-set=\"material-icons\"> phone </md-icon>\r\n      \t<input ng-model=\"ctrl.member.phoneNumber\" type=\"text\">\r\n    \t</md-input-container>\r\n\r\n    \t<md-input-container class=\"md-block\">\r\n      \t<!-- Use floating placeholder instead of label -->\r\n\t\t\t\t<label>Email</label>\r\n\t\t\t\t<md-icon md-font-set=\"material-icons\"> email </md-icon>\r\n      \t<input ng-model=\"ctrl.member.email\" type=\"email\" ng-required=\"true\">\r\n    \t</md-input-container>\r\n\r\n\t\t\t<md-input-container md-no-float class=\"md-block\">\r\n\t\t\t\t<label>Birth date</label>\r\n\t\t\t\t<md-datepicker ng-model=\"ctrl.member.birthDate\"></md-datepicker>\r\n\t\t\t</md-input-container>\r\n\t\t</div>\r\n\r\n\t\t<div layout=\"row\">\r\n      <div flex=\"60\">\r\n    \t\t<md-input-container md-no-float class=\"md-block\">\r\n\t\t\t\t\t<label>Address</label>\r\n      \t\t<input ng-model=\"ctrl.member.address\" type=\"text\">\r\n    \t\t</md-input-container>\r\n\t\t\t</div>\r\n\r\n\r\n      <div flex=\"30\">\r\n            <form ng-submit=\"$event.preventDefault()\">\r\n              <div layout=\"row\">\r\n              <md-autocomplete\r\n              ng-disabled=\"ctrl.isDisabled\"\r\n              md-no-cache=\"ctrl.noCache\"\r\n              md-selected-item=\"ctrl.member.city\"\r\n              md-search-text-change=\"ctrl.searchTextChange(ctrl.searchText)\"\r\n              md-search-text=\"ctrl.searchText\"\r\n              md-selected-item-change=\"ctrl.selectedItemChange(item)\"\r\n              md-items=\"item in ctrl.querySearch(ctrl.searchText)\"\r\n              md-item-text=\"item.name\"\r\n              md-min-length=\"0\"\r\n              placeholder=\"Pick a City\"\r\n              md-menu-class=\"autocomplete-custom-template\">\r\n                <md-item-template>\r\n                  <span class=\"item-title\">\r\n                    <span> {{item.name}} </span>\r\n                  </span>\r\n              </div>\r\n                </md-item-template>\r\n              </md-autocomplete>\r\n            </form>\r\n        </div>\r\n\t\t</div>\n\r\n\t\t<md-input-container class=\"md-block\">\r\n      <label>Biography</label>\r\n\t\t\t<md-icon md-font-set=\"material-icons\"> textsms </md-icon>\r\n      <textarea ng-model=\"ctrl.member.bio\" md-maxlength=\"150\" rows=\"5\" md-select-on-focus></textarea>\r\n    </md-input-container>\r\n\r\n<div layout=\"row\" layout-wrap flex>\r\n    <div layout=\"column\" flex-xs flex=\"25\">\r\n      <p> Skills </p>\r\n    <div class=\"demo-select-all-checkboxes\" flex=\"25\" ng-repeat=\"item in ctrl.skills\">\r\n      <md-checkbox ng-checked=\"ctrl.isMember(ctrl.member.skills, item.id)\" ng-click=\"ctrl.toggle(item, ctrl.member.skills)\">\r\n        {{ item.name }}\r\n      </md-checkbox>\r\n    </div>\r\n    </div>\r\n\r\n    <div layout=\"column\" flex-xs flex=\"25\">\r\n      <p> Gear </p>\r\n\r\n    <div class=\"demo-select-all-checkboxes\" flex=\"25\" ng-repeat=\"item in ctrl.gear\">\r\n      <md-checkbox ng-checked=\"ctrl.isMember(ctrl.member.gear, item.id)\" ng-click=\"ctrl.toggle(item, ctrl.member.gear)\">\r\n        {{ item.name }}\r\n      </md-checkbox>\r\n    </div>\r\n    </div>\r\n\r\n    <div layout=\"column\" flex-xs flex=\"25\">\r\n      <p> Events </p>\r\n\r\n    <div class=\"demo-select-all-checkboxes\" flex=\"25\" ng-repeat=\"item in ctrl.events\">\r\n      <md-checkbox ng-checked=\"ctrl.isMember(ctrl.member.events, item.id)\" ng-click=\"ctrl.toggle(item, ctrl.member.events)\">\r\n        {{ item.name }}\r\n      </md-checkbox>\r\n    </div>\r\n    </div>\r\n\r\n    <div layout=\"column\" flex-xs flex=\"25\">\r\n      <p> Courses </p>\r\n\r\n    <div class=\"demo-select-all-checkboxes\" flex=\"25\" ng-repeat=\"item in ctrl.courses\">\r\n      <md-checkbox ng-checked=\"ctrl.isMember(ctrl.member.courses, item.id)\" ng-click=\"ctrl.toggle(item, ctrl.member.courses)\">\r\n        {{ item.name }}\r\n      </md-checkbox>\r\n    </div>\r\n    </div>\r\n</div>\r\n\r\n  </md-content>\r\n  <div class=\"col-sm-offset-2 col-sm-8\">\r\n\t\t\t\t\t\t<button type=\"submit\" class=\"btn btn-success\" ng-click=\"ctrl.update(ctrl.member)\"\r\n\t\t\t\t\t\tvalue=\"Save\">Save!</button>\r\n\t\t\t\t\t\t<button type=\"submit\" class=\"btn btn-success\" ng-click=\"ctrl.deleteMember(ctrl.member.id)\"\r\n\t\t\t\t\t\tvalue=\"Save\">Delete!</button>\r\n\t\t\t\t\t</div>\r\n  </form>\r\n</md-whiteframe>\r\n<pre>member = {{ctrl.member | json}}</pre>\r\n</div>\r\n";
 	window.angular.module('ng').run(['$templateCache', function(c) { c.put(path, html) }]);
 	module.exports = path;
 
@@ -14920,58 +14920,168 @@
 	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
-		value: true
+	  value: true
 	});
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
 	/* @ngInject */
 	var MemberController = function MemberController($log, $scope, MemberService, $http, $stateParams, $location) {
-		_classCallCheck(this, MemberController);
+	  _classCallCheck(this, MemberController);
 	
-		var ctrl = this;
+	  var ctrl = this;
 	
-		$log.debug('MemberController instantiated');
-		$scope.loaded = false;
-		var city_id;
+	  $log.debug('MemberController instantiated');
+	  $scope.loaded = false;
+	  var city_id;
 	
-		MemberService.getMember($stateParams.id).then(function (result) {
-			ctrl.member = result.data;
-			return ctrl.member;
-		});
+	  MemberService.getMember($stateParams.id).then(function (result) {
+	    ctrl.member = result.data;
+	    return ctrl.member;
+	    console.dir(result.data);
+	  }).then(function () {
+	    MemberService.getCities().then(function (result) {
+	      ctrl.cities = result.data;
+	      console.dir(result.data);
+	    }).then(function () {
+	      MemberService.getSkills().then(function (result) {
+	        ctrl.skills = result.data;
+	        console.dir(result.data);
+	      }).then(function () {
+	        MemberService.getGear().then(function (result) {
+	          ctrl.gear = result.data;
+	          console.dir(result.data);
+	        }).then(function () {
+	          MemberService.getEvents().then(function (result) {
+	            ctrl.events = result.data;
+	            console.dir(result.data);
+	          }).then(function () {
+	            MemberService.getCourses().then(function (result) {
+	              ctrl.courses = result.data;
+	              console.dir(result.data);
+	            });
+	          });
+	        });
+	      });
+	    });
+	  });
 	
-		ctrl.isMember = function (groups, group_id) {
-			var groupsIds = groups.map(function (group) {
-				return group.id;
-			});
-			return groupsIds.includes(group_id);
-		};
+	  ctrl.submit = function () {
+	    alert('submit');
+	  };
 	
-		ctrl.update = function (member) {
-			MemberService.patchMember(member);
-		};
+	  ctrl.toggle = function (item, list) {
+	    var idx = list.indexOf(item);
+	    if (idx > -1) {
+	      list.splice(idx, 1);
+	    } else {
+	      list.push(item);
+	    }
+	  };
 	
-		ctrl.post = function (member) {
-			delete person.id;
-			MemberService.postMember(member);
-			$location.url('/members');
-		};
+	  // ctrl.exists = function (item, list) {
+	  //   return list.indexOf(item) > -1;
+	  // };
 	
-		ctrl.deletePerson = function (id) {
-			MemberService.deleteMember(id);
-			$location.url('/members');
-		};
 	
-		this.back = function () {
-			window.history.back();
-		};
+	  ctrl.isMember = function (group, member_id) {
+	    var groupIds = group.map(function (group) {
+	      return group.id;
+	    });
+	    return groupIds.includes(member_id);
+	  };
 	
-		$scope.reloadRoute = function () {
-			$route.reload();
-		};
+	  ctrl.update = function (member) {
+	    delete member.city.value;
+	    MemberService.patchMember(member);
+	  };
 	
-		//	$scope.customFilter = JSON.stringify(ctrl.person)
-		$scope.loaded = true;
+	  ctrl.post = function (member) {
+	    delete person.id;
+	    MemberService.postMember(member);
+	    $location.url('/members');
+	  };
+	
+	  ctrl.deleteMember = function (id) {
+	    MemberService.deleteMember(id);
+	    $location.url('/members');
+	  };
+	
+	  this.back = function () {
+	    window.history.back();
+	  };
+	
+	  $scope.reloadRoute = function () {
+	    $route.reload();
+	  };
+	
+	  ///////////////////////////////////////////////////////////////////
+	
+	  ctrl.simulateQuery = false;
+	  ctrl.isDisabled = false;
+	
+	  ctrl.repos = loadAll();
+	  ctrl.repos.then(function (cities) {
+	    ctrl.allCities = cities;
+	  });
+	  ctrl.querySearch = querySearch;
+	  ctrl.selectedItemChange = selectedItemChange;
+	  ctrl.searchTextChange = searchTextChange;
+	
+	  // ******************************
+	  // Internal methods
+	  // ******************************
+	
+	  /**
+	   * Search for repos... use $timeout to simulate
+	   * remote dataservice call.
+	   */
+	
+	  function querySearch(query) {
+	    console.dir(ctrl.repos);
+	    ctrl.repos = ctrl.allCities;
+	    console.dir(ctrl.repos);
+	    var result = query ? ctrl.repos.filter(createFilterFor(query)) : ctrl.repos;
+	    return result;
+	  }
+	
+	  function searchTextChange(text) {
+	    $log.info('Text changed to ' + text);
+	  }
+	
+	  function selectedItemChange(item) {
+	    $log.info('Item changed to ' + JSON.stringify(item));
+	  }
+	
+	  /**
+	   * Build `components` list of key/value pairs
+	   */
+	  function loadAll() {
+	    var cities = void 0;
+	    return MemberService.getCities().then(function (res) {
+	      cities = res.data;
+	
+	      return cities.map(function (city) {
+	        city.value = city.name.toLowerCase();
+	        return city;
+	      });
+	    });
+	  }
+	
+	  /**
+	   * Create filter function for a query string
+	   */
+	  function createFilterFor(query) {
+	    var lowercaseQuery = angular.lowercase(query);
+	
+	    return function filterFn(item) {
+	      return item.value.indexOf(lowercaseQuery) === 0;
+	    };
+	  }
+	
+	  ///////////////////////////////////////////////////////////////////////////
+	  //	$scope.customFilter = JSON.stringify(ctrl.person)
+	  $scope.loaded = true;
 	};
 	MemberController.$inject = ["$log", "$scope", "MemberService", "$http", "$stateParams", "$location"];
 	
@@ -15006,14 +15116,39 @@
 				return this.$http.get('members/' + id);
 			}
 		}, {
+			key: 'getCities',
+			value: function getCities() {
+				return this.$http.get('cities/');
+			}
+		}, {
+			key: 'getSkills',
+			value: function getSkills() {
+				return this.$http.get('skills/');
+			}
+		}, {
+			key: 'getGear',
+			value: function getGear() {
+				return this.$http.get('gear/');
+			}
+		}, {
+			key: 'getEvents',
+			value: function getEvents() {
+				return this.$http.get('events/');
+			}
+		}, {
+			key: 'getCourses',
+			value: function getCourses() {
+				return this.$http.get('courses/');
+			}
+		}, {
 			key: 'patchMember',
-			value: function patchMember(person) {
-				return this.$http.patch('members/' + person.id, person);
+			value: function patchMember(member) {
+				return this.$http.patch('members/' + member.id, member);
 			}
 		}, {
 			key: 'postMember',
-			value: function postMember(person) {
-				return this.$http.post('members/', person);
+			value: function postMember(member) {
+				return this.$http.post('members/', member);
 			}
 		}, {
 			key: 'deleteMember',
@@ -15248,4 +15383,4 @@
 
 /***/ }
 /******/ ]);
-//# sourceMappingURL=main.js.map?d45687d295b950d76714
+//# sourceMappingURL=main.js.map?a7a2abc6683be56cbcd7

@@ -1,15 +1,5 @@
-insert into mms.users (first_name, family_name, login, password, e_mail, phone, language, enabled) values ('Steve', 'JOBS', 'steve', 'steve', 'steve.jobs@apple.com', '0033 1 23 45 67 89', 'en', true);
-insert into mms.users (first_name, family_name, login, password, e_mail, phone, language, enabled) values ('Bill', 'GATES', 'bill', 'bill', 'bill.gates@microsoft.com', '0033 1 23 45 67 89', 'fr', true);
-insert into mms.users (first_name, family_name, login, password, e_mail, phone, language, enabled) values ('Mark', 'ZUCKERBERG', 'mark', 'zuckerberg', 'mark.zuckerberg@facebook.com', '0033 1 23 45 67 89', 'en', true);
-insert into mms.users (first_name, family_name, login, password, e_mail, phone, language, enabled) values ('Tim', 'COOK', 'tim', 'cook', 'tim.cook@apple.com', '0033 1 23 45 67 89', 'en', true);
-insert into mms.users (first_name, family_name, login, password, e_mail, phone, language, enabled) values ('Larry', 'Page', 'larry', 'page', 'larry.page@gmail.com', '0033 1 23 45 67 89', 'en', true);
-insert into mms.users (first_name, family_name, login, password, e_mail, phone, language, enabled) values ('Sergey', 'Brin', 'sergey', 'brin', 'sergey.brin@gmail.com', '0033 1 23 45 67 89', 'en', true);
-insert into mms.users (first_name, family_name, login, password, e_mail, phone, language, enabled) values ('Larry', 'ELLISON', 'larry2', 'ellison', 'larry.ellison@oracle.com', '0033 1 23 45 67 89', 'en', true);
-insert into mms.users (first_name, family_name, login, password, e_mail, phone, language, enabled) values ('Jeff', 'BEZOS', 'jeff', 'bezos', 'jeff.bezos@amazon.com', '0033 1 23 45 67 89', 'en', true);
-insert into mms.users (first_name, family_name, login, password, e_mail, phone, language, enabled) values ('Paul', 'ALLEN', 'paul', 'allen', 'paul.allen@microsoft.com', '0033 1 23 45 67 89', 'en', true);
-insert into mms.users (first_name, family_name, login, password, e_mail, phone, language, enabled) values ('Steve', 'BALLMER', 'steve2', 'ballmer', 'steve.ballmer@microsoft.com', '0033 1 23 45 67 89', 'en', true);
-insert into mms.users (first_name, family_name, login, password, e_mail, phone, language, enabled) values ('Jack', 'DORSEY', 'jack', 'dorsey', 'jack.dorsey@twitter.com', '0033 1 23 45 67 89', 'en', true);
-insert into mms.users (first_name, family_name, login, password, e_mail, phone, language, enabled) values ('Matt', 'MULLENWEG', 'matt', 'mullenweg', 'matt.mullenweg@wordpress.com', '0033 1 23 45 67 89', 'en', true);
+insert into mms.users (first_name, family_name, login, password, e_mail, phone, language, enabled) values ('Martin', 'ZAKOV', 'martin', 'password', 'steve.jobs@apple.com', '0033 1 23 45 67 89', 'en', true);
+insert into mms.users (first_name, family_name, login, password, e_mail, phone, language, enabled) values ('test', 'TEST', 'test', 'test', 'bill.gates@microsoft.com', '0033 1 23 45 67 89', 'fr', true);
 
 insert into mms.authority (name) values ('admin');
 insert into mms.authority (name) values ('technical user');
@@ -19,5 +9,13 @@ insert into mms.users_authority (id_user, id_authority) values (1, 1);
 insert into mms.users_authority (id_user, id_authority) values (1, 2);
 insert into mms.users_authority (id_user, id_authority) values (1, 3);
 insert into mms.users_authority (id_user, id_authority) values (2, 3);
-insert into mms.users_authority (id_user, id_authority) values (3, 3);
-	
+
+insert into mms.members (first_name, middle_name, last_name) values ('Martin', ' ', 'Zakov'), ('Vasil', ' ', 'Gourev'), ('Ivan', ' ', 'Slavchev'), ('Denica', ' ', 'Nikolaeva'), ('Plamen', ' ', 'Veselinov'), ('Martin', ' ', 'Jordanov'), ('Viktoria', ' ', 'Antonova');
+
+insert into mms.regions (name) values ('Blagoevgrad'),('Burgas'),('Dobrich'),('Gabrovo'),('Haskovo'),('Kardzhali'),('Kyustendil'),('Lovech'),('Montana'),('Pazardzhik'),('Pernik'),('Pleven'),('Plovdiv'),('Razgrad'),('Ruse'),('Shumen'),('Silistra'),('Sliven'),('Smolyan'),('Sofia City'),('Sofia (province)'),('Stara Zagora'),('Targovishte'),('Varna'),('Veliko Tarnovo'),('Vidin'),('Vratsa'),('Yambol');
+
+insert into mms.cities (name, region_id) values ('Blagoevgrad', 1),('Burgas', 2),('Dobrich', 3),('Gabrovo', 4),('Haskovo', 5),('Kardzhali', 6),('Kyustendil', 7),('Lovech', 8),('Montana', 9),('Pazardzhik', 10),('Pernik', 11),('Pleven', 12),('Plovdiv', 13),('Razgrad', 14),('Ruse', 15),('Shumen', 16),('Silistra', 17),('Sliven', 18),('Smolyan', 19),('Sofia', 20),('Samokov', 21),('Botevgrad', 21),('Svoge', 21),('Stara Zagora', 22),('Targovishte', 23),('Varna', 24),('Veliko Tarnovo', 25),('Vidin', 26),('Vratsa', 27),('Yambol', 28);
+
+insert into mms.skills (name) values ('First Aid'), ('Rope Rescue'), ('GPS'), ('Logistics'), ('Planning'), ('Team Leader');
+
+insert into mms.gear (name) values ('tent'), ('sleeping bag'), ('pots and pans'), ('head light'), ('rope'), ('car'), ('compass');

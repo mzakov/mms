@@ -10,4 +10,8 @@ public interface MemberService {
 
 	Member read(long id);
 
+	Member update(long id, Member memberToUpdate);
+
+	Member delete(long id);
+
 }

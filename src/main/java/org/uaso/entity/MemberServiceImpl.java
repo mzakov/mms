@@ -31,4 +31,17 @@ public class MemberServiceImpl implements MemberService {
 		return memberRepo.findOne(id);
 	}
 
+	@Override
+	public Member update(long id, Member memberToUpdate) {
+		memberToUpdate.setId(id);
+		return memberRepo.save(memberToUpdate);
+	}
+
+	@Override
+	public Member delete(long id) {
+		Member result = this.read(id);
+		memberRepo.delete(id);
+		return result;
+	}
+
 }

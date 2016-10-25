@@ -1,6 +1,7 @@
 <div layout-padding ng-cloak layout-align="center center">
 <md-whiteframe class="md-whiteframe-10dp" flex layout="column" style="width: 700px;" layout-align="center center" >
   <br/>
+  <form ng-submit="ctrl.submit()">
   <md-content class="md-no-momentum">
 		<div layout="row">
 			<div>
@@ -46,19 +47,38 @@
 		</div>
 
 		<div layout="row">
-			<div flex="20">
-				<md-input-container md-no-float class="md-block">
-					<label>City</label>
-					<md-icon md-font-set="material-icons"> home </md-icon>
-					<input ng-model="ctrl.member.city" type="text">
-				</md-input-container>
-			</div>
-			<div flex="60">
+      <div flex="60">
     		<md-input-container md-no-float class="md-block">
 					<label>Address</label>
       		<input ng-model="ctrl.member.address" type="text">
     		</md-input-container>
 			</div>
+
+
+      <div flex="30">
+            <form ng-submit="$event.preventDefault()">
+              <div layout="row">
+              <md-autocomplete
+              ng-disabled="ctrl.isDisabled"
+              md-no-cache="ctrl.noCache"
+              md-selected-item="ctrl.member.city"
+              md-search-text-change="ctrl.searchTextChange(ctrl.searchText)"
+              md-search-text="ctrl.searchText"
+              md-selected-item-change="ctrl.selectedItemChange(item)"
+              md-items="item in ctrl.querySearch(ctrl.searchText)"
+              md-item-text="item.name"
+              md-min-length="0"
+              placeholder="Pick a City"
+              md-menu-class="autocomplete-custom-template">
+                <md-item-template>
+                  <span class="item-title">
+                    <span> {{item.name}} </span>
+                  </span>
+              </div>
+                </md-item-template>
+              </md-autocomplete>
+            </form>
+        </div>
 		</div>
 
 		<md-input-container class="md-block">
@@ -66,6 +86,56 @@
 			<md-icon md-font-set="material-icons"> textsms </md-icon>
       <textarea ng-model="ctrl.member.bio" md-maxlength="150" rows="5" md-select-on-focus></textarea>
     </md-input-container>
+
+<div layout="row" layout-wrap flex>
+    <div layout="column" flex-xs flex="25">
+      <p> Skills </p>
+    <div class="demo-select-all-checkboxes" flex="25" ng-repeat="item in ctrl.skills">
+      <md-checkbox ng-checked="ctrl.isMember(ctrl.member.skills, item.id)" ng-click="ctrl.toggle(item, ctrl.member.skills)">
+        {{ item.name }}
+      </md-checkbox>
+    </div>
+    </div>
+
+    <div layout="column" flex-xs flex="25">
+      <p> Gear </p>
+
+    <div class="demo-select-all-checkboxes" flex="25" ng-repeat="item in ctrl.gear">
+      <md-checkbox ng-checked="ctrl.isMember(ctrl.member.gear, item.id)" ng-click="ctrl.toggle(item, ctrl.member.gear)">
+        {{ item.name }}
+      </md-checkbox>
+    </div>
+    </div>
+
+    <div layout="column" flex-xs flex="25">
+      <p> Events </p>
+
+    <div class="demo-select-all-checkboxes" flex="25" ng-repeat="item in ctrl.events">
+      <md-checkbox ng-checked="ctrl.isMember(ctrl.member.events, item.id)" ng-click="ctrl.toggle(item, ctrl.member.events)">
+        {{ item.name }}
+      </md-checkbox>
+    </div>
+    </div>
+
+    <div layout="column" flex-xs flex="25">
+      <p> Courses </p>
+
+    <div class="demo-select-all-checkboxes" flex="25" ng-repeat="item in ctrl.courses">
+      <md-checkbox ng-checked="ctrl.isMember(ctrl.member.courses, item.id)" ng-click="ctrl.toggle(item, ctrl.member.courses)">
+        {{ item.name }}
+      </md-checkbox>
+    </div>
+    </div>
+</div>
+
   </md-content>
+  <div class="col-sm-offset-2 col-sm-8">
+						<button type="submit" class="btn btn-success" ng-click="ctrl.update(ctrl.member)"
+						value="Save">Save!</button>
+						<button type="submit" class="btn btn-success" ng-click="ctrl.deleteMember(ctrl.member.id)"
+						value="Save">Delete!</button>
+					</div>
+  </form>
 </md-whiteframe>
+<pre>member = {{ctrl.member | json}}</pre>
 </div>

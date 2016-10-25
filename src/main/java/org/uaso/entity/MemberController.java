@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@CrossOrigin(origins = "*")
 @RequestMapping("members")
 public class MemberController {
 
@@ -38,5 +37,17 @@ public class MemberController {
 	@RequestMapping(value = "{id}", method = RequestMethod.GET)
 	public Member read(@PathVariable("id") long id) {
 		return memberService.read(id);
+	}
+	
+	// PATCH /members/{id}
+	@RequestMapping(value = "{id}", method = RequestMethod.PATCH)
+	public Member update(@PathVariable("id") long id, @RequestBody Member memberToUpdate) {
+		return memberService.update(id, memberToUpdate);
+	}
+
+	// DELETE /members/{id}
+	@RequestMapping(value = "{id}", method = RequestMethod.DELETE)
+	public Member delete(@PathVariable("id") long id) {
+		return memberService.delete(id);
 	}
 }

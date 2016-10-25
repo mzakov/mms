@@ -5,26 +5,22 @@ export default
 		this.$http = $http
 	}
 
-	getMember (id) { return this.$http.get('members/' + id) };
+	getMember (id) { return this.$http.get('members/' + id) }
 
-	patchMember (person) { return this.$http.patch('members/' + person.id, person) };
+  getCities () { return this.$http.get('cities/') }
 
-	postMember (person) { return this.$http.post('members/', person) };
+  getSkills () { return this.$http.get('skills/') }
+
+  getGear () { return this.$http.get('gear/') }
+
+  getEvents () { return this.$http.get('events/') }
+
+  getCourses () { return this.$http.get('courses/') }
+
+	patchMember (member) { return this.$http.patch('members/' + member.id, member) };
+
+	postMember (member) { return this.$http.post('members/', member) };
 
 	deleteMember (id) { return this.$http.delete('members/' + id) };
 
-	// getInterests () { return this.$http.get('interests/') };
-	//
-	// getCityGroups (city_id) { return this.$http.get('cities/' + city_id + '/groups/')};
-	//
-	// getAllGroups () { return this.$http.get('groups/')};
-	//
-	// getCities () { return this.$http.get('cities/')};
-	//
-	// getStates () { return this.$http.get('states/')};
-	//
-//	isMember (groups, group_id) {
-//		var groupsIds = groups.map((group) => {return group.id});
-//		return groupsIds.includes(group_id);
-//	};
 }
