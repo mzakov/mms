@@ -77,8 +77,8 @@ public class Course {
 	@Column
 	private String debrief;
 	
-	@JsonIgnore
-	@ManyToMany(mappedBy = "courses")
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name = "members_courses")
 	private Set<Member> members;
 	
 	@ManyToMany

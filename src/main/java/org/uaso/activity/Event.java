@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
@@ -75,8 +76,8 @@ public class Event {
 	@Column
 	private String debrief;
 	
-	@JsonIgnore
-	@ManyToMany(mappedBy = "events")
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name = "members_events")
 	private Set<Member> members;
 	
 	public Date getCreated() {

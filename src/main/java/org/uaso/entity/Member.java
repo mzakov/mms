@@ -27,6 +27,8 @@ import org.uaso.attribute.Gear;
 import org.uaso.attribute.Skill;
 import org.uaso.location.City;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Entity
 @Table (name="members", uniqueConstraints=@UniqueConstraint(columnNames={"firstName", "middleName", "lastName"}))
@@ -84,20 +86,20 @@ public class Member {
 	@Column
 	private String bio;
 	
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "members_skills")
 	private Set<Skill> skills;
 	
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "members_gear")
 	private Set<Gear> gear;
 	
-	@ManyToMany
-	@JoinTable(name = "members_events")
+	@JsonIgnore
+	@ManyToMany(mappedBy = "members")
 	private List<Event> events;
 	
-	@ManyToMany
-	@JoinTable(name = "members_courses")
+	@JsonIgnore
+	@ManyToMany(mappedBy = "members")
 	private List<Course> courses;
 	
 	public Date getCreated() {

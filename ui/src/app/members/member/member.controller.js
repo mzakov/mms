@@ -1,7 +1,7 @@
 export default
  /* @ngInject */
  class MemberController {
-   constructor ($log, $scope, MemberService, $http , $stateParams, $location) {
+   constructor ($log, $state, $scope, MemberService, $http , $stateParams, $location) {
  	let ctrl = this
 
  	$log.debug('MemberController instantiated')
@@ -10,8 +10,9 @@ export default
 
 	MemberService.getMember($stateParams.id).then((result) => {
 		ctrl.member = result.data;
+    ctrl.member.birthDate = new Date(ctrl.member.birthDate);
+    console.dir('The birth date is: ' + ctrl.member.birthDate);
 		return ctrl.member;
-    console.dir(result.data)
 	}).then(() => {
 				MemberService.getCities().then(function(result){
 					ctrl.cities = result.data;
@@ -71,12 +72,13 @@ ctrl.toggle = function (item, list) {
 	ctrl.post = function(member) {
 		delete person.id;
 		MemberService.postMember(member);
-		$location.url('/members')
+		$state.go('members')
 	}
 
 	ctrl.deleteMember = function(id) {
-		MemberService.deleteMember(id);
-		$location.url('/members')
+		MemberService.deleteMember(id).then(() => {
+      $state.go('members')
+    });
 	}
 
  	this.back = function() {

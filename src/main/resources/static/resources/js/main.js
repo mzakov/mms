@@ -14589,219 +14589,118 @@
 	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
-		value: true
+	  value: true
 	});
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
 	/* @ngInject */
 	var MembersController = function MembersController($log, MembersService, $scope, $timeout, $location, $state, $rootScope, $q) {
-		_classCallCheck(this, MembersController);
+	  _classCallCheck(this, MembersController);
 	
-		$log.debug('MembersController instantiated!');
+	  $log.debug('MembersController instantiated!');
 	
-		//////////////////////////////////////////////
-		var ctrl = this;
-		var members = [];
+	  //////////////////////////////////////////////
+	  var ctrl = this;
+	  var members = [];
 	
-		ctrl.redirect = function (url, refresh) {
-			console.dir('It gets to the controller');
-			if (refresh || $scope.$$phase) {
-				$window.location.href = url;
-			} else {
-				$location.path(url);
-			}
-		};
-		MembersService.getAllMembers().then(function (result) {
-			ctrl.members = result.data;
-		});
+	  ctrl.redirect = function (url, refresh) {
+	    console.dir('It gets to the controller');
+	    if (refresh || $scope.$$phase) {
+	      $window.location.href = url;
+	    } else {
+	      $location.path(url);
+	    }
+	  };
+	  MembersService.getAllMembers().then(function (result) {
+	    ctrl.members = result.data;
+	  });
 	
-		ctrl.member = {
-			middleName: ''
-		};
+	  ctrl.member = {
+	    middleName: ''
+	  };
 	
-		ctrl.addMember = function (member) {
-			MembersService.postMember(member);
-			ctrl.members.push(member);
-			ctrl.member = { middleName: '' };
-			$state.go('members');
-		};
+	  ctrl.addMember = function (member) {
+	    MembersService.postMember(member).then(function (result) {
+	      ctrl.members.push(result.data);
+	      ctrl.member = { middleName: '' };
+	      ctrl.redirect('members/' + result.data.id);
+	      // 	$state.go('members/')
+	    });
+	  };
 	
-		ctrl.back = function () {
-			window.history.back();
-		};
+	  ctrl.back = function () {
+	    window.history.back();
+	  };
 	
-		$scope.reloadRoute = function () {
-			$route.reload();
-		};
-		////////////////////////////////////////////////////////////
-		ctrl.simulateQuery = false;
-		ctrl.isDisabled = false;
+	  $scope.reloadRoute = function () {
+	    $route.reload();
+	  };
+	  ////////////////////////////////////////////////////////////
+	  ctrl.simulateQuery = false;
+	  ctrl.isDisabled = false;
 	
-		ctrl.repos = loadAll();
-		ctrl.repos.then(function (members) {
-			ctrl.allMembers = members;
-		});
-		ctrl.querySearch = querySearch;
-		ctrl.selectedItemChange = selectedItemChange;
-		ctrl.searchTextChange = searchTextChange;
+	  ctrl.repos = loadAll();
+	  ctrl.repos.then(function (members) {
+	    ctrl.allMembers = members;
+	  });
+	  ctrl.querySearch = querySearch;
+	  ctrl.selectedItemChange = selectedItemChange;
+	  ctrl.searchTextChange = searchTextChange;
 	
-		// ******************************
-		// Internal methods
-		// ******************************
+	  // ******************************
+	  // Internal methods
+	  // ******************************
 	
-		/**
-	  * Search for repos... use $timeout to simulate
-	  * remote dataservice call.
-	  */
+	  /**
+	   * Search for repos... use $timeout to simulate
+	   * remote dataservice call.
+	   */
 	
-		function querySearch(query) {
-			console.dir(ctrl.repos);
-			ctrl.repos = ctrl.allMembers;
-			console.dir(ctrl.repos);
-			var result = query ? ctrl.repos.filter(createFilterFor(query)) : ctrl.repos;
-			return result;
-		}
+	  function querySearch(query) {
+	    console.dir(ctrl.repos);
+	    ctrl.repos = ctrl.allMembers;
+	    console.dir(ctrl.repos);
+	    var result = query ? ctrl.repos.filter(createFilterFor(query)) : ctrl.repos;
+	    return result;
+	  }
 	
-		function searchTextChange(text) {
-			$log.info('Text changed to ' + text);
-		}
+	  function searchTextChange(text) {
+	    $log.info('Text changed to ' + text);
+	  }
 	
-		function selectedItemChange(item) {
-			$log.info('Item changed to ' + JSON.stringify(item));
-		}
+	  function selectedItemChange(item) {
+	    $log.info('Item changed to ' + JSON.stringify(item));
+	  }
 	
-		/**
-	  * Build `components` list of key/value pairs
-	  */
-		function loadAll() {
-			var members = void 0;
-			return MembersService.getAllMembers().then(function (res) {
-				members = res.data;
+	  /**
+	   * Build `components` list of key/value pairs
+	   */
+	  function loadAll() {
+	    var members = void 0;
+	    return MembersService.getAllMembers().then(function (res) {
+	      members = res.data;
 	
-				return members.map(function (member) {
-					member.value = member.firstName.toLowerCase() + ' ' + member.lastName.toLowerCase();
-					return member;
-				});
-			});
-		}
+	      return members.map(function (member) {
+	        member.value = member.firstName.toLowerCase() + ' ' + member.lastName.toLowerCase();
+	        return member;
+	      });
+	    });
+	  }
 	
-		/**
-	  * Create filter function for a query string
-	  */
-		function createFilterFor(query) {
-			var lowercaseQuery = angular.lowercase(query);
+	  /**
+	   * Create filter function for a query string
+	   */
+	  function createFilterFor(query) {
+	    var lowercaseQuery = angular.lowercase(query);
 	
-			return function filterFn(item) {
-				return item.value.indexOf(lowercaseQuery) === 0;
-			};
-		}
+	    return function filterFn(item) {
+	      return item.value.indexOf(lowercaseQuery) === 0;
+	    };
+	  }
 	
-		//	Autocompele //////////////////////////////////////////////////////////
-		//
-		// var pendingSearch, cancelSearch = angular.noop;
-		//   var cachedQuery, lastSearch;
-		//
-		// 	function loadMembers() {
-		// 		let members
-		// 		return MembersService.getAllMembers()
-		// 			.then(function(res) {
-		// 			members = res.data
-		// 			return members.map(function (m, index) {
-		// 						var member = {
-		// 							name: m.firstName + ' ' + m.lastName,
-		// 							email: m.email,
-		// 							image: 'http://lorempixel.com/50/50/people?' + index
-		// 						};
-		// 						member._lowername = member.name.toLowerCase();
-		// 						return member;
-		// 					});
-		// 				})
-		// 				// .error(function(error) {
-		// 				// 	console.dir("Error:"+error)
-		// 				// })
-		// 			}
-		//
-		//   ctrl.allMembers = loadMembers();
-		// 	console.dir(ctrl.allMembers)
-		// 	ctrl.allMembers.then(function(members){
-		// 		ctrl.allMems = members
-		// 	})
-		//   // ctrl.members = [ctrl.allMembers[0]];
-		//   ctrl.asyncMembers = [];
-		//   ctrl.filterSelected = true;
-		//
-		//   ctrl.querySearch = querySearch;
-		//   ctrl.delayedQuerySearch = delayedQuerySearch;
-		// 	/**
-		// 	 * Search for members; use a random delay to simulate a remote call
-		// 	 */
-		//
-		// 	 function querySearch (criteria) {
-		// 		ctrl.allMembers = ctrl.allMems
-		// 		console.dir(ctrl.allMembers)
-		//     cachedQuery = cachedQuery || criteria;
-		//     let result = cachedQuery ? ctrl.allMembers.filter(createFilterFor(cachedQuery)) : [];
-		// 		return result
-		//   }
-		//
-		// 	/**
-		// 	 * Async search for members
-		// 	 * Also debounce the queries; since the md-contact-chips does not support this
-		// 	 */
-		// 	function delayedQuerySearch(criteria) {
-		// 	      cachedQuery = criteria;
-		// 	      if ( !pendingSearch || !debounceSearch() )  {
-		// 	        cancelSearch();
-		//
-		// 	        return pendingSearch = $q(function(resolve, reject) {
-		// 	          // Simulate async search... (after debouncing)
-		// 	          cancelSearch = reject;
-		// 	          $timeout(function() {
-		//
-		// 	            resolve( ctrl.querySearch() );
-		//
-		// 	            refreshDebounce();
-		// 	          }, Math.random() * 500, true)
-		// 	        });
-		// 	      }
-		//
-		// 	      return pendingSearch;
-		// 	    }
-		//
-		// 	function refreshDebounce() {
-		// 	      lastSearch = 0;
-		// 	      pendingSearch = null;
-		// 	      cancelSearch = angular.noop;
-		// 	    }
-		//
-		// 	    /**
-		// 	     * Debounce if querying faster than 300ms
-		// 	     */
-		// 	function debounceSearch() {
-		// 	      var now = new Date().getMilliseconds();
-		// 	      lastSearch = lastSearch || now;
-		//
-		// 	      return ((now - lastSearch) < 300);
-		// 	    }
-		//
-		// 	    /**
-		// 	     * Create filter function for a query string
-		// 	     */
-		// 	function createFilterFor(query) {
-		// 	      var lowercaseQuery = angular.lowercase(query);
-		//
-		// 	      return function filterFn(member) {
-		// 	        return (member._lowername.indexOf(lowercaseQuery) != -1);;
-		// 	      };
-		//
-		// 	    }
-	
-	
-		// End of autocomplete ///////////////////////////////////////////////////
-	
-		$scope.loaded = true;
-		//////////////////////////////////////////////
+	  $scope.loaded = true;
+	  //////////////////////////////////////////////
 	};
 	MembersController.$inject = ["$log", "MembersService", "$scope", "$timeout", "$location", "$state", "$rootScope", "$q"];
 	
@@ -14926,7 +14825,7 @@
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
 	/* @ngInject */
-	var MemberController = function MemberController($log, $scope, MemberService, $http, $stateParams, $location) {
+	var MemberController = function MemberController($log, $state, $scope, MemberService, $http, $stateParams, $location) {
 	  _classCallCheck(this, MemberController);
 	
 	  var ctrl = this;
@@ -14937,8 +14836,9 @@
 	
 	  MemberService.getMember($stateParams.id).then(function (result) {
 	    ctrl.member = result.data;
+	    ctrl.member.birthDate = new Date(ctrl.member.birthDate);
+	    console.dir('The birth date is: ' + ctrl.member.birthDate);
 	    return ctrl.member;
-	    console.dir(result.data);
 	  }).then(function () {
 	    MemberService.getCities().then(function (result) {
 	      ctrl.cities = result.data;
@@ -14999,12 +14899,13 @@
 	  ctrl.post = function (member) {
 	    delete person.id;
 	    MemberService.postMember(member);
-	    $location.url('/members');
+	    $state.go('members');
 	  };
 	
 	  ctrl.deleteMember = function (id) {
-	    MemberService.deleteMember(id);
-	    $location.url('/members');
+	    MemberService.deleteMember(id).then(function () {
+	      $state.go('members');
+	    });
 	  };
 	
 	  this.back = function () {
@@ -15083,7 +14984,7 @@
 	  //	$scope.customFilter = JSON.stringify(ctrl.person)
 	  $scope.loaded = true;
 	};
-	MemberController.$inject = ["$log", "$scope", "MemberService", "$http", "$stateParams", "$location"];
+	MemberController.$inject = ["$log", "$state", "$scope", "MemberService", "$http", "$stateParams", "$location"];
 	
 	exports.default = MemberController;
 
@@ -15383,4 +15284,4 @@
 
 /***/ }
 /******/ ]);
-//# sourceMappingURL=main.js.map?a7a2abc6683be56cbcd7
+//# sourceMappingURL=main.js.map?a85d597bd3b8849b47b3

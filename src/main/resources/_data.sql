@@ -1,4 +1,4 @@
-insert into mms.users (first_name, family_name, login, password, e_mail, phone, language, enabled) values ('Martin', 'ZAKOV', 'martin', 'password', 'steve.jobs@apple.com', '0033 1 23 45 67 89', 'en', true);
+insert into mms.users (first_name, family_name, login, password, e_mail, phone, language, enabled) values ('Martin', 'ZAKOV', 'Martin', 'password', 'steve.jobs@apple.com', '0033 1 23 45 67 89', 'en', true);
 insert into mms.users (first_name, family_name, login, password, e_mail, phone, language, enabled) values ('test', 'TEST', 'test', 'test', 'bill.gates@microsoft.com', '0033 1 23 45 67 89', 'fr', true);
 
 insert into mms.authority (name) values ('admin');
