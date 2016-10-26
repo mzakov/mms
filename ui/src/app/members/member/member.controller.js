@@ -1,7 +1,7 @@
 export default
  /* @ngInject */
  class MemberController {
-   constructor ($log, $state, $scope, MemberService, $http , $stateParams, $location) {
+   constructor ($log, $state, $scope, MemberService, $http, $mdDialog, $stateParams, $location) {
  	let ctrl = this
 
  	$log.debug('MemberController instantiated')
@@ -66,7 +66,9 @@ ctrl.toggle = function (item, list) {
 
 	ctrl.update = function(member) {
     delete member.city.value
-	  MemberService.patchMember(member);
+	  MemberService.patchMember(member).then(() => {
+      ctrl.status = 'Member saved!';
+    });
 	}
 
 	ctrl.post = function(member) {
@@ -156,6 +158,24 @@ function createFilterFor(query) {
 
 
 ///////////////////////////////////////////////////////////////////////////
+
+ctrl.showConfirm = function(ev) {
+    // Appending dialog to document.body to cover sidenav in docs app
+    var confirm = $mdDialog.confirm()
+          .title('Would you like to delete this member?')
+          .textContent('It is irreversable')
+          .ariaLabel('Delete member')
+          .targetEvent(ev)
+          .ok('Yes!')
+          .cancel('NO');
+
+    $mdDialog.show(confirm).then(function() {
+        ctrl.deleteMember(ctrl.member.id);
+        }, function() {
+            ctrl.status = 'You did not delete the member';
+            });
+};
+
 //	$scope.customFilter = JSON.stringify(ctrl.person)
  	$scope.loaded = true
    }

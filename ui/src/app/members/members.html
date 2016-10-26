@@ -1,140 +1,89 @@
-<md-content layout="column" layout-align="center center">
-  <div style="height: 300px; width: 100%;">
+<md-content ng-cloak layout-padding layout-align="center center">
+<!--  <div style="height: 300px; width: 100%;">
   <mms-map></mms-map>
-  </div>
-  <div>
-    <md-subheader class="md-no-sticky">Members</md-subheader>
-		<md-whiteframe class="md-whiteframe-1dp" layout="row" layout-align="center center" >
-          <div class="form-group">
-			<div class="col-sm-8">
-				<input type="text" class="form-control" id="name"
-				placeholder="First Name" ng-model="ctrl.member.firstName">
-			</div>
-			<div class="col-sm-8">
-				<input type="text" class="form-control" id="name"
-				placeholder="Last Name" ng-model="ctrl.member.lastName">
-			</div>
-			<div class="col-sm-8">
-				<input type="text" class="form-control" id="name"
-				placeholder="Phone Number" ng-model="ctrl.member.phoneNumber">
-			</div>
-			<div class="col-sm-8">
-				<input type="text" class="form-control" id="name"
-				placeholder="Email" ng-model="ctrl.member.email">
-			</div>
-		</div>
+</div>-->
+<md-whiteframe class="md-whiteframe-10dp" layout-padding layout="column" layout-align="center center" >
+<md-content layout="column" layout-align="center center">
 
-		<div class="form-group">
-			<div class="col-sm-offset-2 col-sm-8">
-				<button type="submit" class="btn btn-success" ng-click="ctrl.addMember(ctrl.member)"
-				value="Save">Add!</button>
-			</div>
-		</div>
-		<pre>member = {{ctrl.member | json}}</pre>
-	</div>
-</div>
-</md-whiteframe>
-</div>
+    <p>View/Edit Member</p>
 
+    <div layout-padding>
+    <md-autocomplete flex required
+    md-input-name="autocompleteField"
+    ng-disabled="ctrl.isDisabled"
+    md-no-cache="ctrl.noCache"
+    md-selected-item="ctrl.selectedItem"
+    md-search-text-change="ctrl.searchTextChange(ctrl.searchText)"
+    md-search-text="ctrl.searchText"
+    md-selected-item-change="ctrl.selectedItemChange(item)"
+    md-items="item in ctrl.querySearch(ctrl.searchText)"
+    md-item-text="item.value"
+    md-min-length="0"
+    md-floating-label="Pick an Member"
+    md-menu-class="autocomplete-custom-template">
+      <md-item-template>
+        <span class="item-title">
+          <span> {{item.firstName}} {{item.lastName}} </span>
+        </span>
 
-<div>
-<md-content layout-padding="" layout="row">
-    <form ng-submit="$event.preventDefault()">
-      <p>Members</p>
-      <div layout="row">
-      <i md-menu-origin class="material-icons" ng-show="ctrl.selectedItem.value"
-          ng-click="ctrl.redirect('members/' + ctrl.selectedItem.id)">perm_identity</i>
-      <md-autocomplete
-      ng-disabled="ctrl.isDisabled"
-      md-no-cache="ctrl.noCache"
-      md-selected-item="ctrl.selectedItem"
-      md-search-text-change="ctrl.searchTextChange(ctrl.searchText)"
-      md-search-text="ctrl.searchText"
-      md-selected-item-change="ctrl.selectedItemChange(item)"
-      md-items="item in ctrl.querySearch(ctrl.searchText)"
-      md-item-text="item.value"
-      md-min-length="0"
-      placeholder="Pick an Member"
-      md-menu-class="autocomplete-custom-template">
-        <md-item-template>
-          <span class="item-title">
-            <span> {{item.firstName}} {{item.lastName}} </span>
+    <!-- <span class="item-metadata">
+          <span class="item-metastat">
+            <strong>{{item.watchers}}</strong> watchers
           </span>
-      </div>
-      <!-- <span class="item-metadata">
-            <span class="item-metastat">
-              <strong>{{item.watchers}}</strong> watchers
-            </span>
-            <span class="item-metastat">
-              <strong>{{item.forks}}</strong> forks
-            </span>
-          </span>-->
-        </md-item-template>
-      </md-autocomplete>
-    </form>
-  </md-content>
-</div>
-
-
-
-
-<!--
-<div>
-<br>
-<h2 class="md-title">Searching asynchronously.</h2>
-<md-contact-chips
-    ng-model="ctrl.asyncMembers"
-    md-contacts="ctrl.delayedQuerySearch($query)"
-    md-contact-name="name"
-    md-contact-image="image"
-    md-contact-email="email"
-    md-require-match="true"
-    md-highlight-flags="i"
-    filter-selected="ctrl.filterSelected"
-    placeholder="Member">
-</md-contact-chips>
-</div>
-<div>
-<md-list class="fixedRows">
-  <md-list-item layout-padding class="md-3-line" layout="row" layout-align="center center" ng-repeat="member in ctrl.members"
-  ng-click="ctrl.redirect('members/' + member.id)">
-  <i md-menu-origin class="material-icons">perm_identity</i>
-  <p>{{ member.firstName }} {{ member.lastName }}</p>
-  </md-list-item>
-
-  <md-content class="md-padding autocomplete" layout="column">
-      <md-contact-chips
-      ng-model="ctrl.asyncMembers"
-      md-contacts="ctrl.querySearch($query)"
-      md-contact-name="name"
-      md-contact-image="image"
-      md-contact-email="email"
-      md-require-match=""
-      filter-selected="ctrl.filterSelected"
-      placeholder="To">
-      </md-contact-chips>
-    <div ng-repeat="c in ctrl.allMems">{{c.name}}</div>
-    </md-content>
+          <span class="item-metastat">
+            <strong>{{item.forks}}</strong> forks
+          </span>
+        </span>-->
+      </md-item-template>
+    </md-autocomplete>
   </div>
-
-  <md-subheader class="md-no-sticky">Contacts</md-subheader>
-  <md-list-item class="md-2-line contact-item" ng-repeat="(index, member) in ctrl.allMems"
-      ng-if="ctrl.members.indexOf(member) < 0">
-    <img ng-src="{{member.image}}" class="md-avatar" alt="{{member.name}}" />
-    <div class="md-list-item-text compact">
-      <h3>{{member.name}}</h3>
-      <p>{{member.email}}</p>
+    <div layout-padding>
+    <md-button ng-disabled="!ctrl.selectedItem.value"
+        ng-click="ctrl.redirect('members/' + ctrl.selectedItem.id)" class="md-fab md-primary md-hue-2" aria-label="View Member">
+        <md-icon md-font-set="material-icons"> person </md-icon>
+      </md-button>
     </div>
-  </md-list-item>
-  <md-list-item class="md-2-line contact-item selected" ng-repeat="(index, member) in ctrl.allMems">
-    <img ng-src="{{member.image}}" class="md-avatar" alt="{{member.name}}" />
-    <div class="md-list-item-text compact">
-      <h3>{{member.name}}</h3>
-      <p>{{member.email}}</p>
-    </div>
-  </md-list-item>
+</md-content>
+</md-whiteframe>
 
-</md-list>
-</div>
--->
+
+
+		<md-whiteframe layout-padding class="md-whiteframe-10dp" layout="column" layout-align="center center" >
+
+      <p> New Member </p>
+      <form name="memberForm" layout="row" layout-padding>
+
+        <div>
+      <md-input-container class="md-block">
+        <input required name="firstName"
+				 placeholder="First Name" ng-model="ctrl.member.firstName">
+			</md-input-container>
+
+      <md-input-container class="md-block">
+				<input required name="lastName"
+				 placeholder="Last Name" ng-model="ctrl.member.lastName">
+			</md-input-container>
+    </div>
+    <div>
+      <md-input-container class="md-block">
+				<input required type="number" name="phoneNumber"
+				 placeholder="Phone Number" ng-model="ctrl.member.phoneNumber">
+			</md-input-container>
+
+      <md-input-container class="md-block">
+				<input required type="email" name="email"
+				 placeholder="Email" ng-model="ctrl.member.email">
+			</md-input-container>
+    </div>
+  </form>
+
+
+    <div layout-padding>
+				<md-button ng-disabled="memberForm.$invalid" class="md-fab md-primary md-hue-2" ng-click="ctrl.addMember(ctrl.member)"
+				aria-label="Add Member">
+        <md-icon md-font-set="material-icons"> person_add </md-icon>
+      </md-button>
+      </div>
+</md-whiteframe>
+
 </md-content>

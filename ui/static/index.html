@@ -10,13 +10,26 @@
     <div ng-if="authenticated">
       <md-toolbar>
       <div layout="row" layout-align="center center" style="padding-top:20px;">
-        <md-button class="md-raised md-primary" href="#/home">Home</md-button>
-        <md-button class="md-raised md-primary" href="#/members">Members</md-button>
-        <md-button class="md-raised md-primary" href="#/apiDoc">API Doc.</md-button>
-        <md-button class="md-raised md-primary" href="#/tokens">Sessions</md-button>
-        <i md-menu-origin class="material-icons">perm_identity</i>
+        <md-button class="md-raised md-primary" href="#/home">
+          <md-icon md-font-set="material-icons"> home </md-icon>
+        </md-button>
+        <md-button class="md-raised md-primary" href="#/members">
+          <md-icon md-font-set="material-icons"> person </md-icon>
+        </md-button>
+        <md-button class="md-raised md-primary" href="#/courses">
+          <md-icon md-font-set="material-icons"> school </md-icon>
+        </md-button>
+        <md-button class="md-raised md-primary" href="#/events">
+          <md-icon md-font-set="material-icons"> star </md-icon>
+        </md-button>
+        <md-button class="md-raised md-primary" href="#/tools">
+          <md-icon md-font-set="material-icons"> build </md-icon>
+        </md-button>
+        <i md-menu-origin class="material-icons">person</i>
           {{account.firstName}} {{account.lastName}}
-        <md-button class="md-raised md-primary" href="#/logout">Logout</md-button>
+        <md-button class="md-raised md-warn" href="#/logout">
+          <md-icon md-font-set="material-icons"> exit_to_app </md-icon>
+        </md-button>
       </div>
     </md-toolbar>
     </div>

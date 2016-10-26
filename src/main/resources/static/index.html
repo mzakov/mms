@@ -5,18 +5,31 @@
     <title>MMS</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
-  <link href="resources/css/vendor.css?a85d597bd3b8849b47b3&a85d597bd3b8849b47b3" rel="stylesheet"><link href="resources/css/main.css?a85d597bd3b8849b47b3&a85d597bd3b8849b47b3" rel="stylesheet"><script type="text/javascript" src="resources/js/vendor.js?a85d597bd3b8849b47b3&a85d597bd3b8849b47b3"></script><script type="text/javascript" src="resources/js/main.js?a85d597bd3b8849b47b3&a85d597bd3b8849b47b3"></script><script type="text/javascript" src="resources/js/hot.js?a85d597bd3b8849b47b3&a85d597bd3b8849b47b3"></script></head>
+  <link href="resources/css/vendor.css?40f8c9d4020606513e95&40f8c9d4020606513e95" rel="stylesheet"><link href="resources/css/main.css?40f8c9d4020606513e95&40f8c9d4020606513e95" rel="stylesheet"><script type="text/javascript" src="resources/js/vendor.js?40f8c9d4020606513e95&40f8c9d4020606513e95"></script><script type="text/javascript" src="resources/js/main.js?40f8c9d4020606513e95&40f8c9d4020606513e95"></script><script type="text/javascript" src="resources/js/hot.js?40f8c9d4020606513e95&40f8c9d4020606513e95"></script></head>
   <body ng-app="mms" ng-cloak class="ng-cloak">
     <div ng-if="authenticated">
       <md-toolbar>
       <div layout="row" layout-align="center center" style="padding-top:20px;">
-        <md-button class="md-raised md-primary" href="#/home">Home</md-button>
-        <md-button class="md-raised md-primary" href="#/members">Members</md-button>
-        <md-button class="md-raised md-primary" href="#/apiDoc">API Doc.</md-button>
-        <md-button class="md-raised md-primary" href="#/tokens">Sessions</md-button>
-        <i md-menu-origin class="material-icons">perm_identity</i>
+        <md-button class="md-raised md-primary" href="#/home">
+          <md-icon md-font-set="material-icons"> home </md-icon>
+        </md-button>
+        <md-button class="md-raised md-primary" href="#/members">
+          <md-icon md-font-set="material-icons"> person </md-icon>
+        </md-button>
+        <md-button class="md-raised md-primary" href="#/courses">
+          <md-icon md-font-set="material-icons"> school </md-icon>
+        </md-button>
+        <md-button class="md-raised md-primary" href="#/events">
+          <md-icon md-font-set="material-icons"> star </md-icon>
+        </md-button>
+        <md-button class="md-raised md-primary" href="#/tools">
+          <md-icon md-font-set="material-icons"> build </md-icon>
+        </md-button>
+        <i md-menu-origin class="material-icons">person</i>
           {{account.firstName}} {{account.lastName}}
-        <md-button class="md-raised md-primary" href="#/logout">Logout</md-button>
+        <md-button class="md-raised md-warn" href="#/logout">
+          <md-icon md-font-set="material-icons"> exit_to_app </md-icon>
+        </md-button>
       </div>
     </md-toolbar>
     </div>

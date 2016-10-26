@@ -1,14 +1,14 @@
 <div layout-padding ng-cloak layout-align="center center">
 <md-whiteframe class="md-whiteframe-10dp" flex layout="column" style="width: 700px;" layout-align="center center" >
   <br/>
-  <form ng-submit="ctrl.submit()">
+  <form name="editMember" ng-submit="ctrl.submit()">
   <md-content class="md-no-momentum">
 		<div layout="row">
 			<div>
     		<md-input-container class="md-icon-float md-block">
       		<!-- Use floating label instead of placeholder -->
       		<label>First Name</label>
-					<md-icon md-font-set="material-icons"> perm_identity </md-icon>
+					<md-icon md-font-set="material-icons"> person </md-icon>
       		<input ng-model="ctrl.member.firstName" type="text">
     		</md-input-container>
 			</div>
@@ -50,6 +50,7 @@
       <div flex="60">
     		<md-input-container md-no-float class="md-block">
 					<label>Address</label>
+          <md-icon md-font-set="material-icons"> home </md-icon>
       		<input ng-model="ctrl.member.address" type="text">
     		</md-input-container>
 			</div>
@@ -58,7 +59,8 @@
       <div flex="30">
             <form ng-submit="$event.preventDefault()">
               <div layout="row">
-              <md-autocomplete
+              <md-autocomplete flex required
+              md-input-name="autocompleteField"
               ng-disabled="ctrl.isDisabled"
               md-no-cache="ctrl.noCache"
               md-selected-item="ctrl.member.city"
@@ -68,7 +70,7 @@
               md-items="item in ctrl.querySearch(ctrl.searchText)"
               md-item-text="item.name"
               md-min-length="0"
-              placeholder="Pick a City"
+              md-floating-label="Pick an City"
               md-menu-class="autocomplete-custom-template">
                 <md-item-template>
                   <span class="item-title">
@@ -130,12 +132,22 @@
 
   </md-content>
   <div class="col-sm-offset-2 col-sm-8">
-						<button type="submit" class="btn btn-success" ng-click="ctrl.update(ctrl.member)"
-						value="Save">Save!</button>
-						<button type="submit" class="btn btn-success" ng-click="ctrl.deleteMember(ctrl.member.id)"
-						value="Save">Delete!</button>
+						<md-button ng-disabled="editMember.$invalid" class="md-raised md-primary" ng-click="ctrl.update(ctrl.member)"
+						aria-label="Save">
+            <md-icon md-font-set="material-icons"> save </md-icon>
+          </md-button>
+
+						<md-button class="md-raised md-warn" ng-click="ctrl.showConfirm($event)"
+						aria-label="Delete">
+            <md-icon md-font-set="material-icons"> delete_forever </md-icon>
+          </md-button>
 					</div>
   </form>
+  <div ng-if="ctrl.status" id="status">
+    <b layout="row" layout-align="center center" class="md-padding">
+      {{ctrl.status}}
+    </b>
+  </div>
 </md-whiteframe>
 <pre>member = {{ctrl.member | json}}</pre>
 </div>
