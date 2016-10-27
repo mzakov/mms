@@ -9,11 +9,13 @@ import logout from './logout/logout.module.js'
 import error from './error/error.module.js'
 import members from './members/members.module.js'
 import member from './members/member/member.module.js'
+import courses from './courses/courses.module.js'
 import homeRoute from './app.route.js'
 import AppService from './app.service.js'
 import AuthSharedService from './auth.service.js'
 import Session from './session.service.js'
 import runBlock from './app.run.js'
+
 
 export default
   angular
@@ -22,18 +24,21 @@ export default
       'ngAnimate',
       'ngMaterial',
       'ngMessages',
+      'ngSanitize',
       'ui.router',
       'http-auth-interceptor',
       'ngResource',
+      'mdDataTable',
 
-	  loading,
+	    loading,
       login,
       error,
       logout,
       home,
       mmsMap,
       members,
-      member
+      member,
+      courses
     ])
     .constant('apiUrl', apiUrl)
     .constant('USER_ROLES', userRoles)

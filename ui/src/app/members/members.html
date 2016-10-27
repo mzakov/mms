@@ -2,6 +2,47 @@
 <!--  <div style="height: 300px; width: 100%;">
   <mms-map></mms-map>
 </div>-->
+<md-whiteframe layout-padding class="md-whiteframe-10dp" layout="column" layout-align="center center" >
+
+  <p> New Member </p>
+  <form name="memberForm" layout="row" layout-padding>
+
+    <div>
+  <md-input-container class="md-block">
+    <input required name="firstName"
+     placeholder="First Name" ng-model="ctrl.member.firstName">
+  </md-input-container>
+
+  <md-input-container class="md-block">
+    <input required name="lastName"
+     placeholder="Last Name" ng-model="ctrl.member.lastName">
+  </md-input-container>
+</div>
+<div>
+  <md-input-container class="md-block">
+    <input required type="number" name="phoneNumber"
+     placeholder="Phone Number" ng-model="ctrl.member.phoneNumber">
+  </md-input-container>
+
+  <md-input-container class="md-block">
+    <input required type="email" name="email"
+     placeholder="Email" ng-model="ctrl.member.email">
+  </md-input-container>
+</div>
+</form>
+
+
+<div layout-padding>
+    <md-button ng-disabled="memberForm.$invalid" class="md-fab md-primary md-hue-2" ng-click="ctrl.addMember(ctrl.member)"
+    aria-label="Add Member">
+    <md-icon md-font-set="material-icons"> person_add </md-icon>
+  </md-button>
+  </div>
+</md-whiteframe>
+
+
+
+
 <md-whiteframe class="md-whiteframe-10dp" layout-padding layout="column" layout-align="center center" >
 <md-content layout="column" layout-align="center center">
 
@@ -48,42 +89,25 @@
 
 
 
-		<md-whiteframe layout-padding class="md-whiteframe-10dp" layout="column" layout-align="center center" >
-
-      <p> New Member </p>
-      <form name="memberForm" layout="row" layout-padding>
-
-        <div>
-      <md-input-container class="md-block">
-        <input required name="firstName"
-				 placeholder="First Name" ng-model="ctrl.member.firstName">
-			</md-input-container>
-
-      <md-input-container class="md-block">
-				<input required name="lastName"
-				 placeholder="Last Name" ng-model="ctrl.member.lastName">
-			</md-input-container>
-    </div>
-    <div>
-      <md-input-container class="md-block">
-				<input required type="number" name="phoneNumber"
-				 placeholder="Phone Number" ng-model="ctrl.member.phoneNumber">
-			</md-input-container>
-
-      <md-input-container class="md-block">
-				<input required type="email" name="email"
-				 placeholder="Email" ng-model="ctrl.member.email">
-			</md-input-container>
-    </div>
-  </form>
 
 
-    <div layout-padding>
-				<md-button ng-disabled="memberForm.$invalid" class="md-fab md-primary md-hue-2" ng-click="ctrl.addMember(ctrl.member)"
-				aria-label="Add Member">
-        <md-icon md-font-set="material-icons"> person_add </md-icon>
-      </md-button>
-      </div>
-</md-whiteframe>
 
+<div layout-margin>
+
+  <mdt-table mdt-row="{
+                      'data': ctrl.members,
+                      'table-row-id-key': 'id',
+                      'column-keys': ['firstName', 'middleName', 'lastName', 'phoneNumber', 'email', 'address', 'city.name']
+                      }">
+    <mdt-header-row>
+      <mdt-column align-rule="left" column-sort="true">First Name</mdt-column>
+      <mdt-column align-rule="right" column-sort="true">Middle Name</mdt-column>
+      <mdt-column align-rule="right" column-sort="true">Last Name</mdt-column>
+      <mdt-column align-rule="right" column-sort="true">Phone</mdt-column>
+      <mdt-column align-rule="right" column-sort="true">Email</mdt-column>
+      <mdt-column align-rule="right" column-sort="true">Address</mdt-column>
+      <mdt-column align-rule="right" column-sort="true">City</mdt-column>
+    </mdt-header-row>
+  </mdt-table>
+</div>
 </md-content>

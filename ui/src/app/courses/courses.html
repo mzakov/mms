@@ -1,0 +1,119 @@
+<md-content ng-cloak layout-padding layout-align="center center">
+<!--  <div style="height: 300px; width: 100%;">
+  <mms-map></mms-map>
+</div>-->
+<md-whiteframe layout-padding class="md-whiteframe-10dp" layout="column" layout-align="center center" >
+
+  <p> New Course </p>
+
+  <div layout="row">
+    <div>
+  <form name="courseForm" layout="row" layout-padding>
+    <div>
+      <md-input-container md-no-float class="md-block">
+				<label>Date</label>
+				<md-datepicker ng-model="ctrl.course.date" ng-required="true"></md-datepicker>
+			</md-input-container>
+    </div>
+<div>
+  <md-input-container class="md-icon-float md-block">
+    <label>Name</label>
+    <input ng-model="ctrl.course.name" type="text" ng-required="true">
+  </md-input-container>
+
+<!--  <md-input-container class="md-block">
+    <input required name="latitude"
+     placeholder="Latitude" ng-model="ctrl.course.latitude">
+  </md-input-container>
+
+  <md-input-container class="md-block">
+    <input required type="number" name="longitude"
+     placeholder="Longitude" ng-model="ctrl.course.longitude">
+  </md-input-container> -->
+</div>
+</form>
+
+<div layout="column" layout-align="center center">
+    <md-button ng-disabled="courseForm.$invalid" class="md-fab md-primary md-hue-2" ng-click="ctrl.addCourse(ctrl.course)"
+    aria-label="Add Course">
+    <md-icon md-font-set="material-icons"> add </md-icon>
+  </md-button>
+  </div>
+
+</div>
+<!--
+<div style="height: 300px; width: 500px;">
+  <mms-map></mms-map>
+</div>
+-->
+</div>
+
+
+</md-whiteframe>
+
+
+
+
+<md-whiteframe class="md-whiteframe-10dp" layout-padding layout="column" layout-align="center center" >
+<md-content layout="column" layout-align="center center">
+
+    <p>View/Edit Course</p>
+
+    <div layout-padding>
+    <md-autocomplete flex required
+    md-input-name="autocompleteField"
+    ng-disabled="ctrl.isDisabled"
+    md-no-cache="ctrl.noCache"
+    md-selected-item="ctrl.selectedItem"
+    md-search-text-change="ctrl.searchTextChange(ctrl.searchText)"
+    md-search-text="ctrl.searchText"
+    md-selected-item-change="ctrl.selectedItemChange(item)"
+    md-items="item in ctrl.querySearch(ctrl.searchText)"
+    md-item-text="item.value"
+    md-min-length="0"
+    md-floating-label="Pick an Course"
+    md-menu-class="autocomplete-custom-template">
+      <md-item-template>
+        <span class="item-title">
+          <span> {{item.name}}</span>
+        </span>
+
+    <!-- <span class="item-metadata">
+          <span class="item-metastat">
+            <strong>{{item.watchers}}</strong> watchers
+          </span>
+          <span class="item-metastat">
+            <strong>{{item.forks}}</strong> forks
+          </span>
+        </span>-->
+      </md-item-template>
+    </md-autocomplete>
+  </div>
+    <div layout-padding>
+    <md-button ng-disabled="!ctrl.selectedItem.value"
+        ng-click="ctrl.redirect('courses/' + ctrl.selectedItem.id)" class="md-fab md-primary md-hue-2" aria-label="View Course">
+        <md-icon md-font-set="material-icons"> school </md-icon>
+      </md-button>
+    </div>
+</md-content>
+</md-whiteframe>
+
+
+<div layout-margin>
+
+  <mdt-table mdt-row="{
+                      'data': ctrl.courses,
+                      'table-row-id-key': 'id',
+                      'column-keys': ['date', 'name', 'summary', 'members', 'skills']
+                      }">
+    <mdt-header-row>
+      <mdt-column align-rule="left" column-sort="true">Date</mdt-column>
+      <mdt-column align-rule="right" column-sort="true">Name</mdt-column>
+      <mdt-column align-rule="right" column-sort="true">Summary</mdt-column>
+      <mdt-column align-rule="right" column-sort="true">Phone</mdt-column>
+      <mdt-column align-rule="right" column-sort="true">Members</mdt-column>
+      <mdt-column align-rule="right" column-sort="true">Skills</mdt-column>
+    </mdt-header-row>
+  </mdt-table>
+</div>
+</md-content>

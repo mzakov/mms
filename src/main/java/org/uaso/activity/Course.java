@@ -22,7 +22,6 @@ import javax.persistence.TemporalType;
 import org.uaso.attribute.Skill;
 import org.uaso.entity.Member;
 import org.uaso.location.City;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "courses")
@@ -53,10 +52,10 @@ public class Course {
 	};
 	
 	@Column
-	private double latitude;
+	private String latitude;
 	
 	@Column
-	private double longitude;
+	private String longitude;
 	
 	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="city_id")
@@ -66,7 +65,7 @@ public class Course {
 	private Date date;
 	
 	@Column
-	private String title;
+	private String name;
 	
 	@Column
 	private String summary;
@@ -109,19 +108,19 @@ public class Course {
 		this.id = id;
 	}
 
-	public double getLatitude() {
+	public String getLatitude() {
 		return latitude;
 	}
 
-	public void setLatitude(double latitude) {
+	public void setLatitude(String latitude) {
 		this.latitude = latitude;
 	}
 
-	public double getLongitude() {
+	public String getLongitude() {
 		return longitude;
 	}
 
-	public void setLongitude(double longitude) {
+	public void setLongitude(String longitude) {
 		this.longitude = longitude;
 	}
 
@@ -133,12 +132,12 @@ public class Course {
 		this.date = date;
 	}
 
-	public String getTitle() {
-		return title;
+	public String getName() {
+		return name;
 	}
 
-	public void setTitle(String title) {
-		this.title = title;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getSummary() {

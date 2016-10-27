@@ -6,4 +6,12 @@ public interface CourseService {
 
 	List<Course> index();
 
+	Course create(Course course);
+
+	Course read(long id);
+
+	Course update(long id, Course courseToUpdate);
+
+	Course delete(long id);
+
 }

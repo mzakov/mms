@@ -35,6 +35,14 @@ function routes ($stateProvider, $urlRouterProvider, $mdIconProvider, $httpProvi
             authorizedRoles: [USER_ROLES.admin]
         }
     })
+    .state('courses', {
+      url: '/courses',
+      component: 'appCourses',
+      access: {
+            loginRequired: true,
+            authorizedRoles: [USER_ROLES.admin]
+        }
+    })
     // .state('users', {
     //   url: '/users',
     //   component: 'appUsers',

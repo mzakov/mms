@@ -8185,7 +8185,7 @@
 	
 	__webpack_require__(299);
 	
-	__webpack_require__(370);
+	__webpack_require__(375);
 
 /***/ },
 /* 299 */
@@ -8241,7 +8241,11 @@
 	
 	var _memberModule2 = _interopRequireDefault(_memberModule);
 	
-	var _appRoute = __webpack_require__(367);
+	var _coursesModule = __webpack_require__(367);
+	
+	var _coursesModule2 = _interopRequireDefault(_coursesModule);
+	
+	var _appRoute = __webpack_require__(372);
 	
 	var _appRoute2 = _interopRequireDefault(_appRoute);
 	
@@ -8253,17 +8257,17 @@
 	
 	var _authService2 = _interopRequireDefault(_authService);
 	
-	var _sessionService = __webpack_require__(368);
+	var _sessionService = __webpack_require__(373);
 	
 	var _sessionService2 = _interopRequireDefault(_sessionService);
 	
-	var _appRun = __webpack_require__(369);
+	var _appRun = __webpack_require__(374);
 	
 	var _appRun2 = _interopRequireDefault(_appRun);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	exports.default = angular.module('mms', ['ngAria', 'ngAnimate', 'ngMaterial', 'ngMessages', 'ui.router', 'http-auth-interceptor', 'ngResource', _loadingModule2.default, _loginModule2.default, _errorModule2.default, _logoutModule2.default, _homeModule2.default, _map2.default, _membersModule2.default, _memberModule2.default]).constant('apiUrl', _api2.default).constant('USER_ROLES', _userRoles2.default).component('mmsApp', _appComponent2.default).config(_appRoute2.default).service('AppService', _appService2.default).service('AuthSharedService', _authService2.default).service('Session', _sessionService2.default).run(_appRun2.default).directive('access', ['AuthSharedService', function (AuthSharedService) {
+	exports.default = angular.module('mms', ['ngAria', 'ngAnimate', 'ngMaterial', 'ngMessages', 'ngSanitize', 'ui.router', 'http-auth-interceptor', 'ngResource', 'mdDataTable', _loadingModule2.default, _loginModule2.default, _errorModule2.default, _logoutModule2.default, _homeModule2.default, _map2.default, _membersModule2.default, _memberModule2.default, _coursesModule2.default]).constant('apiUrl', _api2.default).constant('USER_ROLES', _userRoles2.default).component('mmsApp', _appComponent2.default).config(_appRoute2.default).service('AppService', _appService2.default).service('AuthSharedService', _authService2.default).service('Session', _sessionService2.default).run(_appRun2.default).directive('access', ['AuthSharedService', function (AuthSharedService) {
 	    return {
 	        restrict: 'A',
 	        link: function link(scope, element, attrs) {
@@ -14578,7 +14582,7 @@
 /***/ function(module, exports) {
 
 	var path = 'C:/code/mms/ui/src/app/members/members.html';
-	var html = "<md-content ng-cloak layout-padding layout-align=\"center center\">\n<!--  <div style=\"height: 300px; width: 100%;\">\n  <mms-map></mms-map>\n</div>-->\n<md-whiteframe class=\"md-whiteframe-10dp\" layout-padding layout=\"column\" layout-align=\"center center\" >\n<md-content layout=\"column\" layout-align=\"center center\">\n\n    <p>View/Edit Member</p>\n\n    <div layout-padding>\n    <md-autocomplete flex required\n    md-input-name=\"autocompleteField\"\n    ng-disabled=\"ctrl.isDisabled\"\n    md-no-cache=\"ctrl.noCache\"\n    md-selected-item=\"ctrl.selectedItem\"\n    md-search-text-change=\"ctrl.searchTextChange(ctrl.searchText)\"\n    md-search-text=\"ctrl.searchText\"\n    md-selected-item-change=\"ctrl.selectedItemChange(item)\"\n    md-items=\"item in ctrl.querySearch(ctrl.searchText)\"\n    md-item-text=\"item.value\"\n    md-min-length=\"0\"\n    md-floating-label=\"Pick an Member\"\n    md-menu-class=\"autocomplete-custom-template\">\n      <md-item-template>\n        <span class=\"item-title\">\n          <span> {{item.firstName}} {{item.lastName}} </span>\n        </span>\n\n    <!-- <span class=\"item-metadata\">\n          <span class=\"item-metastat\">\n            <strong>{{item.watchers}}</strong> watchers\n          </span>\n          <span class=\"item-metastat\">\n            <strong>{{item.forks}}</strong> forks\n          </span>\n        </span>-->\n      </md-item-template>\n    </md-autocomplete>\n  </div>\n    <div layout-padding>\n    <md-button ng-disabled=\"!ctrl.selectedItem.value\"\n        ng-click=\"ctrl.redirect('members/' + ctrl.selectedItem.id)\" class=\"md-fab md-primary md-hue-2\" aria-label=\"View Member\">\n        <md-icon md-font-set=\"material-icons\"> person </md-icon>\n      </md-button>\n    </div>\n</md-content>\n</md-whiteframe>\n\n\n\n\t\t<md-whiteframe layout-padding class=\"md-whiteframe-10dp\" layout=\"column\" layout-align=\"center center\" >\r\n\r\n      <p> New Member </p>\r\n      <form name=\"memberForm\" layout=\"row\" layout-padding>\r\n\r\n        <div>\r\n      <md-input-container class=\"md-block\">\r\n        <input required name=\"firstName\"\r\n\t\t\t\t placeholder=\"First Name\" ng-model=\"ctrl.member.firstName\">\r\n\t\t\t</md-input-container>\r\n\r\n      <md-input-container class=\"md-block\">\r\n\t\t\t\t<input required name=\"lastName\"\r\n\t\t\t\t placeholder=\"Last Name\" ng-model=\"ctrl.member.lastName\">\r\n\t\t\t</md-input-container>\r\n    </div>\r\n    <div>\r\n      <md-input-container class=\"md-block\">\r\n\t\t\t\t<input required type=\"number\" name=\"phoneNumber\"\r\n\t\t\t\t placeholder=\"Phone Number\" ng-model=\"ctrl.member.phoneNumber\">\r\n\t\t\t</md-input-container>\r\n\r\n      <md-input-container class=\"md-block\">\r\n\t\t\t\t<input required type=\"email\" name=\"email\"\r\n\t\t\t\t placeholder=\"Email\" ng-model=\"ctrl.member.email\">\r\n\t\t\t</md-input-container>\r\n    </div>\r\n  </form>\r\n\r\n\r\n    <div layout-padding>\r\n\t\t\t\t<md-button ng-disabled=\"memberForm.$invalid\" class=\"md-fab md-primary md-hue-2\" ng-click=\"ctrl.addMember(ctrl.member)\"\r\n\t\t\t\taria-label=\"Add Member\">\r\n        <md-icon md-font-set=\"material-icons\"> person_add </md-icon>\r\n      </md-button>\r\n      </div>\r\n</md-whiteframe>\n\n</md-content>\r\n";
+	var html = "<md-content ng-cloak layout-padding layout-align=\"center center\">\n<!--  <div style=\"height: 300px; width: 100%;\">\n  <mms-map></mms-map>\n</div>-->\n<md-whiteframe layout-padding class=\"md-whiteframe-10dp\" layout=\"column\" layout-align=\"center center\" >\n\n  <p> New Member </p>\n  <form name=\"memberForm\" layout=\"row\" layout-padding>\n\n    <div>\n  <md-input-container class=\"md-block\">\n    <input required name=\"firstName\"\n     placeholder=\"First Name\" ng-model=\"ctrl.member.firstName\">\n  </md-input-container>\n\n  <md-input-container class=\"md-block\">\n    <input required name=\"lastName\"\n     placeholder=\"Last Name\" ng-model=\"ctrl.member.lastName\">\n  </md-input-container>\n</div>\n<div>\n  <md-input-container class=\"md-block\">\n    <input required type=\"number\" name=\"phoneNumber\"\n     placeholder=\"Phone Number\" ng-model=\"ctrl.member.phoneNumber\">\n  </md-input-container>\n\n  <md-input-container class=\"md-block\">\n    <input required type=\"email\" name=\"email\"\n     placeholder=\"Email\" ng-model=\"ctrl.member.email\">\n  </md-input-container>\n</div>\n</form>\n\n\n<div layout-padding>\n    <md-button ng-disabled=\"memberForm.$invalid\" class=\"md-fab md-primary md-hue-2\" ng-click=\"ctrl.addMember(ctrl.member)\"\n    aria-label=\"Add Member\">\n    <md-icon md-font-set=\"material-icons\"> person_add </md-icon>\n  </md-button>\n  </div>\n</md-whiteframe>\n\n\n\n\n<md-whiteframe class=\"md-whiteframe-10dp\" layout-padding layout=\"column\" layout-align=\"center center\" >\n<md-content layout=\"column\" layout-align=\"center center\">\n\n    <p>View/Edit Member</p>\n\n    <div layout-padding>\n    <md-autocomplete flex required\n    md-input-name=\"autocompleteField\"\n    ng-disabled=\"ctrl.isDisabled\"\n    md-no-cache=\"ctrl.noCache\"\n    md-selected-item=\"ctrl.selectedItem\"\n    md-search-text-change=\"ctrl.searchTextChange(ctrl.searchText)\"\n    md-search-text=\"ctrl.searchText\"\n    md-selected-item-change=\"ctrl.selectedItemChange(item)\"\n    md-items=\"item in ctrl.querySearch(ctrl.searchText)\"\n    md-item-text=\"item.value\"\n    md-min-length=\"0\"\n    md-floating-label=\"Pick an Member\"\n    md-menu-class=\"autocomplete-custom-template\">\n      <md-item-template>\n        <span class=\"item-title\">\n          <span> {{item.firstName}} {{item.lastName}} </span>\n        </span>\n\n    <!-- <span class=\"item-metadata\">\n          <span class=\"item-metastat\">\n            <strong>{{item.watchers}}</strong> watchers\n          </span>\n          <span class=\"item-metastat\">\n            <strong>{{item.forks}}</strong> forks\n          </span>\n        </span>-->\n      </md-item-template>\n    </md-autocomplete>\n  </div>\n    <div layout-padding>\n    <md-button ng-disabled=\"!ctrl.selectedItem.value\"\n        ng-click=\"ctrl.redirect('members/' + ctrl.selectedItem.id)\" class=\"md-fab md-primary md-hue-2\" aria-label=\"View Member\">\n        <md-icon md-font-set=\"material-icons\"> person </md-icon>\n      </md-button>\n    </div>\n</md-content>\n</md-whiteframe>\n\n\n\n\r\n\n\n<div layout-margin>\n\n  <mdt-table mdt-row=\"{\n                      'data': ctrl.members,\n                      'table-row-id-key': 'id',\n                      'column-keys': ['firstName', 'middleName', 'lastName', 'phoneNumber', 'email', 'address', 'city.name']\n                      }\">\n    <mdt-header-row>\n      <mdt-column align-rule=\"left\" column-sort=\"true\">First Name</mdt-column>\n      <mdt-column align-rule=\"right\" column-sort=\"true\">Middle Name</mdt-column>\n      <mdt-column align-rule=\"right\" column-sort=\"true\">Last Name</mdt-column>\n      <mdt-column align-rule=\"right\" column-sort=\"true\">Phone</mdt-column>\n      <mdt-column align-rule=\"right\" column-sort=\"true\">Email</mdt-column>\n      <mdt-column align-rule=\"right\" column-sort=\"true\">Address</mdt-column>\n      <mdt-column align-rule=\"right\" column-sort=\"true\">City</mdt-column>\n    </mdt-header-row>\n  </mdt-table>\n</div>\n</md-content>\r\n";
 	window.angular.module('ng').run(['$templateCache', function(c) { c.put(path, html) }]);
 	module.exports = path;
 
@@ -14595,13 +14599,14 @@
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
 	/* @ngInject */
-	var MembersController = function MembersController($log, MembersService, $scope, $timeout, $location, $state, $rootScope, $q) {
+	var MembersController = function MembersController($log, MembersService, $scope, $location) {
 	  _classCallCheck(this, MembersController);
 	
-	  $log.debug('MembersController instantiated!');
+	  $scope.loaded = false;
 	
-	  //////////////////////////////////////////////
+	  $log.debug('MembersController instantiated!');
 	  var ctrl = this;
+	
 	  var members = [];
 	
 	  ctrl.redirect = function (url, refresh) {
@@ -14629,13 +14634,13 @@
 	    });
 	  };
 	
-	  ctrl.back = function () {
-	    window.history.back();
-	  };
-	
-	  $scope.reloadRoute = function () {
-	    $route.reload();
-	  };
+	  // 	ctrl.back = function() {
+	  // 	 window.history.back();
+	  // }
+	  //
+	  // 	$scope.reloadRoute = function() {
+	  // 	   $route.reload();
+	  // 	}
 	  ////////////////////////////////////////////////////////////
 	  ctrl.simulateQuery = false;
 	  ctrl.isDisabled = false;
@@ -14698,11 +14703,10 @@
 	      return item.value.indexOf(lowercaseQuery) === 0;
 	    };
 	  }
-	
-	  $scope.loaded = true;
 	  //////////////////////////////////////////////
+	  $scope.loaded = true;
 	};
-	MembersController.$inject = ["$log", "MembersService", "$scope", "$timeout", "$location", "$state", "$rootScope", "$q"];
+	MembersController.$inject = ["$log", "MembersService", "$scope", "$location"];
 	
 	exports.default = MembersController;
 
@@ -14738,11 +14742,6 @@
 			key: 'postMember',
 			value: function postMember(member) {
 				return this.$http.post('members/', member);
-			}
-		}, {
-			key: 'getCities',
-			value: function getCities() {
-				return this.$http.get('cities/');
 			}
 		}]);
 	
@@ -15079,6 +15078,228 @@
 
 /***/ },
 /* 367 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _coursesComponent = __webpack_require__(368);
+	
+	var _coursesComponent2 = _interopRequireDefault(_coursesComponent);
+	
+	var _coursesService = __webpack_require__(371);
+	
+	var _coursesService2 = _interopRequireDefault(_coursesService);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = angular.module('courses', []).component('appCourses', _coursesComponent2.default).service('CoursesService', _coursesService2.default).name;
+
+/***/ },
+/* 368 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _courses = __webpack_require__(369);
+	
+	var _courses2 = _interopRequireDefault(_courses);
+	
+	var _coursesController = __webpack_require__(370);
+	
+	var _coursesController2 = _interopRequireDefault(_coursesController);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = {
+	  templateUrl: _courses2.default,
+	  controller: _coursesController2.default,
+	  controllerAs: 'ctrl'
+	};
+
+/***/ },
+/* 369 */
+/***/ function(module, exports) {
+
+	var path = 'C:/code/mms/ui/src/app/courses/courses.html';
+	var html = "<md-content ng-cloak layout-padding layout-align=\"center center\">\r\n<!--  <div style=\"height: 300px; width: 100%;\">\r\n  <mms-map></mms-map>\r\n</div>-->\r\n<md-whiteframe layout-padding class=\"md-whiteframe-10dp\" layout=\"column\" layout-align=\"center center\" >\r\n\r\n  <p> New Course </p>\r\n\r\n  <div layout=\"row\">\r\n    <div>\r\n  <form name=\"courseForm\" layout=\"row\" layout-padding>\r\n    <div>\r\n      <md-input-container md-no-float class=\"md-block\">\r\n\t\t\t\t<label>Date</label>\r\n\t\t\t\t<md-datepicker ng-model=\"ctrl.course.date\" ng-required=\"true\"></md-datepicker>\r\n\t\t\t</md-input-container>\r\n    </div>\r\n<div>\r\n  <md-input-container class=\"md-icon-float md-block\">\r\n    <label>Name</label>\r\n    <input ng-model=\"ctrl.course.name\" type=\"text\" ng-required=\"true\">\r\n  </md-input-container>\r\n\r\n<!--  <md-input-container class=\"md-block\">\r\n    <input required name=\"latitude\"\r\n     placeholder=\"Latitude\" ng-model=\"ctrl.course.latitude\">\r\n  </md-input-container>\r\n\r\n  <md-input-container class=\"md-block\">\r\n    <input required type=\"number\" name=\"longitude\"\r\n     placeholder=\"Longitude\" ng-model=\"ctrl.course.longitude\">\r\n  </md-input-container> -->\r\n</div>\r\n</form>\r\n\r\n<div layout=\"column\" layout-align=\"center center\">\r\n    <md-button ng-disabled=\"courseForm.$invalid\" class=\"md-fab md-primary md-hue-2\" ng-click=\"ctrl.addCourse(ctrl.course)\"\r\n    aria-label=\"Add Course\">\r\n    <md-icon md-font-set=\"material-icons\"> add </md-icon>\r\n  </md-button>\r\n  </div>\r\n\r\n</div>\r\n<!--\r\n<div style=\"height: 300px; width: 500px;\">\r\n  <mms-map></mms-map>\r\n</div>\r\n-->\r\n</div>\r\n\r\n\r\n</md-whiteframe>\r\n\r\n\r\n\r\n\r\n<md-whiteframe class=\"md-whiteframe-10dp\" layout-padding layout=\"column\" layout-align=\"center center\" >\r\n<md-content layout=\"column\" layout-align=\"center center\">\r\n\r\n    <p>View/Edit Course</p>\r\n\r\n    <div layout-padding>\r\n    <md-autocomplete flex required\r\n    md-input-name=\"autocompleteField\"\r\n    ng-disabled=\"ctrl.isDisabled\"\r\n    md-no-cache=\"ctrl.noCache\"\r\n    md-selected-item=\"ctrl.selectedItem\"\r\n    md-search-text-change=\"ctrl.searchTextChange(ctrl.searchText)\"\r\n    md-search-text=\"ctrl.searchText\"\r\n    md-selected-item-change=\"ctrl.selectedItemChange(item)\"\r\n    md-items=\"item in ctrl.querySearch(ctrl.searchText)\"\r\n    md-item-text=\"item.value\"\r\n    md-min-length=\"0\"\r\n    md-floating-label=\"Pick an Course\"\r\n    md-menu-class=\"autocomplete-custom-template\">\r\n      <md-item-template>\r\n        <span class=\"item-title\">\r\n          <span> {{item.name}}</span>\r\n        </span>\r\n\r\n    <!-- <span class=\"item-metadata\">\r\n          <span class=\"item-metastat\">\r\n            <strong>{{item.watchers}}</strong> watchers\r\n          </span>\r\n          <span class=\"item-metastat\">\r\n            <strong>{{item.forks}}</strong> forks\r\n          </span>\r\n        </span>-->\r\n      </md-item-template>\r\n    </md-autocomplete>\r\n  </div>\r\n    <div layout-padding>\r\n    <md-button ng-disabled=\"!ctrl.selectedItem.value\"\r\n        ng-click=\"ctrl.redirect('courses/' + ctrl.selectedItem.id)\" class=\"md-fab md-primary md-hue-2\" aria-label=\"View Course\">\r\n        <md-icon md-font-set=\"material-icons\"> school </md-icon>\r\n      </md-button>\r\n    </div>\r\n</md-content>\r\n</md-whiteframe>\r\n\r\n\r\n<div layout-margin>\r\n\r\n  <mdt-table mdt-row=\"{\r\n                      'data': ctrl.courses,\r\n                      'table-row-id-key': 'id',\r\n                      'column-keys': ['date', 'name', 'summary', 'members', 'skills']\r\n                      }\">\r\n    <mdt-header-row>\r\n      <mdt-column align-rule=\"left\" column-sort=\"true\">Date</mdt-column>\r\n      <mdt-column align-rule=\"right\" column-sort=\"true\">Name</mdt-column>\r\n      <mdt-column align-rule=\"right\" column-sort=\"true\">Summary</mdt-column>\r\n      <mdt-column align-rule=\"right\" column-sort=\"true\">Phone</mdt-column>\r\n      <mdt-column align-rule=\"right\" column-sort=\"true\">Members</mdt-column>\r\n      <mdt-column align-rule=\"right\" column-sort=\"true\">Skills</mdt-column>\r\n    </mdt-header-row>\r\n  </mdt-table>\r\n</div>\r\n</md-content>\r\n";
+	window.angular.module('ng').run(['$templateCache', function(c) { c.put(path, html) }]);
+	module.exports = path;
+
+/***/ },
+/* 370 */
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	/* @ngInject */
+	var CoursesController = function CoursesController(CoursesService, $log, $scope, $location) {
+	  _classCallCheck(this, CoursesController);
+	
+	  $scope.loaded = false;
+	
+	  $log.debug('CoursesController instantiated!');
+	
+	  var ctrl = this;
+	
+	  //
+	  // let courses = []
+	
+	  ctrl.redirect = function (url, refresh) {
+	    console.dir('It gets to the controller');
+	    if (refresh || $scope.$$phase) {
+	      $window.location.href = url;
+	    } else {
+	      $location.path(url);
+	    }
+	  };
+	
+	  CoursesService.getAllCourses().then(function (result) {
+	    ctrl.courses = result.data;
+	  });
+	
+	  // ctrl.course = {}
+	
+	  ctrl.addCourse = function (course) {
+	    CoursesService.postCourse(course).then(function (result) {
+	      ctrl.courses.push(result.data);
+	      // ctrl.member = {middleName: ''}
+	      ctrl.redirect('courses/' + result.data.id);
+	      // 	$state.go('members/')
+	    });
+	  };
+	
+	  // 	ctrl.back = function() {
+	  // 	 window.history.back();
+	  // }
+	
+	  // 	$scope.reloadRoute = function() {
+	  // 	   $route.reload();
+	  // 	}
+	  ////////////////////////////////////////////////////////////
+	  ctrl.simulateQuery = false;
+	  ctrl.isDisabled = false;
+	
+	  ctrl.repos = loadAll();
+	  ctrl.repos.then(function (courses) {
+	    ctrl.allCourses = courses;
+	  });
+	  ctrl.querySearch = querySearch;
+	  ctrl.selectedItemChange = selectedItemChange;
+	  ctrl.searchTextChange = searchTextChange;
+	
+	  // ******************************
+	  // Internal methods
+	  // ******************************
+	
+	  /**
+	   * Search for repos... use $timeout to simulate
+	   * remote dataservice call.
+	   */
+	
+	  function querySearch(query) {
+	    console.dir(ctrl.repos);
+	    ctrl.repos = ctrl.allCourses;
+	    console.dir(ctrl.repos);
+	    var result = query ? ctrl.repos.filter(createFilterFor(query)) : ctrl.repos;
+	    return result;
+	  }
+	
+	  function searchTextChange(text) {
+	    $log.info('Text changed to ' + text);
+	  }
+	
+	  function selectedItemChange(item) {
+	    $log.info('Item changed to ' + JSON.stringify(item));
+	  }
+	
+	  /**
+	   * Build `components` list of key/value pairs
+	   */
+	  function loadAll() {
+	    var courses = void 0;
+	    return CoursesService.getAllCourses().then(function (res) {
+	      courses = res.data;
+	
+	      return courses.map(function (course) {
+	        course.value = course.name;
+	        return course;
+	      });
+	    });
+	  }
+	
+	  /**
+	   * Create filter function for a query string
+	   */
+	  function createFilterFor(query) {
+	    var lowercaseQuery = angular.lowercase(query);
+	
+	    return function filterFn(item) {
+	      return item.value.indexOf(lowercaseQuery) === 0;
+	    };
+	  }
+	  //////////////////////////////////////////////
+	  $scope.loaded = true;
+	};
+	CoursesController.$inject = ["CoursesService", "$log", "$scope", "$location"];
+	
+	exports.default = CoursesController;
+
+/***/ },
+/* 371 */
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	/* @ngInject */
+	var CoursesService = function () {
+	  CoursesService.$inject = ["$http"];
+	  function CoursesService($http) {
+	    _classCallCheck(this, CoursesService);
+	
+	    this.$http = $http;
+	  }
+	
+	  _createClass(CoursesService, [{
+	    key: 'getAllCourses',
+	    value: function getAllCourses() {
+	      return this.$http.get('courses/');
+	    }
+	  }, {
+	    key: 'postCourse',
+	    value: function postCourse(course) {
+	      return this.$http.post('courses/', course);
+	    }
+	  }]);
+	
+	  return CoursesService;
+	}();
+	
+	exports.default = CoursesService;
+
+/***/ },
+/* 372 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -15116,6 +15337,13 @@
 	    }).state('member', {
 	        url: '/members/:id',
 	        component: 'appMember',
+	        access: {
+	            loginRequired: true,
+	            authorizedRoles: [USER_ROLES.admin]
+	        }
+	    }).state('courses', {
+	        url: '/courses',
+	        component: 'appCourses',
 	        access: {
 	            loginRequired: true,
 	            authorizedRoles: [USER_ROLES.admin]
@@ -15162,7 +15390,7 @@
 	}
 
 /***/ },
-/* 368 */
+/* 373 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -15212,7 +15440,7 @@
 	exports.default = SessionService;
 
 /***/ },
-/* 369 */
+/* 374 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -15291,11 +15519,11 @@
 	}
 
 /***/ },
-/* 370 */
+/* 375 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ }
 /******/ ]);
-//# sourceMappingURL=main.js.map?40f8c9d4020606513e95
+//# sourceMappingURL=main.js.map?5c2ac7d092b595ce5fc9

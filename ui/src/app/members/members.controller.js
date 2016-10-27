@@ -2,27 +2,29 @@
 export default
 /* @ngInject */
 class MembersController {
-	constructor ($log, MembersService, $scope, $timeout, $location, $state, $rootScope, $q) {
-  $log.debug('MembersController instantiated!')
+	constructor ($log, MembersService, $scope, $location) {
 
-//////////////////////////////////////////////
-var ctrl = this;
-let members = []
+	$scope.loaded = false
 
-ctrl.redirect = function(url, refresh) {
-	console.dir('It gets to the controller')
-	if(refresh || $scope.$$phase) {
+	$log.debug('MembersController instantiated!')
+	let ctrl = this
+
+	let members = []
+
+	ctrl.redirect = function(url, refresh) {
+		console.dir('It gets to the controller')
+		if(refresh || $scope.$$phase) {
 			$window.location.href = url;
-	} else {
+		} else {
 			$location.path(url);
+		}
 	}
-}
  	MembersService.getAllMembers().then((result) => {
  		ctrl.members = result.data
  	})
 
  	ctrl.member = {
- 	middleName: ''
+ 		middleName: ''
  	}
 
  	ctrl.addMember = function(member) {
@@ -35,13 +37,13 @@ ctrl.redirect = function(url, refresh) {
 
  		}
 
- 	ctrl.back = function() {
-		 window.history.back();
-	}
-
- 	$scope.reloadRoute = function() {
- 	   $route.reload();
- 	}
+ // 	ctrl.back = function() {
+	// 	 window.history.back();
+	// }
+	//
+ // 	$scope.reloadRoute = function() {
+ // 	   $route.reload();
+ // 	}
 ////////////////////////////////////////////////////////////
 		ctrl.simulateQuery = false;
     ctrl.isDisabled    = false;
@@ -104,8 +106,8 @@ ctrl.redirect = function(url, refresh) {
       };
 
     }
-
- 	$scope.loaded = true
 //////////////////////////////////////////////
+ 	$scope.loaded = true
+
 }
 }

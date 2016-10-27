@@ -31,6 +31,12 @@ public class City {
 	@Column
 	private String name;
 	
+	@Column
+	private String latitude;
+	
+	@Column
+	private String longitude;
+	
 	@ManyToOne(optional=false, fetch=FetchType.EAGER)
 	@JoinColumn(name="region_id")
 	private Region region;
@@ -63,6 +69,22 @@ public class City {
 		this.name = name;
 	}
 
+	public String getLatitude() {
+		return latitude;
+	}
+
+	public void setLatitude(String latitude) {
+		this.latitude = latitude;
+	}
+
+	public String getLongitude() {
+		return longitude;
+	}
+
+	public void setLongitude(String longitude) {
+		this.longitude = longitude;
+	}
+
 	public Region getRegion() {
 		return region;
 	}
@@ -70,7 +92,7 @@ public class City {
 	public void setRegion(Region region) {
 		this.region = region;
 	}
-
+	
 	public Set<Member> getMembers() {
 		return members;
 	}
