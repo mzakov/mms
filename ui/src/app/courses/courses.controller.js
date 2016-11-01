@@ -25,11 +25,13 @@ class CoursesController {
    		ctrl.courses = result.data
    	})
 
-    	// ctrl.course = {}
+    	ctrl.course = {}
 
    	ctrl.addCourse = function(course) {
    		CoursesService.postCourse(course).then((result) => {
-  			ctrl.courses.push(result.data)
+        ctrl.course = result.data;
+        ctrl.course.date = new Date(ctrl.course.date);
+  			ctrl.courses.push(ctrl.course)
         // ctrl.member = {middleName: ''}
   			ctrl.redirect('courses/' + result.data.id)
   			// 	$state.go('members/')

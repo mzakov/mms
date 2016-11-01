@@ -43,7 +43,7 @@
     "jquery": "^3.1.0",
     "lodash": "^4.16.4",
     "md-data-table": "^2.0.1",
-    "ngmap": "^1.17.6"
+    "ngmap": "^1.17.8"
   },
   "babel": {
     "presets": [

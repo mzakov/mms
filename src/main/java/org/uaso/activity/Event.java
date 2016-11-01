@@ -19,12 +19,14 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.uaso.attribute.Gear;
+import org.uaso.attribute.Skill;
 import org.uaso.entity.Member;
 import org.uaso.location.City;
 
 @Entity
 @Table(name = "events")
-public class Event {
+public class Event extends Activity{
 
 	Date created;
 	Date updated;
@@ -56,6 +58,9 @@ public class Event {
 	@Column
 	private String longitude;
 	
+	@Column
+	private String address;
+	
 	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="city_id")
 	private City city;
@@ -78,6 +83,14 @@ public class Event {
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "members_events")
 	private Set<Member> members;
+	
+	@ManyToMany
+	@JoinTable(name = "events_skills")
+	private Set<Skill> skills;
+	
+	@ManyToMany
+	@JoinTable(name = "events_gear")
+	private Set<Gear> gear;
 	
 	public Date getCreated() {
 		return created;
@@ -173,6 +186,30 @@ public class Event {
 
 	public void setCity(City city) {
 		this.city = city;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public Set<Skill> getSkills() {
+		return skills;
+	}
+
+	public void setSkills(Set<Skill> skills) {
+		this.skills = skills;
+	}
+
+	public Set<Gear> getGear() {
+		return gear;
+	}
+
+	public void setGear(Set<Gear> gear) {
+		this.gear = gear;
 	}
 
 }

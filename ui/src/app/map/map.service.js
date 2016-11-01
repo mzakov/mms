@@ -1,4 +1,4 @@
-
+export default
 /* @ngInject */
 class MapService {
   constructor ($http, apiUrl) {
@@ -12,5 +12,3 @@ class MapService {
   //     .then(result => result.data)
   // }
 }
-
-export default MapService

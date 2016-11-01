@@ -12,6 +12,6 @@ public interface CourseService {
 
 	Course update(long id, Course courseToUpdate);
 
-	Course delete(long id);
+	void delete(long id);
 
 }

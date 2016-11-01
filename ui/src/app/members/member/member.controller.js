@@ -7,6 +7,9 @@ export default
  	$log.debug('MemberController instantiated')
     $scope.loaded = false
 	var city_id;
+  // ctrl.skills = []
+  // ctrl.gear = []
+  // ctrl.courses = []
 
 	MemberService.getMember($stateParams.id).then((result) => {
 		ctrl.member = result.data;
@@ -26,12 +29,12 @@ export default
 					ctrl.gear = result.data;
           console.dir(result.data)
 				}).then(() => {
-				MemberService.getEvents().then(function(result){
+				MemberService.getMemberEvents($stateParams.id).then(function(result){
 					ctrl.events = result.data;
           console.dir(result.data)
 				}).then(() => {
-				MemberService.getCourses().then(function(result){
-					ctrl.courses = result.data;
+				MemberService.getMemberCourses($stateParams.id).then(function(result){
+					ctrl.memberCourses = result.data;
           console.dir(result.data)
 				})
         })

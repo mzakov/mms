@@ -43,6 +43,14 @@ function routes ($stateProvider, $urlRouterProvider, $mdIconProvider, $httpProvi
             authorizedRoles: [USER_ROLES.admin]
         }
     })
+    .state('course', {
+      url: '/courses/:id',
+      component: 'appCourse',
+      access: {
+            loginRequired: true,
+            authorizedRoles: [USER_ROLES.admin]
+        }
+    })
     // .state('users', {
     //   url: '/users',
     //   component: 'appUsers',

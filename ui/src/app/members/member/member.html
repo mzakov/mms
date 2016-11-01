@@ -1,8 +1,8 @@
-<div layout-padding ng-cloak layout-align="center center">
-<md-whiteframe class="md-whiteframe-10dp" flex layout="column" style="width: 700px;" layout-align="center center" >
-  <br/>
+<div flex layout-padding ng-cloak layout-align="center center">
+<md-whiteframe class="md-whiteframe-10dp" flex layout="column" style="width: 750px;" layout-align="center center" >
+
   <form name="editMember" ng-submit="ctrl.submit()">
-  <md-content class="md-no-momentum">
+  <md-content style="width: 700px;" class="md-no-momentum">
 		<div layout="row">
 			<div>
     		<md-input-container class="md-icon-float md-block">
@@ -90,30 +90,34 @@
     </md-input-container>
 
 <div layout="row" layout-wrap flex>
-    <div layout="column" flex-xs flex="25">
+
+
+    <div flex-xs flex="50">
       <p> Skills </p>
-    <div class="demo-select-all-checkboxes" flex="25" ng-repeat="item in ctrl.skills">
-      <md-checkbox ng-checked="ctrl.isMember(ctrl.member.skills, item.id)" ng-click="ctrl.toggle(item, ctrl.member.skills)">
+    <div class="demo-select-all-checkboxes" flex="50" ng-repeat="item in ctrl.skills">
+      <md-checkbox ng-checked="ctrl.isMember(ctrl.member.skills, item.id)"
+       ng-click="ctrl.toggle(item, ctrl.member.skills)">
         {{ item.name }}
       </md-checkbox>
     </div>
     </div>
 
-    <div layout="column" flex-xs flex="25">
+    <div flex-xs flex="50">
       <p> Gear </p>
-
-    <div class="demo-select-all-checkboxes" flex="25" ng-repeat="item in ctrl.gear">
-      <md-checkbox ng-checked="ctrl.isMember(ctrl.member.gear, item.id)" ng-click="ctrl.toggle(item, ctrl.member.gear)">
+    <div class="demo-select-all-checkboxes" flex="50" ng-repeat="item in ctrl.gear">
+      <md-checkbox ng-checked="ctrl.isMember(ctrl.member.gear, item.id)"
+       ng-click="ctrl.toggle(item, ctrl.member.gear)">
         {{ item.name }}
       </md-checkbox>
     </div>
     </div>
 
-    <div layout="column" flex-xs flex="25">
+    <!-- <div layout="column" flex-xs flex="25">
       <p> Events </p>
 
-    <div class="demo-select-all-checkboxes" flex="25" ng-repeat="item in ctrl.events">
-      <md-checkbox ng-checked="ctrl.isMember(ctrl.member.events, item.id)" ng-click="ctrl.toggle(item, ctrl.member.events)">
+    <div class="demo-select-all-checkboxes" flex="25" ng-repeat="item in ctrl.memberEvents">
+      <md-checkbox ng-checked="ctrl.isMember(ctrl.member.events, item.id)"
+       ng-click="ctrl.toggle(item, ctrl.member.events)">
         {{ item.name }}
       </md-checkbox>
     </div>
@@ -122,12 +126,14 @@
     <div layout="column" flex-xs flex="25">
       <p> Courses </p>
 
-    <div class="demo-select-all-checkboxes" flex="25" ng-repeat="item in ctrl.courses">
-      <md-checkbox ng-checked="ctrl.isMember(ctrl.member.courses, item.id)" ng-click="ctrl.toggle(item, ctrl.member.courses)">
+    <div class="demo-select-all-checkboxes" flex="25" ng-repeat="item in ctrl.memberCourses">
+      <md-checkbox ng-checked="ctrl.isMember(ctrl.member.courses, item.id)"
+       ng-click="ctrl.toggle(item, ctrl.member.courses)">
         {{ item.name }}
       </md-checkbox>
     </div>
-    </div>
+    </div> -->
+
 </div>
 
   </md-content>
@@ -148,6 +154,40 @@
       {{ctrl.status}}
     </b>
   </div>
+
+  <div style="width: 700px;" layout-margin>
+    <p> Events </p>
+    <mdt-table mdt-row="{
+                        'data': ctrl.memberEvents,
+                        'table-row-id-key': 'id',
+                        'column-keys': ['name', 'date', 'city.name']
+                        }">
+      <mdt-header-row>
+        <mdt-column align-rule="left" column-sort="true">Name</mdt-column>
+        <mdt-column align-rule="right" column-sort="true">Date</mdt-column>
+        <mdt-column align-rule="right" column-sort="true">City</mdt-column>
+      </mdt-header-row>
+    </mdt-table>
+  </div>
+
+  <div style="width: 700px;" layout-margin>
+    <p> Courses </p>
+    <mdt-table mdt-row="{
+                        'data': ctrl.memberCourses,
+                        'table-row-id-key': 'id',
+                        'column-keys': ['name', 'date', 'city.name']
+                        }">
+      <mdt-header-row>
+        <mdt-column align-rule="left" column-sort="true">Name</mdt-column>
+        <mdt-column align-rule="right" column-sort="true">Date</mdt-column>
+        <mdt-column align-rule="right" column-sort="true">City</mdt-column>
+      </mdt-header-row>
+    </mdt-table>
+  </div>
+
 </md-whiteframe>
+
+
+
 <pre>member = {{ctrl.member | json}}</pre>
 </div>

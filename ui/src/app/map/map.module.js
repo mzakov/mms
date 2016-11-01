@@ -7,5 +7,5 @@ export default
     .module('mms.map', ['ngMap'])
     .constant('locations', mapLocations)
     .component('mmsMap', mapComponent)
-    .service('$map', mapService)
+    .service('mapService', mapService)
     .name

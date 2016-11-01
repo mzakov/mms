@@ -47,7 +47,7 @@ public class CourseController {
 
 	// DELETE /members/{id}
 	@RequestMapping(value = "{id}", method = RequestMethod.DELETE)
-	public Course delete(@PathVariable("id") long id) {
-		return courseService.delete(id);
+	public void delete(@PathVariable("id") long id) {
+		courseService.delete(id);
 	}	
 }

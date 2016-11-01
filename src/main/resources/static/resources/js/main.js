@@ -8185,7 +8185,7 @@
 	
 	__webpack_require__(299);
 	
-	__webpack_require__(375);
+	__webpack_require__(381);
 
 /***/ },
 /* 299 */
@@ -8201,73 +8201,77 @@
 	
 	var _map2 = _interopRequireDefault(_map);
 	
-	var _api = __webpack_require__(305);
+	var _api = __webpack_require__(306);
 	
 	var _api2 = _interopRequireDefault(_api);
 	
-	var _userRoles = __webpack_require__(306);
+	var _userRoles = __webpack_require__(307);
 	
 	var _userRoles2 = _interopRequireDefault(_userRoles);
 	
-	var _appComponent = __webpack_require__(307);
+	var _appComponent = __webpack_require__(308);
 	
 	var _appComponent2 = _interopRequireDefault(_appComponent);
 	
-	var _homeModule = __webpack_require__(310);
+	var _homeModule = __webpack_require__(311);
 	
 	var _homeModule2 = _interopRequireDefault(_homeModule);
 	
-	var _loginModule = __webpack_require__(315);
+	var _loginModule = __webpack_require__(316);
 	
 	var _loginModule2 = _interopRequireDefault(_loginModule);
 	
-	var _loadingModule = __webpack_require__(346);
+	var _loadingModule = __webpack_require__(347);
 	
 	var _loadingModule2 = _interopRequireDefault(_loadingModule);
 	
-	var _logoutModule = __webpack_require__(349);
+	var _logoutModule = __webpack_require__(350);
 	
 	var _logoutModule2 = _interopRequireDefault(_logoutModule);
 	
-	var _errorModule = __webpack_require__(353);
+	var _errorModule = __webpack_require__(354);
 	
 	var _errorModule2 = _interopRequireDefault(_errorModule);
 	
-	var _membersModule = __webpack_require__(357);
+	var _membersModule = __webpack_require__(358);
 	
 	var _membersModule2 = _interopRequireDefault(_membersModule);
 	
-	var _memberModule = __webpack_require__(362);
+	var _memberModule = __webpack_require__(363);
 	
 	var _memberModule2 = _interopRequireDefault(_memberModule);
 	
-	var _coursesModule = __webpack_require__(367);
+	var _coursesModule = __webpack_require__(368);
 	
 	var _coursesModule2 = _interopRequireDefault(_coursesModule);
 	
-	var _appRoute = __webpack_require__(372);
+	var _courseModule = __webpack_require__(373);
+	
+	var _courseModule2 = _interopRequireDefault(_courseModule);
+	
+	var _appRoute = __webpack_require__(378);
 	
 	var _appRoute2 = _interopRequireDefault(_appRoute);
 	
-	var _appService = __webpack_require__(345);
+	var _appService = __webpack_require__(346);
 	
 	var _appService2 = _interopRequireDefault(_appService);
 	
-	var _authService = __webpack_require__(352);
+	var _authService = __webpack_require__(353);
 	
 	var _authService2 = _interopRequireDefault(_authService);
 	
-	var _sessionService = __webpack_require__(373);
+	var _sessionService = __webpack_require__(379);
 	
 	var _sessionService2 = _interopRequireDefault(_sessionService);
 	
-	var _appRun = __webpack_require__(374);
+	var _appRun = __webpack_require__(380);
 	
 	var _appRun2 = _interopRequireDefault(_appRun);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	exports.default = angular.module('mms', ['ngAria', 'ngAnimate', 'ngMaterial', 'ngMessages', 'ngSanitize', 'ui.router', 'http-auth-interceptor', 'ngResource', 'mdDataTable', _loadingModule2.default, _loginModule2.default, _errorModule2.default, _logoutModule2.default, _homeModule2.default, _map2.default, _membersModule2.default, _memberModule2.default, _coursesModule2.default]).constant('apiUrl', _api2.default).constant('USER_ROLES', _userRoles2.default).component('mmsApp', _appComponent2.default).config(_appRoute2.default).service('AppService', _appService2.default).service('AuthSharedService', _authService2.default).service('Session', _sessionService2.default).run(_appRun2.default).directive('access', ['AuthSharedService', function (AuthSharedService) {
+	exports.default = angular.module('mms', ['ngAria', 'ngAnimate', 'ngMaterial', 'ngMessages', 'ngSanitize', 'ui.router', 'http-auth-interceptor', 'ngResource', 'mdDataTable', _loadingModule2.default, _loginModule2.default, _errorModule2.default, _logoutModule2.default, _homeModule2.default, _map2.default, _membersModule2.default, _memberModule2.default, _coursesModule2.default, _courseModule2.default]).constant('apiUrl', _api2.default).constant('USER_ROLES', _userRoles2.default).component('mmsApp', _appComponent2.default).config(_appRoute2.default).service('AppService', _appService2.default).service('AuthSharedService', _authService2.default).service('Session', _sessionService2.default).run(_appRun2.default).directive('access', ['AuthSharedService', function (AuthSharedService) {
 	    return {
 	        restrict: 'A',
 	        link: function link(scope, element, attrs) {
@@ -8301,13 +8305,13 @@
 	
 	var _mapComponent2 = _interopRequireDefault(_mapComponent);
 	
-	var _map3 = __webpack_require__(304);
+	var _map3 = __webpack_require__(305);
 	
 	var _map4 = _interopRequireDefault(_map3);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	exports.default = angular.module('mms.map', ['ngMap']).constant('locations', _map2.default).component('mmsMap', _mapComponent2.default).service('$map', _map4.default).name;
+	exports.default = angular.module('mms.map', ['ngMap']).constant('locations', _map2.default).component('mmsMap', _mapComponent2.default).service('mapService', _map4.default).name;
 
 /***/ },
 /* 301 */
@@ -8345,146 +8349,20 @@
 	  value: true
 	});
 	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
 	var _map = __webpack_require__(303);
 	
 	var _map2 = _interopRequireDefault(_map);
 	
+	var _mapController = __webpack_require__(304);
+	
+	var _mapController2 = _interopRequireDefault(_mapController);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	/* @ngInject */
-	var MapController = function () {
-	  MapController.$inject = ["$map", "locations", "$rootScope", "$scope", "$state", "AppService", "$timeout"];
-	  function MapController($map, locations, $rootScope, $scope, $state, AppService, $timeout) {
-	    var _this = this;
-	
-	    _classCallCheck(this, MapController);
-	
-	    this.zoom = 7.75;
-	    this.center = [42.7581215, 25.5572096];
-	    this.markers = [];
-	    this.paths = [];
-	
-	    var ctrl = this;
-	    this.$map = $map;
-	    this.loggedIn = AppService.loggedIn;
-	    ctrl.map = $scope.map;
-	
-	    ctrl.updateMap = function () {
-	      google.maps.event.trigger($scope.map, 'resize');
-	    };
-	
-	    var memphis = locations.memphis;
-	    var nashville = locations.nashville;
-	    var knoxville = locations.knoxville;
-	
-	    var markers = [];
-	
-	    markers.forEach(function (marker) {
-	      return _this.addMarker(marker);
-	    });
-	
-	    var paths = [];
-	
-	    $scope.$on('clearAllPaths', function (event) {
-	      ctrl.paths = [];
-	    });
-	
-	    $scope.$on('clearPathEvent', function (event, data) {
-	      var origin = void 0;
-	      var destination = void 0;
-	      $map.getMarkerByCityName(data.origin).then(function (result) {
-	        origin = result;
-	        $map.getMarkerByCityName(data.destination).then(function (result2) {
-	          destination = result2;
-	        }).then(function () {
-	          var check = {
-	            path: '[[' + origin.latitude + ', ' + origin.longitude + '], [' + destination.latitude + ', ' + destination.longitude + ']]'
-	          };
-	
-	          var _iteratorNormalCompletion = true;
-	          var _didIteratorError = false;
-	          var _iteratorError = undefined;
-	
-	          try {
-	            for (var _iterator = ctrl.paths[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-	              var path = _step.value;
-	
-	              if (path.path === check.path) {
-	                var index = jQuery.inArray(path, ctrl.paths);
-	                ctrl.paths.splice(index, 1);
-	              }
-	            }
-	          } catch (err) {
-	            _didIteratorError = true;
-	            _iteratorError = err;
-	          } finally {
-	            try {
-	              if (!_iteratorNormalCompletion && _iterator.return) {
-	                _iterator.return();
-	              }
-	            } finally {
-	              if (_didIteratorError) {
-	                throw _iteratorError;
-	              }
-	            }
-	          }
-	        });
-	      });
-	    });
-	
-	    $scope.$on('drawPathEvent', function (event, data) {
-	      var origin = void 0;
-	      var destination = void 0;
-	      var color = data.color;
-	      $map.getMarkerByCityName(data.origin).then(function (result) {
-	        origin = result;
-	        $map.getMarkerByCityName(data.destination).then(function (result2) {
-	          destination = result2;
-	          ctrl.addPath(origin, destination, color);
-	        });
-	      });
-	    });
-	    paths.forEach(function (args) {
-	      return _this.addPath.apply(_this, _toConsumableArray(args));
-	    });
-	  }
-	
-	  _createClass(MapController, [{
-	    key: 'addMarker',
-	    value: function addMarker(_ref) {
-	      var latitude = _ref.latitude;
-	      var longitude = _ref.longitude;
-	
-	      this.markers.push({
-	        position: '[' + latitude + ', ' + longitude + ']'
-	      });
-	    }
-	  }, {
-	    key: 'addPath',
-	    value: function addPath(a, b, color) {
-	      this.paths.push({
-	        path: '[[' + a.latitude + ', ' + a.longitude + '], [' + b.latitude + ', ' + b.longitude + ']]',
-	        strokeColor: color,
-	        strokeOpacity: 1.0,
-	        strokeWeight: 3,
-	        geodesic: true
-	      });
-	    }
-	  }]);
-	
-	  return MapController;
-	}();
 	
 	exports.default = {
 	  templateUrl: _map2.default,
-	  controller: MapController,
-	  controllerAs: '$mapCtrl'
+	  controller: _mapController2.default,
+	  controllerAs: 'ctrl'
 	};
 
 /***/ },
@@ -8492,12 +8370,70 @@
 /***/ function(module, exports) {
 
 	var path = 'C:/code/mms/ui/src/app/map/map.html';
-	var html = "\r\n<div style=\"height: 100%; width: 100%;\" map-lazy-load=\"https://maps.google.com/maps/api/js\">\r\n\t<ng-map ng-mousemove=\"$mapCtrl.updateMap()\" center=\"{{$mapCtrl.center}}\" zoom=\"{{$mapCtrl.zoom}}\">\r\n\t  <marker\r\n\t    ng-repeat=\"$mapMarker in $mapCtrl.markers\"\r\n\t    position=\"{{$mapMarker.position}}\">\r\n\t  </marker>\r\n\t  <shape\r\n\t    ng-repeat=\"$mapPath in $mapCtrl.paths\"\r\n\t    name=\"polyline\"\r\n\t    path=\"{{$mapPath.path}}\"\r\n\t    stroke-color=\"{{$mapPath.strokeColor}}\"\r\n\t    stroke-opacity=\"{{$mapPath.strokeOpacity}}\"\r\n\t    stroke-weight=\"{{$mapPath.strokeWeight}}\"\r\n\t    geodesic=\"{{$mapPath.geodesic}}\">\r\n\t  </shape>\r\n\t</ng-map>\r\n</div>\r\n";
+	var html = "<div map-lazy-load=\"https://maps.google.com/maps/api/js\">\r\n\t<!-- <div id=\"panel\">\r\n        <input ng-click=\"ctrl.hideMarkers()\" type=button value=\"Hide Markers\">\r\n        <input ng-click=\"ctrl.showMarkers()\" type=button value=\"Show All Markers\">\r\n        <input ng-click=\"ctrl.deleteMarkers()\" type=button value=\"Delete Markers\">\r\n      </div> -->\r\n<ng-map default-style=\"false\" style=\"height:300px; width: 540px\" center=\"42.7339, 25.4858\" zoom=7\r\n\t\t\t\tng-mousemove=\"ctrl.updateMap()\" on-click=\"ctrl.addMarker()\" on-center-changed=\"ctrl.centerChanged()\">\r\n    <marker ng-repeat=\"pos in ctrl.markers\" position=\"{{pos.lat}}, {{pos.lng}}\"></marker>\r\n  </ng-map>\r\n<div>\r\n";
 	window.angular.module('ng').run(['$templateCache', function(c) { c.put(path, html) }]);
 	module.exports = path;
 
 /***/ },
 /* 304 */
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	/* @ngInject */
+	var MapController = function MapController(NgMap, $timeout, CourseService, $scope) {
+	  _classCallCheck(this, MapController);
+	
+	  var ctrl = this;
+	  // ctrl.center = [42.666280, 25.775170]
+	  // ctrl.zoom = 7   {lat:ctrl.course.latitude, lng:ctrl.course.longitude}
+	  ctrl.markers = [];
+	
+	  NgMap.getMap().then(function (map) {
+	    ctrl.map = map;
+	  });
+	
+	  ctrl.updateMap = function () {
+	    google.maps.event.trigger(ctrl.map, 'resize');
+	  };
+	
+	  $scope.$on('cityLL', function (event, data) {
+	    ctrl.map.setCenter(new google.maps.LatLng(data.lat, data.lng));
+	    ctrl.map.setZoom(12);
+	  });
+	
+	  ctrl.addMarker = function (event) {
+	    var ll = event.latLng;
+	    ctrl.deleteMarkers();
+	    ctrl.markers.push({ lat: ll.lat(), lng: ll.lng() });
+	    $scope.$emit('courseLL', { lat: ll.lat(), lng: ll.lng() });
+	  };
+	  ctrl.deleteMarkers = function () {
+	    ctrl.markers = [];
+	  };
+	  ctrl.showMarkers = function () {
+	    for (var key in ctrl.map.markers) {
+	      ctrl.map.markers[key].setMap(ctrl.map);
+	    };
+	  };
+	  ctrl.hideMarkers = function () {
+	    for (var key in ctrl.map.markers) {
+	      ctrl.map.markers[key].setMap(null);
+	    };
+	  };
+	};
+	MapController.$inject = ["NgMap", "$timeout", "CourseService", "$scope"];
+	
+	exports.default = MapController;
+
+/***/ },
+/* 305 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -8527,7 +8463,7 @@
 	exports.default = MapService;
 
 /***/ },
-/* 305 */
+/* 306 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -8538,7 +8474,7 @@
 	exports.default = 'http://localhost:8000';
 
 /***/ },
-/* 306 */
+/* 307 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -8553,7 +8489,7 @@
 	};
 
 /***/ },
-/* 307 */
+/* 308 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -8562,11 +8498,11 @@
 	  value: true
 	});
 	
-	var _index = __webpack_require__(308);
+	var _index = __webpack_require__(309);
 	
 	var _index2 = _interopRequireDefault(_index);
 	
-	var _appController = __webpack_require__(309);
+	var _appController = __webpack_require__(310);
 	
 	var _appController2 = _interopRequireDefault(_appController);
 	
@@ -8579,13 +8515,13 @@
 	};
 
 /***/ },
-/* 308 */
+/* 309 */
 /***/ function(module, exports) {
 
 	module.exports = "<!DOCTYPE html>\r\n<html ng-strict-di=\"true\">\r\n  <head>\r\n    <meta charset=\"utf-8\">\r\n    <title>MMS</title>\r\n    <link href=\"https://fonts.googleapis.com/icon?family=Material+Icons\"\r\n      rel=\"stylesheet\">\r\n  </head>\r\n  <body ng-app=\"mms\" ng-cloak class=\"ng-cloak\">\r\n    <div ng-if=\"authenticated\">\r\n      <md-toolbar>\r\n      <div layout=\"row\" layout-align=\"center center\" style=\"padding-top:20px;\">\r\n        <md-button class=\"md-raised md-primary\" href=\"#/home\">\r\n          <md-icon md-font-set=\"material-icons\"> home </md-icon>\r\n        </md-button>\r\n        <md-button class=\"md-raised md-primary\" href=\"#/members\">\r\n          <md-icon md-font-set=\"material-icons\"> person </md-icon>\r\n        </md-button>\r\n        <md-button class=\"md-raised md-primary\" href=\"#/courses\">\r\n          <md-icon md-font-set=\"material-icons\"> school </md-icon>\r\n        </md-button>\r\n        <md-button class=\"md-raised md-primary\" href=\"#/events\">\r\n          <md-icon md-font-set=\"material-icons\"> star </md-icon>\r\n        </md-button>\r\n        <md-button class=\"md-raised md-primary\" href=\"#/tools\">\r\n          <md-icon md-font-set=\"material-icons\"> build </md-icon>\r\n        </md-button>\r\n        <i md-menu-origin class=\"material-icons\">person</i>\r\n          {{account.firstName}} {{account.lastName}}\r\n        <md-button class=\"md-raised md-warn\" href=\"#/logout\">\r\n          <md-icon md-font-set=\"material-icons\"> exit_to_app </md-icon>\r\n        </md-button>\r\n      </div>\r\n    </md-toolbar>\r\n    </div>\r\n    <div class=\"container\">\r\n      <div style=\"position: relative\">\r\n        <div class=\"fade\">\r\n          <ui-view>\r\n          Loading...\r\n          </ui-view>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </body>\r\n</html>\r\n";
 
 /***/ },
-/* 309 */
+/* 310 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -8660,28 +8596,6 @@
 	exports.default = AppController;
 
 /***/ },
-/* 310 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _homeComponent = __webpack_require__(311);
-	
-	var _homeComponent2 = _interopRequireDefault(_homeComponent);
-	
-	var _homeService = __webpack_require__(314);
-	
-	var _homeService2 = _interopRequireDefault(_homeService);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	exports.default = angular.module('home', []).component('appHome', _homeComponent2.default).service('HomeService', _homeService2.default).name;
-
-/***/ },
 /* 311 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -8691,11 +8605,33 @@
 	  value: true
 	});
 	
-	var _home = __webpack_require__(312);
+	var _homeComponent = __webpack_require__(312);
+	
+	var _homeComponent2 = _interopRequireDefault(_homeComponent);
+	
+	var _homeService = __webpack_require__(315);
+	
+	var _homeService2 = _interopRequireDefault(_homeService);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = angular.module('home', []).component('appHome', _homeComponent2.default).service('HomeService', _homeService2.default).name;
+
+/***/ },
+/* 312 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _home = __webpack_require__(313);
 	
 	var _home2 = _interopRequireDefault(_home);
 	
-	var _homeController = __webpack_require__(313);
+	var _homeController = __webpack_require__(314);
 	
 	var _homeController2 = _interopRequireDefault(_homeController);
 	
@@ -8708,7 +8644,7 @@
 	};
 
 /***/ },
-/* 312 */
+/* 313 */
 /***/ function(module, exports) {
 
 	var path = 'C:/code/mms/ui/src/app/home/home.html';
@@ -8717,7 +8653,7 @@
 	module.exports = path;
 
 /***/ },
-/* 313 */
+/* 314 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -8742,7 +8678,7 @@
 	exports.default = HomeController;
 
 /***/ },
-/* 314 */
+/* 315 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -8769,28 +8705,6 @@
 	exports.default = HomeService;
 
 /***/ },
-/* 315 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _loginComponent = __webpack_require__(316);
-	
-	var _loginComponent2 = _interopRequireDefault(_loginComponent);
-	
-	var _appService = __webpack_require__(345);
-	
-	var _appService2 = _interopRequireDefault(_appService);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	exports.default = angular.module('login', []).component('appLogin', _loginComponent2.default).service('AuthSharedService', _appService2.default).name;
-
-/***/ },
 /* 316 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -8800,11 +8714,33 @@
 	  value: true
 	});
 	
-	var _login = __webpack_require__(317);
+	var _loginComponent = __webpack_require__(317);
+	
+	var _loginComponent2 = _interopRequireDefault(_loginComponent);
+	
+	var _appService = __webpack_require__(346);
+	
+	var _appService2 = _interopRequireDefault(_appService);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = angular.module('login', []).component('appLogin', _loginComponent2.default).service('AuthSharedService', _appService2.default).name;
+
+/***/ },
+/* 317 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _login = __webpack_require__(318);
 	
 	var _login2 = _interopRequireDefault(_login);
 	
-	var _loginController = __webpack_require__(318);
+	var _loginController = __webpack_require__(319);
 	
 	var _loginController2 = _interopRequireDefault(_loginController);
 	
@@ -8817,7 +8753,7 @@
 	};
 
 /***/ },
-/* 317 */
+/* 318 */
 /***/ function(module, exports) {
 
 	var path = 'C:/code/mms/ui/src/app/login/login.html';
@@ -8826,7 +8762,7 @@
 	module.exports = path;
 
 /***/ },
-/* 318 */
+/* 319 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -8837,7 +8773,7 @@
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
-	var bcrypt = __webpack_require__(319);
+	var bcrypt = __webpack_require__(320);
 	
 	/* @ngInject */
 	var LoginController = function LoginController($rootScope, $scope, $log, AuthSharedService) {
@@ -8861,7 +8797,7 @@
 	exports.default = LoginController;
 
 /***/ },
-/* 319 */
+/* 320 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/* WEBPACK VAR INJECTION */(function(module, process, setImmediate) {/*
@@ -8899,7 +8835,7 @@
 	 */
 	(function(global, factory) {
 	
-	    /* AMD */ if ("function" === 'function' && __webpack_require__(322)["amd"])
+	    /* AMD */ if ("function" === 'function' && __webpack_require__(323)["amd"])
 	        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 	    /* CommonJS */ else if ("function" === 'function' && typeof module === "object" && module && module["exports"])
 	        module["exports"] = factory();
@@ -8933,7 +8869,7 @@
 	    function random(len) {
 	        /* node */ if (typeof module !== 'undefined' && module && module['exports'])
 	            try {
-	                return __webpack_require__(323)['randomBytes'](len);
+	                return __webpack_require__(324)['randomBytes'](len);
 	            } catch (e) {}
 	        /* WCA */ try {
 	            var a; (self['crypto']||self['msCrypto'])['getRandomValues'](a = new Uint32Array(len));
@@ -10089,10 +10025,10 @@
 	    return bcrypt;
 	}));
 	
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(320)(module), __webpack_require__(294), __webpack_require__(321).setImmediate))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(321)(module), __webpack_require__(294), __webpack_require__(322).setImmediate))
 
 /***/ },
-/* 320 */
+/* 321 */
 /***/ function(module, exports) {
 
 	module.exports = function(module) {
@@ -10108,7 +10044,7 @@
 
 
 /***/ },
-/* 321 */
+/* 322 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(setImmediate, clearImmediate) {var nextTick = __webpack_require__(294).nextTick;
@@ -10187,20 +10123,20 @@
 	exports.clearImmediate = typeof clearImmediate === "function" ? clearImmediate : function(id) {
 	  delete immediateIds[id];
 	};
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(321).setImmediate, __webpack_require__(321).clearImmediate))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(322).setImmediate, __webpack_require__(322).clearImmediate))
 
 /***/ },
-/* 322 */
+/* 323 */
 /***/ function(module, exports) {
 
 	module.exports = function() { throw new Error("define cannot be used indirect"); };
 
 
 /***/ },
-/* 323 */
+/* 324 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/* WEBPACK VAR INJECTION */(function(Buffer) {var rng = __webpack_require__(328)
+	/* WEBPACK VAR INJECTION */(function(Buffer) {var rng = __webpack_require__(329)
 	
 	function error () {
 	  var m = [].slice.call(arguments).join(' ')
@@ -10211,9 +10147,9 @@
 	    ].join('\n'))
 	}
 	
-	exports.createHash = __webpack_require__(330)
+	exports.createHash = __webpack_require__(331)
 	
-	exports.createHmac = __webpack_require__(342)
+	exports.createHmac = __webpack_require__(343)
 	
 	exports.randomBytes = function(size, callback) {
 	  if (callback && callback.call) {
@@ -10234,7 +10170,7 @@
 	  return ['sha1', 'sha256', 'sha512', 'md5', 'rmd160']
 	}
 	
-	var p = __webpack_require__(343)(exports)
+	var p = __webpack_require__(344)(exports)
 	exports.pbkdf2 = p.pbkdf2
 	exports.pbkdf2Sync = p.pbkdf2Sync
 	
@@ -10254,10 +10190,10 @@
 	  }
 	})
 	
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(324).Buffer))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(325).Buffer))
 
 /***/ },
-/* 324 */
+/* 325 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(Buffer, global) {/*!
@@ -10270,9 +10206,9 @@
 	
 	'use strict'
 	
-	var base64 = __webpack_require__(325)
-	var ieee754 = __webpack_require__(326)
-	var isArray = __webpack_require__(327)
+	var base64 = __webpack_require__(326)
+	var ieee754 = __webpack_require__(327)
+	var isArray = __webpack_require__(328)
 	
 	exports.Buffer = Buffer
 	exports.SlowBuffer = SlowBuffer
@@ -12050,10 +11986,10 @@
 	  return val !== val // eslint-disable-line no-self-compare
 	}
 	
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(324).Buffer, (function() { return this; }())))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(325).Buffer, (function() { return this; }())))
 
 /***/ },
-/* 325 */
+/* 326 */
 /***/ function(module, exports) {
 
 	'use strict'
@@ -12173,7 +12109,7 @@
 
 
 /***/ },
-/* 326 */
+/* 327 */
 /***/ function(module, exports) {
 
 	exports.read = function (buffer, offset, isLE, mLen, nBytes) {
@@ -12263,7 +12199,7 @@
 
 
 /***/ },
-/* 327 */
+/* 328 */
 /***/ function(module, exports) {
 
 	var toString = {}.toString;
@@ -12274,13 +12210,13 @@
 
 
 /***/ },
-/* 328 */
+/* 329 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(global, Buffer) {(function() {
 	  var g = ('undefined' === typeof window ? global : window) || {}
 	  _crypto = (
-	    g.crypto || g.msCrypto || __webpack_require__(329)
+	    g.crypto || g.msCrypto || __webpack_require__(330)
 	  )
 	  module.exports = function(size) {
 	    // Modern Browsers
@@ -12304,22 +12240,22 @@
 	  }
 	}())
 	
-	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }()), __webpack_require__(324).Buffer))
+	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }()), __webpack_require__(325).Buffer))
 
 /***/ },
-/* 329 */
+/* 330 */
 /***/ function(module, exports) {
 
 	/* (ignored) */
 
 /***/ },
-/* 330 */
+/* 331 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/* WEBPACK VAR INJECTION */(function(Buffer) {var createHash = __webpack_require__(331)
+	/* WEBPACK VAR INJECTION */(function(Buffer) {var createHash = __webpack_require__(332)
 	
-	var md5 = toConstructor(__webpack_require__(339))
-	var rmd160 = toConstructor(__webpack_require__(341))
+	var md5 = toConstructor(__webpack_require__(340))
+	var rmd160 = toConstructor(__webpack_require__(342))
 	
 	function toConstructor (fn) {
 	  return function () {
@@ -12347,10 +12283,10 @@
 	  return createHash(alg)
 	}
 	
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(324).Buffer))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(325).Buffer))
 
 /***/ },
-/* 331 */
+/* 332 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var exports = module.exports = function (alg) {
@@ -12359,16 +12295,16 @@
 	  return new Alg()
 	}
 	
-	var Buffer = __webpack_require__(324).Buffer
-	var Hash   = __webpack_require__(332)(Buffer)
+	var Buffer = __webpack_require__(325).Buffer
+	var Hash   = __webpack_require__(333)(Buffer)
 	
-	exports.sha1 = __webpack_require__(333)(Buffer, Hash)
-	exports.sha256 = __webpack_require__(337)(Buffer, Hash)
-	exports.sha512 = __webpack_require__(338)(Buffer, Hash)
+	exports.sha1 = __webpack_require__(334)(Buffer, Hash)
+	exports.sha256 = __webpack_require__(338)(Buffer, Hash)
+	exports.sha512 = __webpack_require__(339)(Buffer, Hash)
 
 
 /***/ },
-/* 332 */
+/* 333 */
 /***/ function(module, exports) {
 
 	module.exports = function (Buffer) {
@@ -12451,7 +12387,7 @@
 
 
 /***/ },
-/* 333 */
+/* 334 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -12463,7 +12399,7 @@
 	 * See http://pajhome.org.uk/crypt/md5 for details.
 	 */
 	
-	var inherits = __webpack_require__(334).inherits
+	var inherits = __webpack_require__(335).inherits
 	
 	module.exports = function (Buffer, Hash) {
 	
@@ -12595,7 +12531,7 @@
 
 
 /***/ },
-/* 334 */
+/* 335 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(global, process) {// Copyright Joyent, Inc. and other Node contributors.
@@ -13123,7 +13059,7 @@
 	}
 	exports.isPrimitive = isPrimitive;
 	
-	exports.isBuffer = __webpack_require__(335);
+	exports.isBuffer = __webpack_require__(336);
 	
 	function objectToString(o) {
 	  return Object.prototype.toString.call(o);
@@ -13167,7 +13103,7 @@
 	 *     prototype.
 	 * @param {function} superCtor Constructor function to inherit prototype from.
 	 */
-	exports.inherits = __webpack_require__(336);
+	exports.inherits = __webpack_require__(337);
 	
 	exports._extend = function(origin, add) {
 	  // Don't do anything if add isn't an object
@@ -13188,7 +13124,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }()), __webpack_require__(294)))
 
 /***/ },
-/* 335 */
+/* 336 */
 /***/ function(module, exports) {
 
 	module.exports = function isBuffer(arg) {
@@ -13199,7 +13135,7 @@
 	}
 
 /***/ },
-/* 336 */
+/* 337 */
 /***/ function(module, exports) {
 
 	if (typeof Object.create === 'function') {
@@ -13228,7 +13164,7 @@
 
 
 /***/ },
-/* 337 */
+/* 338 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -13240,7 +13176,7 @@
 	 *
 	 */
 	
-	var inherits = __webpack_require__(334).inherits
+	var inherits = __webpack_require__(335).inherits
 	
 	module.exports = function (Buffer, Hash) {
 	
@@ -13381,10 +13317,10 @@
 
 
 /***/ },
-/* 338 */
+/* 339 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var inherits = __webpack_require__(334).inherits
+	var inherits = __webpack_require__(335).inherits
 	
 	module.exports = function (Buffer, Hash) {
 	  var K = [
@@ -13631,7 +13567,7 @@
 
 
 /***/ },
-/* 339 */
+/* 340 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -13643,7 +13579,7 @@
 	 * See http://pajhome.org.uk/crypt/md5 for more info.
 	 */
 	
-	var helpers = __webpack_require__(340);
+	var helpers = __webpack_require__(341);
 	
 	/*
 	 * Calculate the MD5 of an array of little-endian words, and a bit length
@@ -13792,7 +13728,7 @@
 
 
 /***/ },
-/* 340 */
+/* 341 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(Buffer) {var intSize = 4;
@@ -13830,10 +13766,10 @@
 	
 	module.exports = { hash: hash };
 	
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(324).Buffer))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(325).Buffer))
 
 /***/ },
-/* 341 */
+/* 342 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(Buffer) {
@@ -14042,13 +13978,13 @@
 	
 	
 	
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(324).Buffer))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(325).Buffer))
 
 /***/ },
-/* 342 */
+/* 343 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/* WEBPACK VAR INJECTION */(function(Buffer) {var createHash = __webpack_require__(330)
+	/* WEBPACK VAR INJECTION */(function(Buffer) {var createHash = __webpack_require__(331)
 	
 	var zeroBuffer = new Buffer(128)
 	zeroBuffer.fill(0)
@@ -14092,13 +14028,13 @@
 	}
 	
 	
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(324).Buffer))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(325).Buffer))
 
 /***/ },
-/* 343 */
+/* 344 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var pbkdf2Export = __webpack_require__(344)
+	var pbkdf2Export = __webpack_require__(345)
 	
 	module.exports = function (crypto, exports) {
 	  exports = exports || {}
@@ -14113,7 +14049,7 @@
 
 
 /***/ },
-/* 344 */
+/* 345 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(Buffer) {module.exports = function(crypto) {
@@ -14201,10 +14137,10 @@
 	  }
 	}
 	
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(324).Buffer))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(325).Buffer))
 
 /***/ },
-/* 345 */
+/* 346 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -14249,24 +14185,6 @@
 	exports.default = AppService;
 
 /***/ },
-/* 346 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _loadingComponent = __webpack_require__(347);
-	
-	var _loadingComponent2 = _interopRequireDefault(_loadingComponent);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	exports.default = angular.module('loading', []).component('appLoading', _loadingComponent2.default).name;
-
-/***/ },
 /* 347 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -14276,11 +14194,29 @@
 	  value: true
 	});
 	
-	var _loading = __webpack_require__(348);
+	var _loadingComponent = __webpack_require__(348);
+	
+	var _loadingComponent2 = _interopRequireDefault(_loadingComponent);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = angular.module('loading', []).component('appLoading', _loadingComponent2.default).name;
+
+/***/ },
+/* 348 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _loading = __webpack_require__(349);
 	
 	var _loading2 = _interopRequireDefault(_loading);
 	
-	var _appController = __webpack_require__(309);
+	var _appController = __webpack_require__(310);
 	
 	var _appController2 = _interopRequireDefault(_appController);
 	
@@ -14293,35 +14229,13 @@
 	};
 
 /***/ },
-/* 348 */
+/* 349 */
 /***/ function(module, exports) {
 
 	var path = 'C:/code/mms/ui/src/app/loading/loading.html';
 	var html = "<div layout=\"row\" layout-sm=\"column\" layout-align=\"center center\" style=\"min-height: 50px\">\n      <md-progress-circular md-mode=\"indeterminate\"></md-progress-circular>\n</div>\n";
 	window.angular.module('ng').run(['$templateCache', function(c) { c.put(path, html) }]);
 	module.exports = path;
-
-/***/ },
-/* 349 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _logoutComponent = __webpack_require__(350);
-	
-	var _logoutComponent2 = _interopRequireDefault(_logoutComponent);
-	
-	var _authService = __webpack_require__(352);
-	
-	var _authService2 = _interopRequireDefault(_authService);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	exports.default = angular.module('logout', []).component('appLogout', _logoutComponent2.default).service('AuthSharedService', _authService2.default).name;
 
 /***/ },
 /* 350 */
@@ -14333,7 +14247,29 @@
 	  value: true
 	});
 	
-	var _logoutController = __webpack_require__(351);
+	var _logoutComponent = __webpack_require__(351);
+	
+	var _logoutComponent2 = _interopRequireDefault(_logoutComponent);
+	
+	var _authService = __webpack_require__(353);
+	
+	var _authService2 = _interopRequireDefault(_authService);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = angular.module('logout', []).component('appLogout', _logoutComponent2.default).service('AuthSharedService', _authService2.default).name;
+
+/***/ },
+/* 351 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _logoutController = __webpack_require__(352);
 	
 	var _logoutController2 = _interopRequireDefault(_logoutController);
 	
@@ -14346,7 +14282,7 @@
 	};
 
 /***/ },
-/* 351 */
+/* 352 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -14371,7 +14307,7 @@
 	exports.default = LogoutController;
 
 /***/ },
-/* 352 */
+/* 353 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -14440,24 +14376,6 @@
 	exports.default = AuthSharedService;
 
 /***/ },
-/* 353 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _errorComponent = __webpack_require__(354);
-	
-	var _errorComponent2 = _interopRequireDefault(_errorComponent);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	exports.default = angular.module('error', []).component('appError', _errorComponent2.default).name;
-
-/***/ },
 /* 354 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -14467,11 +14385,29 @@
 	  value: true
 	});
 	
-	var _error = __webpack_require__(355);
+	var _errorComponent = __webpack_require__(355);
+	
+	var _errorComponent2 = _interopRequireDefault(_errorComponent);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = angular.module('error', []).component('appError', _errorComponent2.default).name;
+
+/***/ },
+/* 355 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _error = __webpack_require__(356);
 	
 	var _error2 = _interopRequireDefault(_error);
 	
-	var _errorController = __webpack_require__(356);
+	var _errorController = __webpack_require__(357);
 	
 	var _errorController2 = _interopRequireDefault(_errorController);
 	
@@ -14484,7 +14420,7 @@
 	};
 
 /***/ },
-/* 355 */
+/* 356 */
 /***/ function(module, exports) {
 
 	var path = 'C:/code/mms/ui/src/app/error/error.html';
@@ -14493,7 +14429,7 @@
 	module.exports = path;
 
 /***/ },
-/* 356 */
+/* 357 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -14530,28 +14466,6 @@
 	exports.default = ErrorController;
 
 /***/ },
-/* 357 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _membersComponent = __webpack_require__(358);
-	
-	var _membersComponent2 = _interopRequireDefault(_membersComponent);
-	
-	var _membersService = __webpack_require__(361);
-	
-	var _membersService2 = _interopRequireDefault(_membersService);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	exports.default = angular.module('members', []).component('appMembers', _membersComponent2.default).service('MembersService', _membersService2.default).name;
-
-/***/ },
 /* 358 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -14561,11 +14475,33 @@
 	  value: true
 	});
 	
-	var _members = __webpack_require__(359);
+	var _membersComponent = __webpack_require__(359);
+	
+	var _membersComponent2 = _interopRequireDefault(_membersComponent);
+	
+	var _membersService = __webpack_require__(362);
+	
+	var _membersService2 = _interopRequireDefault(_membersService);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = angular.module('members', []).component('appMembers', _membersComponent2.default).service('MembersService', _membersService2.default).name;
+
+/***/ },
+/* 359 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _members = __webpack_require__(360);
 	
 	var _members2 = _interopRequireDefault(_members);
 	
-	var _membersController = __webpack_require__(360);
+	var _membersController = __webpack_require__(361);
 	
 	var _membersController2 = _interopRequireDefault(_membersController);
 	
@@ -14578,7 +14514,7 @@
 	};
 
 /***/ },
-/* 359 */
+/* 360 */
 /***/ function(module, exports) {
 
 	var path = 'C:/code/mms/ui/src/app/members/members.html';
@@ -14587,7 +14523,7 @@
 	module.exports = path;
 
 /***/ },
-/* 360 */
+/* 361 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -14711,7 +14647,7 @@
 	exports.default = MembersController;
 
 /***/ },
-/* 361 */
+/* 362 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -14751,7 +14687,7 @@
 	exports.default = MembersService;
 
 /***/ },
-/* 362 */
+/* 363 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -14760,11 +14696,11 @@
 		value: true
 	});
 	
-	var _memberComponent = __webpack_require__(363);
+	var _memberComponent = __webpack_require__(364);
 	
 	var _memberComponent2 = _interopRequireDefault(_memberComponent);
 	
-	var _memberService = __webpack_require__(366);
+	var _memberService = __webpack_require__(367);
 	
 	var _memberService2 = _interopRequireDefault(_memberService);
 	
@@ -14773,7 +14709,7 @@
 	exports.default = angular.module('member', []).component('appMember', _memberComponent2.default).service('MemberService', _memberService2.default).name;
 
 /***/ },
-/* 363 */
+/* 364 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -14782,37 +14718,33 @@
 	  value: true
 	});
 	
-	var _member = __webpack_require__(364);
+	var _member = __webpack_require__(365);
 	
 	var _member2 = _interopRequireDefault(_member);
 	
-	var _memberController = __webpack_require__(365);
+	var _memberController = __webpack_require__(366);
 	
 	var _memberController2 = _interopRequireDefault(_memberController);
-	
-	var _memberService = __webpack_require__(366);
-	
-	var _memberService2 = _interopRequireDefault(_memberService);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	exports.default = {
 	  templateUrl: _member2.default,
-	  controllerAs: 'ctrl',
-	  controller: _memberController2.default
+	  controller: _memberController2.default,
+	  controllerAs: 'ctrl'
 	};
 
 /***/ },
-/* 364 */
+/* 365 */
 /***/ function(module, exports) {
 
 	var path = 'C:/code/mms/ui/src/app/members/member/member.html';
-	var html = "<div layout-padding ng-cloak layout-align=\"center center\">\r\n<md-whiteframe class=\"md-whiteframe-10dp\" flex layout=\"column\" style=\"width: 700px;\" layout-align=\"center center\" >\r\n  <br/>\r\n  <form name=\"editMember\" ng-submit=\"ctrl.submit()\">\r\n  <md-content class=\"md-no-momentum\">\r\n\t\t<div layout=\"row\">\r\n\t\t\t<div>\r\n    \t\t<md-input-container class=\"md-icon-float md-block\">\r\n      \t\t<!-- Use floating label instead of placeholder -->\r\n      \t\t<label>First Name</label>\r\n\t\t\t\t\t<md-icon md-font-set=\"material-icons\"> person </md-icon>\r\n      \t\t<input ng-model=\"ctrl.member.firstName\" type=\"text\">\r\n    \t\t</md-input-container>\r\n\t\t\t</div>\r\n\t\t\t<div>\r\n\t\t\t\t<md-input-container class=\"md-icon-float md-block\">\r\n\t\t\t\t\t<label>Middle Name</label>\r\n\t\t\t\t\t<input ng-model=\"ctrl.member.middleName\" type=\"text\">\r\n\t\t\t\t</md-input-container>\r\n\t\t\t</div>\r\n\t\t\t<div>\r\n\t\t\t\t<md-input-container class=\"md-icon-float md-block\">\r\n\t\t\t\t\t<label>Last Name</label>\r\n\t\t\t\t\t<input ng-model=\"ctrl.member.lastName\" type=\"text\">\r\n\t\t\t\t</md-input-container>\r\n\t\t\t</div>\r\n\t\t</div>\n\r\n\t\t<div layout=\"row\">\r\n    \t<md-input-container md-no-float class=\"md-block\">\r\n\t\t\t\t<label>Phone Number</label>\r\n\t\t\t\t<md-icon md-font-set=\"material-icons\"> phone </md-icon>\r\n      \t<input ng-model=\"ctrl.member.phoneNumber\" type=\"text\">\r\n    \t</md-input-container>\r\n\r\n    \t<md-input-container class=\"md-block\">\r\n      \t<!-- Use floating placeholder instead of label -->\r\n\t\t\t\t<label>Email</label>\r\n\t\t\t\t<md-icon md-font-set=\"material-icons\"> email </md-icon>\r\n      \t<input ng-model=\"ctrl.member.email\" type=\"email\" ng-required=\"true\">\r\n    \t</md-input-container>\r\n\r\n\t\t\t<md-input-container md-no-float class=\"md-block\">\r\n\t\t\t\t<label>Birth date</label>\r\n\t\t\t\t<md-datepicker ng-model=\"ctrl.member.birthDate\"></md-datepicker>\r\n\t\t\t</md-input-container>\r\n\t\t</div>\r\n\r\n\t\t<div layout=\"row\">\r\n      <div flex=\"60\">\r\n    \t\t<md-input-container md-no-float class=\"md-block\">\r\n\t\t\t\t\t<label>Address</label>\r\n          <md-icon md-font-set=\"material-icons\"> home </md-icon>\r\n      \t\t<input ng-model=\"ctrl.member.address\" type=\"text\">\r\n    \t\t</md-input-container>\r\n\t\t\t</div>\r\n\r\n\r\n      <div flex=\"30\">\r\n            <form ng-submit=\"$event.preventDefault()\">\r\n              <div layout=\"row\">\r\n              <md-autocomplete flex required\r\n              md-input-name=\"autocompleteField\"\r\n              ng-disabled=\"ctrl.isDisabled\"\r\n              md-no-cache=\"ctrl.noCache\"\r\n              md-selected-item=\"ctrl.member.city\"\r\n              md-search-text-change=\"ctrl.searchTextChange(ctrl.searchText)\"\r\n              md-search-text=\"ctrl.searchText\"\r\n              md-selected-item-change=\"ctrl.selectedItemChange(item)\"\r\n              md-items=\"item in ctrl.querySearch(ctrl.searchText)\"\r\n              md-item-text=\"item.name\"\r\n              md-min-length=\"0\"\r\n              md-floating-label=\"Pick an City\"\r\n              md-menu-class=\"autocomplete-custom-template\">\r\n                <md-item-template>\r\n                  <span class=\"item-title\">\r\n                    <span> {{item.name}} </span>\r\n                  </span>\r\n              </div>\r\n                </md-item-template>\r\n              </md-autocomplete>\r\n            </form>\r\n        </div>\r\n\t\t</div>\n\r\n\t\t<md-input-container class=\"md-block\">\r\n      <label>Biography</label>\r\n\t\t\t<md-icon md-font-set=\"material-icons\"> textsms </md-icon>\r\n      <textarea ng-model=\"ctrl.member.bio\" md-maxlength=\"150\" rows=\"5\" md-select-on-focus></textarea>\r\n    </md-input-container>\r\n\r\n<div layout=\"row\" layout-wrap flex>\r\n    <div layout=\"column\" flex-xs flex=\"25\">\r\n      <p> Skills </p>\r\n    <div class=\"demo-select-all-checkboxes\" flex=\"25\" ng-repeat=\"item in ctrl.skills\">\r\n      <md-checkbox ng-checked=\"ctrl.isMember(ctrl.member.skills, item.id)\" ng-click=\"ctrl.toggle(item, ctrl.member.skills)\">\r\n        {{ item.name }}\r\n      </md-checkbox>\r\n    </div>\r\n    </div>\r\n\r\n    <div layout=\"column\" flex-xs flex=\"25\">\r\n      <p> Gear </p>\r\n\r\n    <div class=\"demo-select-all-checkboxes\" flex=\"25\" ng-repeat=\"item in ctrl.gear\">\r\n      <md-checkbox ng-checked=\"ctrl.isMember(ctrl.member.gear, item.id)\" ng-click=\"ctrl.toggle(item, ctrl.member.gear)\">\r\n        {{ item.name }}\r\n      </md-checkbox>\r\n    </div>\r\n    </div>\r\n\r\n    <div layout=\"column\" flex-xs flex=\"25\">\r\n      <p> Events </p>\r\n\r\n    <div class=\"demo-select-all-checkboxes\" flex=\"25\" ng-repeat=\"item in ctrl.events\">\r\n      <md-checkbox ng-checked=\"ctrl.isMember(ctrl.member.events, item.id)\" ng-click=\"ctrl.toggle(item, ctrl.member.events)\">\r\n        {{ item.name }}\r\n      </md-checkbox>\r\n    </div>\r\n    </div>\r\n\r\n    <div layout=\"column\" flex-xs flex=\"25\">\r\n      <p> Courses </p>\r\n\r\n    <div class=\"demo-select-all-checkboxes\" flex=\"25\" ng-repeat=\"item in ctrl.courses\">\r\n      <md-checkbox ng-checked=\"ctrl.isMember(ctrl.member.courses, item.id)\" ng-click=\"ctrl.toggle(item, ctrl.member.courses)\">\r\n        {{ item.name }}\r\n      </md-checkbox>\r\n    </div>\r\n    </div>\r\n</div>\r\n\r\n  </md-content>\r\n  <div class=\"col-sm-offset-2 col-sm-8\">\r\n\t\t\t\t\t\t<md-button ng-disabled=\"editMember.$invalid\" class=\"md-raised md-primary\" ng-click=\"ctrl.update(ctrl.member)\"\r\n\t\t\t\t\t\taria-label=\"Save\">\r\n            <md-icon md-font-set=\"material-icons\"> save </md-icon>\r\n          </md-button>\r\n\r\n\t\t\t\t\t\t<md-button class=\"md-raised md-warn\" ng-click=\"ctrl.showConfirm($event)\"\r\n\t\t\t\t\t\taria-label=\"Delete\">\r\n            <md-icon md-font-set=\"material-icons\"> delete_forever </md-icon>\r\n          </md-button>\r\n\t\t\t\t\t</div>\r\n  </form>\r\n  <div ng-if=\"ctrl.status\" id=\"status\">\r\n    <b layout=\"row\" layout-align=\"center center\" class=\"md-padding\">\r\n      {{ctrl.status}}\r\n    </b>\r\n  </div>\r\n</md-whiteframe>\r\n<pre>member = {{ctrl.member | json}}</pre>\r\n</div>\r\n";
+	var html = "<div flex layout-padding ng-cloak layout-align=\"center center\">\r\n<md-whiteframe class=\"md-whiteframe-10dp\" flex layout=\"column\" style=\"width: 750px;\" layout-align=\"center center\" >\r\n\r\n  <form name=\"editMember\" ng-submit=\"ctrl.submit()\">\r\n  <md-content style=\"width: 700px;\" class=\"md-no-momentum\">\r\n\t\t<div layout=\"row\">\r\n\t\t\t<div>\r\n    \t\t<md-input-container class=\"md-icon-float md-block\">\r\n      \t\t<!-- Use floating label instead of placeholder -->\r\n      \t\t<label>First Name</label>\r\n\t\t\t\t\t<md-icon md-font-set=\"material-icons\"> person </md-icon>\r\n      \t\t<input ng-model=\"ctrl.member.firstName\" type=\"text\">\r\n    \t\t</md-input-container>\r\n\t\t\t</div>\r\n\t\t\t<div>\r\n\t\t\t\t<md-input-container class=\"md-icon-float md-block\">\r\n\t\t\t\t\t<label>Middle Name</label>\r\n\t\t\t\t\t<input ng-model=\"ctrl.member.middleName\" type=\"text\">\r\n\t\t\t\t</md-input-container>\r\n\t\t\t</div>\r\n\t\t\t<div>\r\n\t\t\t\t<md-input-container class=\"md-icon-float md-block\">\r\n\t\t\t\t\t<label>Last Name</label>\r\n\t\t\t\t\t<input ng-model=\"ctrl.member.lastName\" type=\"text\">\r\n\t\t\t\t</md-input-container>\r\n\t\t\t</div>\r\n\t\t</div>\n\r\n\t\t<div layout=\"row\">\r\n    \t<md-input-container md-no-float class=\"md-block\">\r\n\t\t\t\t<label>Phone Number</label>\r\n\t\t\t\t<md-icon md-font-set=\"material-icons\"> phone </md-icon>\r\n      \t<input ng-model=\"ctrl.member.phoneNumber\" type=\"text\">\r\n    \t</md-input-container>\r\n\r\n    \t<md-input-container class=\"md-block\">\r\n      \t<!-- Use floating placeholder instead of label -->\r\n\t\t\t\t<label>Email</label>\r\n\t\t\t\t<md-icon md-font-set=\"material-icons\"> email </md-icon>\r\n      \t<input ng-model=\"ctrl.member.email\" type=\"email\" ng-required=\"true\">\r\n    \t</md-input-container>\r\n\r\n\t\t\t<md-input-container md-no-float class=\"md-block\">\r\n\t\t\t\t<label>Birth date</label>\r\n\t\t\t\t<md-datepicker ng-model=\"ctrl.member.birthDate\"></md-datepicker>\r\n\t\t\t</md-input-container>\r\n\t\t</div>\r\n\r\n\t\t<div layout=\"row\">\r\n      <div flex=\"60\">\r\n    \t\t<md-input-container md-no-float class=\"md-block\">\r\n\t\t\t\t\t<label>Address</label>\r\n          <md-icon md-font-set=\"material-icons\"> home </md-icon>\r\n      \t\t<input ng-model=\"ctrl.member.address\" type=\"text\">\r\n    \t\t</md-input-container>\r\n\t\t\t</div>\r\n\r\n\r\n      <div flex=\"30\">\r\n            <form ng-submit=\"$event.preventDefault()\">\r\n              <div layout=\"row\">\r\n              <md-autocomplete flex required\r\n              md-input-name=\"autocompleteField\"\r\n              ng-disabled=\"ctrl.isDisabled\"\r\n              md-no-cache=\"ctrl.noCache\"\r\n              md-selected-item=\"ctrl.member.city\"\r\n              md-search-text-change=\"ctrl.searchTextChange(ctrl.searchText)\"\r\n              md-search-text=\"ctrl.searchText\"\r\n              md-selected-item-change=\"ctrl.selectedItemChange(item)\"\r\n              md-items=\"item in ctrl.querySearch(ctrl.searchText)\"\r\n              md-item-text=\"item.name\"\r\n              md-min-length=\"0\"\r\n              md-floating-label=\"Pick an City\"\r\n              md-menu-class=\"autocomplete-custom-template\">\r\n                <md-item-template>\r\n                  <span class=\"item-title\">\r\n                    <span> {{item.name}} </span>\r\n                  </span>\r\n              </div>\r\n                </md-item-template>\r\n              </md-autocomplete>\r\n            </form>\r\n        </div>\r\n\t\t</div>\n\r\n\t\t<md-input-container class=\"md-block\">\r\n      <label>Biography</label>\r\n\t\t\t<md-icon md-font-set=\"material-icons\"> textsms </md-icon>\r\n      <textarea ng-model=\"ctrl.member.bio\" md-maxlength=\"150\" rows=\"5\" md-select-on-focus></textarea>\r\n    </md-input-container>\r\n\r\n<div layout=\"row\" layout-wrap flex>\r\n\r\n\r\n    <div flex-xs flex=\"50\">\r\n      <p> Skills </p>\r\n    <div class=\"demo-select-all-checkboxes\" flex=\"50\" ng-repeat=\"item in ctrl.skills\">\r\n      <md-checkbox ng-checked=\"ctrl.isMember(ctrl.member.skills, item.id)\"\r\n       ng-click=\"ctrl.toggle(item, ctrl.member.skills)\">\r\n        {{ item.name }}\r\n      </md-checkbox>\r\n    </div>\r\n    </div>\r\n\r\n    <div flex-xs flex=\"50\">\r\n      <p> Gear </p>\r\n    <div class=\"demo-select-all-checkboxes\" flex=\"50\" ng-repeat=\"item in ctrl.gear\">\r\n      <md-checkbox ng-checked=\"ctrl.isMember(ctrl.member.gear, item.id)\"\r\n       ng-click=\"ctrl.toggle(item, ctrl.member.gear)\">\r\n        {{ item.name }}\r\n      </md-checkbox>\r\n    </div>\r\n    </div>\r\n\r\n    <!-- <div layout=\"column\" flex-xs flex=\"25\">\r\n      <p> Events </p>\r\n\r\n    <div class=\"demo-select-all-checkboxes\" flex=\"25\" ng-repeat=\"item in ctrl.memberEvents\">\r\n      <md-checkbox ng-checked=\"ctrl.isMember(ctrl.member.events, item.id)\"\r\n       ng-click=\"ctrl.toggle(item, ctrl.member.events)\">\r\n        {{ item.name }}\r\n      </md-checkbox>\r\n    </div>\r\n    </div>\r\n\r\n    <div layout=\"column\" flex-xs flex=\"25\">\r\n      <p> Courses </p>\r\n\r\n    <div class=\"demo-select-all-checkboxes\" flex=\"25\" ng-repeat=\"item in ctrl.memberCourses\">\r\n      <md-checkbox ng-checked=\"ctrl.isMember(ctrl.member.courses, item.id)\"\r\n       ng-click=\"ctrl.toggle(item, ctrl.member.courses)\">\r\n        {{ item.name }}\r\n      </md-checkbox>\r\n    </div>\r\n    </div> -->\r\n\r\n</div>\r\n\r\n  </md-content>\r\n  <div class=\"col-sm-offset-2 col-sm-8\">\r\n\t\t\t\t\t\t<md-button ng-disabled=\"editMember.$invalid\" class=\"md-raised md-primary\" ng-click=\"ctrl.update(ctrl.member)\"\r\n\t\t\t\t\t\taria-label=\"Save\">\r\n            <md-icon md-font-set=\"material-icons\"> save </md-icon>\r\n          </md-button>\r\n\r\n\t\t\t\t\t\t<md-button class=\"md-raised md-warn\" ng-click=\"ctrl.showConfirm($event)\"\r\n\t\t\t\t\t\taria-label=\"Delete\">\r\n            <md-icon md-font-set=\"material-icons\"> delete_forever </md-icon>\r\n          </md-button>\r\n\t\t\t\t\t</div>\r\n  </form>\r\n  <div ng-if=\"ctrl.status\" id=\"status\">\r\n    <b layout=\"row\" layout-align=\"center center\" class=\"md-padding\">\r\n      {{ctrl.status}}\r\n    </b>\r\n  </div>\r\n\r\n  <div style=\"width: 700px;\" layout-margin>\r\n    <p> Events </p>\r\n    <mdt-table mdt-row=\"{\r\n                        'data': ctrl.memberEvents,\r\n                        'table-row-id-key': 'id',\r\n                        'column-keys': ['name', 'date', 'city.name']\r\n                        }\">\r\n      <mdt-header-row>\r\n        <mdt-column align-rule=\"left\" column-sort=\"true\">Name</mdt-column>\r\n        <mdt-column align-rule=\"right\" column-sort=\"true\">Date</mdt-column>\r\n        <mdt-column align-rule=\"right\" column-sort=\"true\">City</mdt-column>\r\n      </mdt-header-row>\r\n    </mdt-table>\r\n  </div>\r\n\r\n  <div style=\"width: 700px;\" layout-margin>\r\n    <p> Courses </p>\r\n    <mdt-table mdt-row=\"{\r\n                        'data': ctrl.memberCourses,\r\n                        'table-row-id-key': 'id',\r\n                        'column-keys': ['name', 'date', 'city.name']\r\n                        }\">\r\n      <mdt-header-row>\r\n        <mdt-column align-rule=\"left\" column-sort=\"true\">Name</mdt-column>\r\n        <mdt-column align-rule=\"right\" column-sort=\"true\">Date</mdt-column>\r\n        <mdt-column align-rule=\"right\" column-sort=\"true\">City</mdt-column>\r\n      </mdt-header-row>\r\n    </mdt-table>\r\n  </div>\r\n\r\n</md-whiteframe>\r\n\r\n\r\n\r\n<pre>member = {{ctrl.member | json}}</pre>\r\n</div>\r\n";
 	window.angular.module('ng').run(['$templateCache', function(c) { c.put(path, html) }]);
 	module.exports = path;
 
 /***/ },
-/* 365 */
+/* 366 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -14832,6 +14764,9 @@
 	  $log.debug('MemberController instantiated');
 	  $scope.loaded = false;
 	  var city_id;
+	  // ctrl.skills = []
+	  // ctrl.gear = []
+	  // ctrl.courses = []
 	
 	  MemberService.getMember($stateParams.id).then(function (result) {
 	    ctrl.member = result.data;
@@ -14851,12 +14786,12 @@
 	          ctrl.gear = result.data;
 	          console.dir(result.data);
 	        }).then(function () {
-	          MemberService.getEvents().then(function (result) {
+	          MemberService.getMemberEvents($stateParams.id).then(function (result) {
 	            ctrl.events = result.data;
 	            console.dir(result.data);
 	          }).then(function () {
-	            MemberService.getCourses().then(function (result) {
-	              ctrl.courses = result.data;
+	            MemberService.getMemberCourses($stateParams.id).then(function (result) {
+	              ctrl.memberCourses = result.data;
 	              console.dir(result.data);
 	            });
 	          });
@@ -15002,7 +14937,7 @@
 	exports.default = MemberController;
 
 /***/ },
-/* 366 */
+/* 367 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -15045,14 +14980,14 @@
 				return this.$http.get('gear/');
 			}
 		}, {
-			key: 'getEvents',
-			value: function getEvents() {
-				return this.$http.get('events/');
+			key: 'getMemberEvents',
+			value: function getMemberEvents(id) {
+				return this.$http.get('members/' + id + '/events/');
 			}
 		}, {
-			key: 'getCourses',
-			value: function getCourses() {
-				return this.$http.get('courses/');
+			key: 'getMemberCourses',
+			value: function getMemberCourses(id) {
+				return this.$http.get('members/' + id + '/courses/');
 			}
 		}, {
 			key: 'patchMember',
@@ -15077,28 +15012,6 @@
 	exports.default = MemberService;
 
 /***/ },
-/* 367 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _coursesComponent = __webpack_require__(368);
-	
-	var _coursesComponent2 = _interopRequireDefault(_coursesComponent);
-	
-	var _coursesService = __webpack_require__(371);
-	
-	var _coursesService2 = _interopRequireDefault(_coursesService);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	exports.default = angular.module('courses', []).component('appCourses', _coursesComponent2.default).service('CoursesService', _coursesService2.default).name;
-
-/***/ },
 /* 368 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -15108,11 +15021,33 @@
 	  value: true
 	});
 	
-	var _courses = __webpack_require__(369);
+	var _coursesComponent = __webpack_require__(369);
+	
+	var _coursesComponent2 = _interopRequireDefault(_coursesComponent);
+	
+	var _coursesService = __webpack_require__(372);
+	
+	var _coursesService2 = _interopRequireDefault(_coursesService);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = angular.module('courses', []).component('appCourses', _coursesComponent2.default).service('CoursesService', _coursesService2.default).name;
+
+/***/ },
+/* 369 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _courses = __webpack_require__(370);
 	
 	var _courses2 = _interopRequireDefault(_courses);
 	
-	var _coursesController = __webpack_require__(370);
+	var _coursesController = __webpack_require__(371);
 	
 	var _coursesController2 = _interopRequireDefault(_coursesController);
 	
@@ -15125,7 +15060,7 @@
 	};
 
 /***/ },
-/* 369 */
+/* 370 */
 /***/ function(module, exports) {
 
 	var path = 'C:/code/mms/ui/src/app/courses/courses.html';
@@ -15134,7 +15069,7 @@
 	module.exports = path;
 
 /***/ },
-/* 370 */
+/* 371 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -15171,11 +15106,13 @@
 	    ctrl.courses = result.data;
 	  });
 	
-	  // ctrl.course = {}
+	  ctrl.course = {};
 	
 	  ctrl.addCourse = function (course) {
 	    CoursesService.postCourse(course).then(function (result) {
-	      ctrl.courses.push(result.data);
+	      ctrl.course = result.data;
+	      ctrl.course.date = new Date(ctrl.course.date);
+	      ctrl.courses.push(ctrl.course);
 	      // ctrl.member = {middleName: ''}
 	      ctrl.redirect('courses/' + result.data.id);
 	      // 	$state.go('members/')
@@ -15259,7 +15196,7 @@
 	exports.default = CoursesController;
 
 /***/ },
-/* 371 */
+/* 372 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -15299,7 +15236,335 @@
 	exports.default = CoursesService;
 
 /***/ },
-/* 372 */
+/* 373 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _courseComponent = __webpack_require__(374);
+	
+	var _courseComponent2 = _interopRequireDefault(_courseComponent);
+	
+	var _courseService = __webpack_require__(377);
+	
+	var _courseService2 = _interopRequireDefault(_courseService);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = angular.module('course', []).component('appCourse', _courseComponent2.default).service('CourseService', _courseService2.default).name;
+
+/***/ },
+/* 374 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _course = __webpack_require__(375);
+	
+	var _course2 = _interopRequireDefault(_course);
+	
+	var _courseController = __webpack_require__(376);
+	
+	var _courseController2 = _interopRequireDefault(_courseController);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = {
+	  templateUrl: _course2.default,
+	  controller: _courseController2.default,
+	  controllerAs: 'ctrl'
+	
+	};
+
+/***/ },
+/* 375 */
+/***/ function(module, exports) {
+
+	var path = 'C:/code/mms/ui/src/app/courses/course/course.html';
+	var html = "\r\n<div layout-padding ng-cloak layout=\"column\" layout-align=\"center center\">\r\n<md-whiteframe class=\"md-whiteframe-10dp\" flex layout=\"column\" style=\"width: 750px;\" layout-align=\"center center\" >\r\n  <br/>\r\n\r\n  <form style=\"width: 100%;\" name=\"editCourse\" ng-submit=\"ctrl.submit()\">\r\n  <md-content class=\"md-no-momentum\">\r\n\r\n<div layout=\"row\">\r\n    \t\t<md-input-container flex=\"70\" class=\"md-icon-float md-block\">\r\n      \t\t<label>Name</label>\r\n\t\t\t\t\t<md-icon md-font-set=\"material-icons\"> school </md-icon>\r\n      \t\t<input ng-model=\"ctrl.course.name\" type=\"text\">\r\n    \t\t</md-input-container>\r\n\r\n        <md-input-container md-no-float class=\"md-block\">\r\n  \t\t\t\t<label>Date</label>\r\n  \t\t\t\t<md-datepicker ng-model=\"ctrl.course.date\"></md-datepicker>\r\n  \t\t\t</md-input-container>\r\n</div>\r\n\r\n      <md-input-container class=\"md-block\">\r\n        <label>Summary</label>\r\n  \t\t\t<md-icon md-font-set=\"material-icons\"> textsms </md-icon>\r\n        <textarea ng-model=\"ctrl.course.summary\" md-maxlength=\"150\" rows=\"1\" md-select-on-focus></textarea>\r\n      </md-input-container>\r\n\r\n\r\n\r\n  <div layout=\"row\">\r\n      \t\t<md-input-container flex=\"100\" md-no-float class=\"md-block\">\r\n  \t\t\t\t\t<label>Address</label>\r\n            <md-icon md-font-set=\"material-icons\"> home </md-icon>\r\n        \t\t<input ng-model=\"ctrl.course.address\" type=\"text\">\r\n      \t\t</md-input-container>\r\n  </div>\r\n  <div layout=\"row\">\r\n<div>\r\n  <form ng-submit=\"$event.preventDefault()\">\r\n\r\n    <md-autocomplete flex required\r\n    md-input-name=\"autocompleteField\"\r\n    ng-disabled=\"ctrl.isDisabled\"\r\n    md-no-cache=\"ctrl.noCache\"\r\n    md-selected-item=\"ctrl.course.city\"\r\n    md-search-text-change=\"ctrl.searchTextChange(ctrl.searchText)\"\r\n    md-search-text=\"ctrl.searchText\"\r\n    md-selected-item-change=\"ctrl.selectedItemChange(item)\"\r\n    md-items=\"item in ctrl.querySearch(ctrl.searchText)\"\r\n    md-item-text=\"item.name\"\r\n    md-min-length=\"0\"\r\n    md-floating-label=\"Pick an City\"\r\n    md-menu-class=\"autocomplete-custom-template\">\r\n      <md-item-template>\r\n        <span class=\"item-title\">\r\n          <span> {{item.name}} </span>\r\n        </span>\r\n\r\n      </md-item-template>\r\n    </md-autocomplete>\r\n  </form>\r\n\t\t\t\t<md-input-container class=\"md-icon-float md-block\">\r\n\t\t\t\t\t<label>Latitude</label>\r\n\t\t\t\t\t<input ng-model=\"ctrl.course.latitude\" type=\"text\">\r\n\t\t\t\t</md-input-container>\r\n\r\n    \t<md-input-container md-no-float class=\"md-block\">\r\n\t\t\t\t<label>Longitude</label>\r\n      \t<input ng-model=\"ctrl.course.longitude\" type=\"text\">\r\n    \t</md-input-container>\r\n</div>\r\n\r\n\r\n<div style=\"height: 300px;\">\r\n<mms-map></mms-map>\r\n</div>\r\n\r\n</div>\r\n\t\t<md-input-container class=\"md-block\">\r\n      <label>Brief</label>\r\n\t\t\t<md-icon md-font-set=\"material-icons\"> textsms </md-icon>\r\n      <textarea ng-model=\"ctrl.course.brief\" md-maxlength=\"800\" rows=\"5\" md-select-on-focus></textarea>\r\n    </md-input-container>\r\n\r\n    <md-input-container class=\"md-block\">\r\n      <label>Debrief</label>\r\n\t\t\t<md-icon md-font-set=\"material-icons\"> textsms </md-icon>\r\n      <textarea ng-model=\"ctrl.course.debrief\" md-maxlength=\"800\" rows=\"5\" md-select-on-focus></textarea>\r\n    </md-input-container>\r\n\r\n<div layout=\"row\">\r\n    <div layout=\"column\" flex-xs flex=\"33\">\r\n      <p> Members </p>\r\n    <div class=\"demo-select-all-checkboxes\" flex=\"33\" ng-repeat=\"item in ctrl.members\">\r\n      <md-checkbox ng-checked=\"ctrl.isMember(ctrl.course.members, item.id)\" ng-click=\"ctrl.toggle(item, ctrl.course.members)\">\r\n        {{ item.firstName }} {{ item.lastName }}\r\n      </md-checkbox>\r\n    </div>\r\n    </div>\r\n\r\n    <div layout=\"column\" flex-xs flex=\"33\">\r\n      <p> Skills </p>\r\n    <div class=\"demo-select-all-checkboxes\" flex=\"33\" ng-repeat=\"item in ctrl.skills\">\r\n      <md-checkbox ng-checked=\"ctrl.isMember(ctrl.course.skills, item.id)\" ng-click=\"ctrl.toggle(item, ctrl.course.skills)\">\r\n        {{ item.name }}\r\n      </md-checkbox>\r\n    </div>\r\n    </div>\r\n\r\n    <div layout=\"column\" flex-xs flex=\"33\">\r\n      <p> Gear </p>\r\n    <div class=\"demo-select-all-checkboxes\" flex=\"33\" ng-repeat=\"item in ctrl.gear\">\r\n      <md-checkbox ng-checked=\"ctrl.isMember(ctrl.course.gear, item.id)\"\r\n       ng-click=\"ctrl.toggle(item, ctrl.course.gear)\">\r\n        {{ item.name }}\r\n      </md-checkbox>\r\n    </div>\r\n    </div>\r\n\r\n</div>\r\n  </md-content>\r\n\r\n<div>\r\n        <div class=\"col-sm-offset-2 col-sm-8\">\r\n\t\t\t\t\t\t<md-button ng-disabled=\"editCourse.$invalid\" class=\"md-raised md-primary\" ng-click=\"ctrl.update(ctrl.course)\"\r\n\t\t\t\t\t\taria-label=\"Save\">\r\n            <md-icon md-font-set=\"material-icons\"> save </md-icon>\r\n          </md-button>\r\n\r\n\t\t\t\t\t\t<md-button class=\"md-raised md-warn\" ng-click=\"ctrl.showConfirm($event)\"\r\n\t\t\t\t\t\taria-label=\"Delete\">\r\n            <md-icon md-font-set=\"material-icons\"> delete_forever </md-icon>\r\n          </md-button>\r\n\t\t\t\t\t</div>\r\n\r\n    </div>\r\n  </form>\r\n\r\n  <div ng-if=\"ctrl.status\" id=\"status\">\r\n    <b layout=\"row\" layout-align=\"center center\" class=\"md-padding\">\r\n      {{ctrl.status}}\r\n    </b>\r\n  </div>\r\n</md-whiteframe>\r\n\r\n\r\n<pre>course = {{ctrl.course | json}}</pre>\r\n</div>\r\n";
+	window.angular.module('ng').run(['$templateCache', function(c) { c.put(path, html) }]);
+	module.exports = path;
+
+/***/ },
+/* 376 */
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	/* ngInject */
+	var CourseController = function CourseController(CourseService, $log, $state, $scope, $http, $mdDialog, $stateParams, $location) {
+	  _classCallCheck(this, CourseController);
+	
+	  $log.debug('CourseController instantiated!');
+	  var ctrl = this;
+	  ctrl.course = {};
+	
+	  $scope.loaded = false;
+	  var city_id;
+	  // ctrl.skills = []
+	  // ctrl.gear = []
+	  // ctrl.members = []
+	
+	  $scope.$watch('ctrl.course.city.latitude', function () {
+	    $scope.$broadcast('cityLL', { lat: ctrl.course.city.latitude, lng: ctrl.course.city.longitude });
+	  });
+	
+	  CourseService.getCourse($stateParams.id).then(function (result) {
+	    ctrl.course = result.data;
+	    ctrl.course.date = new Date(ctrl.course.date);
+	    console.dir('The birth date is: ' + ctrl.course.date);
+	  }).then(function () {
+	    CourseService.getCities().then(function (result) {
+	      ctrl.cities = result.data;
+	      console.dir(result.data);
+	    }).then(function () {
+	      CourseService.getSkills().then(function (result) {
+	        ctrl.skills = result.data;
+	        console.dir(result.data);
+	      }).then(function () {
+	        CourseService.getGear().then(function (result) {
+	          ctrl.gear = result.data;
+	          console.dir(result.data);
+	        }).then(function () {
+	          CourseService.getEvents().then(function (result) {
+	            ctrl.events = result.data;
+	            console.dir(result.data);
+	          }).then(function () {
+	            CourseService.getMembers().then(function (result) {
+	              ctrl.members = result.data;
+	              console.dir(result.data);
+	            });
+	          });
+	        });
+	      });
+	    });
+	  });
+	
+	  ctrl.submit = function () {
+	    alert('submit');
+	  };
+	
+	  ctrl.toggle = function (item, list) {
+	    var idx = list.indexOf(item);
+	    if (idx > -1) {
+	      list.splice(idx, 1);
+	    } else {
+	      list.push(item);
+	    }
+	  };
+	
+	  $scope.$on('courseLL', function (event, data) {
+	    ctrl.course.latitude = data.lat;
+	    ctrl.course.longitude = data.lng;
+	  });
+	
+	  ctrl.isMember = function (group, member_id) {
+	    var groupIds = group.map(function (group) {
+	      return group.id;
+	    });
+	    return groupIds.includes(member_id);
+	  };
+	
+	  ctrl.update = function (course) {
+	    delete course.city.value;
+	    CourseService.patchCourse(course).then(function () {
+	      ctrl.status = 'Course saved!';
+	    });
+	  };
+	
+	  ctrl.post = function (course) {
+	    delete person.id;
+	    CourseService.postCourse(course);
+	    $state.go('courses');
+	  };
+	
+	  ctrl.deleteCourse = function (id) {
+	    CourseService.deleteCourse(id).then(function () {
+	      $state.go('courses');
+	    });
+	  };
+	
+	  this.back = function () {
+	    window.history.back();
+	  };
+	
+	  $scope.reloadRoute = function () {
+	    $route.reload();
+	  };
+	
+	  ///////////////////////////////////////////////////////////////////
+	
+	  ctrl.simulateQuery = false;
+	  ctrl.isDisabled = false;
+	
+	  ctrl.repos = loadAll();
+	  ctrl.repos.then(function (cities) {
+	    ctrl.allCities = cities;
+	  });
+	  ctrl.querySearch = querySearch;
+	  ctrl.selectedItemChange = selectedItemChange;
+	  ctrl.searchTextChange = searchTextChange;
+	
+	  // ******************************
+	  // Internal methods
+	  // ******************************
+	
+	  /**
+	   * Search for repos... use $timeout to simulate
+	   * remote dataservice call.
+	   */
+	
+	  function querySearch(query) {
+	    console.dir(ctrl.repos);
+	    ctrl.repos = ctrl.allCities;
+	    console.dir(ctrl.repos);
+	    var result = query ? ctrl.repos.filter(createFilterFor(query)) : ctrl.repos;
+	    return result;
+	  }
+	
+	  function searchTextChange(text) {
+	    $log.info('Text changed to ' + text);
+	  }
+	
+	  function selectedItemChange(item) {
+	    $log.info('Item changed to ' + JSON.stringify(item));
+	  }
+	
+	  /**
+	   * Build `components` list of key/value pairs
+	   */
+	  function loadAll() {
+	    var cities = void 0;
+	    return CourseService.getCities().then(function (res) {
+	      cities = res.data;
+	
+	      return cities.map(function (city) {
+	        city.value = city.name.toLowerCase();
+	        return city;
+	      });
+	    });
+	  }
+	
+	  /**
+	   * Create filter function for a query string
+	   */
+	  function createFilterFor(query) {
+	    var lowercaseQuery = angular.lowercase(query);
+	
+	    return function filterFn(item) {
+	      return item.value.indexOf(lowercaseQuery) === 0;
+	    };
+	  }
+	
+	  ///////////////////////////////////////////////////////////////////////////
+	
+	  ctrl.showConfirm = function (ev) {
+	    // Appending dialog to document.body to cover sidenav in docs app
+	    var confirm = $mdDialog.confirm().title('Would you like to delete this course?').textContent('It is irreversable').ariaLabel('Delete course').targetEvent(ev).ok('Yes!').cancel('NO');
+	
+	    $mdDialog.show(confirm).then(function () {
+	      ctrl.deleteCourse(ctrl.course.id);
+	    }, function () {
+	      ctrl.status = 'You did not delete the course';
+	    });
+	  };
+	
+	  //	$scope.customFilter = JSON.stringify(ctrl.person)
+	  $scope.loaded = true;
+	};
+	
+	exports.default = CourseController;
+
+/***/ },
+/* 377 */
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	/* ngInject */
+	var CourseService = function () {
+	  function CourseService($http) {
+	    _classCallCheck(this, CourseService);
+	
+	    this.$http = $http;
+	  }
+	
+	  _createClass(CourseService, [{
+	    key: 'getCourse',
+	    value: function getCourse(id) {
+	      return this.$http.get('courses/' + id);
+	    }
+	  }, {
+	    key: 'getCities',
+	    value: function getCities() {
+	      return this.$http.get('cities/');
+	    }
+	  }, {
+	    key: 'getSkills',
+	    value: function getSkills() {
+	      return this.$http.get('skills/');
+	    }
+	  }, {
+	    key: 'getEvents',
+	    value: function getEvents() {
+	      return this.$http.get('events/');
+	    }
+	  }, {
+	    key: 'getGear',
+	    value: function getGear() {
+	      return this.$http.get('gear/');
+	    }
+	  }, {
+	    key: 'getMembers',
+	    value: function getMembers() {
+	      return this.$http.get('members/');
+	    }
+	  }, {
+	    key: 'patchCourse',
+	    value: function patchCourse(course) {
+	      return this.$http.patch('courses/' + course.id, course);
+	    }
+	  }, {
+	    key: 'postCourse',
+	    value: function postCourse(course) {
+	      return this.$http.post('courses/', course);
+	    }
+	  }, {
+	    key: 'deleteCourse',
+	    value: function deleteCourse(id) {
+	      return this.$http.delete('courses/' + id);
+	    }
+	  }]);
+	
+	  return CourseService;
+	}();
+	
+	exports.default = CourseService;
+
+/***/ },
+/* 378 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -15348,6 +15613,13 @@
 	            loginRequired: true,
 	            authorizedRoles: [USER_ROLES.admin]
 	        }
+	    }).state('course', {
+	        url: '/courses/:id',
+	        component: 'appCourse',
+	        access: {
+	            loginRequired: true,
+	            authorizedRoles: [USER_ROLES.admin]
+	        }
 	    })
 	    // .state('users', {
 	    //   url: '/users',
@@ -15390,7 +15662,7 @@
 	}
 
 /***/ },
-/* 373 */
+/* 379 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -15440,7 +15712,7 @@
 	exports.default = SessionService;
 
 /***/ },
-/* 374 */
+/* 380 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -15519,11 +15791,11 @@
 	}
 
 /***/ },
-/* 375 */
+/* 381 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ }
 /******/ ]);
-//# sourceMappingURL=main.js.map?5c2ac7d092b595ce5fc9
+//# sourceMappingURL=main.js.map?32ff3c5001e048ef40ca

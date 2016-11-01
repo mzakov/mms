@@ -38,10 +38,10 @@ public class CourseServiceImpl implements CourseService{
 	}
 
 	@Override
-	public Course delete(long id) {
-		Course result = this.read(id);
+	public void delete(long id) {
+//		Course result = this.read(id);
 		courseRepo.delete(id);
-		return result;
+//		return result;
 	}
 
 }

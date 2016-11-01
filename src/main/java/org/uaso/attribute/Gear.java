@@ -15,6 +15,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.uaso.activity.Course;
 import org.uaso.entity.Member;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -54,6 +55,14 @@ public class Gear {
 	@ManyToMany(mappedBy = "gear")
 	private Set<Member> members;
 
+	@JsonIgnore
+	@ManyToMany(mappedBy = "gear")
+	private Set<Course> courses;
+	
+	@JsonIgnore
+	@ManyToMany(mappedBy = "gear")
+	private Set<Course> events;
+	
 	public Date getCreated() {
 		return created;
 	}
@@ -92,6 +101,22 @@ public class Gear {
 
 	public void setMembers(Set<Member> members) {
 		this.members = members;
+	}
+
+	public Set<Course> getCourses() {
+		return courses;
+	}
+
+	public void setCourses(Set<Course> courses) {
+		this.courses = courses;
+	}
+
+	public Set<Course> getEvents() {
+		return events;
+	}
+
+	public void setEvents(Set<Course> events) {
+		this.events = events;
 	}
 	
 	

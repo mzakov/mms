@@ -59,6 +59,10 @@ public class Skill {
 	@ManyToMany(mappedBy = "skills")
 	private Set<Course> courses;
 	
+	@JsonIgnore
+	@ManyToMany(mappedBy = "skills")
+	private Set<Course> events;
+	
 	public Date getCreated() {
 		return created;
 	}
@@ -105,6 +109,14 @@ public class Skill {
 
 	public void setCourses(Set<Course> courses) {
 		this.courses = courses;
+	}
+
+	public Set<Course> getEvents() {
+		return events;
+	}
+
+	public void setEvents(Set<Course> events) {
+		this.events = events;
 	}
 
 }
