@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.uaso.model.GetAll;
 
 @RestController
 @RequestMapping("courses")
@@ -23,7 +24,7 @@ public class CourseController {
 	
 	//GET /courses
 	@RequestMapping(method = RequestMethod.GET)
-	public List<Course> index() {
+	public List<GetAll> index() {
 		return courseService.index();
 	}
 	

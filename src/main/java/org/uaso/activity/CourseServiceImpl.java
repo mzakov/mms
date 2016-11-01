@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.uaso.model.GetAll;
 
 @Service
 public class CourseServiceImpl implements CourseService{
@@ -17,8 +18,8 @@ public class CourseServiceImpl implements CourseService{
 	}
 
 	@Override
-	public List<Course> index() {
-		return courseRepo.findAll();
+	public List<GetAll> index() {
+		return GetAll.index(courseRepo.findAll());
 	}
 
 	@Override

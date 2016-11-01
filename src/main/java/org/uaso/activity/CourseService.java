@@ -2,9 +2,11 @@ package org.uaso.activity;
 
 import java.util.List;
 
+import org.uaso.model.GetAll;
+
 public interface CourseService {
 
-	List<Course> index();
+	List<GetAll> index();
 
 	Course create(Course course);
 

@@ -26,7 +26,7 @@ import org.uaso.location.City;
 
 @Entity
 @Table(name = "courses")
-public class Course extends Activity {
+public class Course{
 
 	Date created;
 	Date updated;
@@ -79,6 +79,9 @@ public class Course extends Activity {
 	
 	@Column
 	private String debrief;
+	
+	@Column
+	private Boolean training;
 	
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "members_courses")
@@ -211,6 +214,14 @@ public class Course extends Activity {
 
 	public void setGear(Set<Gear> gear) {
 		this.gear = gear;
+	}
+
+	public Boolean getTraining() {
+		return training;
+	}
+
+	public void setTraining(Boolean training) {
+		this.training = training;
 	}
 	
 }

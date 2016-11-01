@@ -5,7 +5,12 @@
 
   <form style="width: 100%;" name="editCourse" ng-submit="ctrl.submit()">
   <md-content class="md-no-momentum">
-
+    <div>
+    <md-checkbox ng-model="ctrl.course.training" aria-label="Training:">
+      Training
+    </md-checkbox>
+    <md-icon ng-if="ctrl.course.training" md-font-set="material-icons"> fitness_center </md-icon>
+    </div>
 <div layout="row">
     		<md-input-container flex="70" class="md-icon-float md-block">
       		<label>Name</label>

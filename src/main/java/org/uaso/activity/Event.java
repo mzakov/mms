@@ -26,7 +26,7 @@ import org.uaso.location.City;
 
 @Entity
 @Table(name = "events")
-public class Event extends Activity{
+public class Event{
 
 	Date created;
 	Date updated;

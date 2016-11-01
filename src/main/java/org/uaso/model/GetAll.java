@@ -7,6 +7,7 @@ import java.util.List;
 import org.uaso.activity.Course;
 import org.uaso.attribute.Gear;
 import org.uaso.attribute.Skill;
+import org.uaso.entity.Member;
 
 public class GetAll {
 
@@ -18,33 +19,44 @@ public class GetAll {
 	
 	private String summary;
 	
-	private List<String> skills;
+	private String members;
 	
-	private List<String> gear;
+	private String skills;
+	
+	private String gear;
+	
+	private Boolean training;
 
-	public GetAll(long id, Date date, String name, String summary, List<String> skills, List<String> gear) {
+	public GetAll(long id, Date date, String name, String summary, String members, String skills, String gear, Boolean training) {
 		super();
 		this.id = id;
 		this.date = date;
 		this.name = name;
 		this.summary = summary;
+		this.members = members;
 		this.skills = skills;
 		this.gear = gear;
+		this.training = training;
 	}
 
 	public static List<GetAll> index(List<Course> list) {
 		ArrayList<GetAll> result = new ArrayList<>();
 		for (Course course : list) {
-			List<String> skillRes = null;
-			List<String> gearRes = null;
+			String memberRes = "";
+			String skillRes = "";
+			String gearRes = "";
+			for (Member member : course.getMembers()) {
+				memberRes+=member.getFirstName() + " " + member.getLastName() + "; ";
+			}
 			for (Skill skill : course.getSkills()) {
-				skillRes.add(skill.getName());
+				skillRes+=skill.getName()+"; ";
 			}
 			for (Gear gear : course.getGear()) {
 				
-				gearRes.add(gear.getName());
-			}	
-			result.add(new GetAll(course.getId(), course.getDate(), course.getName(), course.getSummary(), skillRes, gearRes));
+				gearRes+=gear.getName()+"; ";
+			}
+			
+			result.add(new GetAll(course.getId(), course.getDate(), course.getName(), course.getSummary(), memberRes, skillRes, gearRes, course.getTraining()));
 		}
 			
 		return result;
@@ -83,20 +95,36 @@ public class GetAll {
 		this.summary = summary;
 	}
 
-	public List<String> getSkills() {
+	public String getMembers() {
+		return members;
+	}
+
+	public void setMembers(String members) {
+		this.members = members;
+	}
+
+	public String getSkills() {
 		return skills;
 	}
 
-	public void setSkills(List<String> skills) {
+	public void setSkills(String skills) {
 		this.skills = skills;
 	}
 
-	public List<String> getGear() {
+	public String getGear() {
 		return gear;
 	}
 
-	public void setGear(List<String> gear) {
+	public void setGear(String gear) {
 		this.gear = gear;
+	}
+
+	public Boolean getTraining() {
+		return training;
+	}
+
+	public void setTraining(Boolean training) {
+		this.training = training;
 	}
 
 }
