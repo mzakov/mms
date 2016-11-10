@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import org.uaso.activity.Course;
+import org.uaso.activity.Activity;
 import org.uaso.attribute.Gear;
 import org.uaso.attribute.Skill;
 import org.uaso.entity.Member;
@@ -39,9 +39,9 @@ public class GetAll {
 		this.training = training;
 	}
 
-	public static List<GetAll> index(List<Course> list) {
+	public static List<GetAll> index(List<Activity> list) {
 		ArrayList<GetAll> result = new ArrayList<>();
-		for (Course course : list) {
+		for (Activity course : list) {
 			String memberRes = "";
 			String skillRes = "";
 			String gearRes = "";

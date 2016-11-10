@@ -8,8 +8,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import org.uaso.activity.Course;
-import org.uaso.activity.Event;
+import org.uaso.activity.Activity;
 
 @RestController
 @RequestMapping("members")
@@ -52,15 +51,10 @@ public class MemberController {
 		return memberService.delete(id);
 	}
 	
-	//GET     /members/{id}/courses
-	@RequestMapping(path = "/{id}/courses", method = RequestMethod.GET)
-	public List<Course> indexCourses(@PathVariable("id") long id) {
-		return memberService.indexCourses(id);
+	//GET     /members/{id}/activities
+	@RequestMapping(path = "/{id}/activities", method = RequestMethod.GET)
+	public List<Activity> indexActivities(@PathVariable("id") long id) {
+		return memberService.indexActivities(id);
 	}
 	
-	//GET     /members/{id}/events
-	@RequestMapping(path = "/{id}/events", method = RequestMethod.GET)
-	public List<Event> indexEvents(@PathVariable("id") long id) {
-		return memberService.indexEvents(id);
-	}
 }

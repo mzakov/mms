@@ -1,0 +1,282 @@
+<md-content layout-padding layout-align="center center">
+    <div ng-if="ctrl.status" id="status">
+    <b layout="row" layout-align="center center" class="md-padding">
+      {{ctrl.status}}
+    </b>
+    </div>
+    <div layout-padding  layout="column" layout-align="center center" >
+
+
+    <md-whiteframe class="md-whiteframe-10dp" layout="row" layout-align="center center" >
+      <div layout="column" layout-align="center center">
+        <p> New Skill </p>
+        <form name="skillForm" layout="row" layout-padding>
+          <md-input-container class="md-icon-float md-block">
+            <label>Skill</label>
+            <input ng-model="ctrl.skill.name" type="text" ng-required="true">
+          </md-input-container>
+        </form>
+        <md-button ng-disabled="skillForm.$invalid" class="md-fab md-primary md-hue-2" ng-click="ctrl.addSkill(ctrl.skill)"
+          aria-label="Add Skill">
+          <md-icon md-font-set="material-icons"> add </md-icon>
+        </md-button>
+      </div>
+
+      <md-content layout="column" layout-align="center center">
+          <p>Delete Skill</p>
+          <div layout-padding>
+          <md-autocomplete flex required
+          md-input-name="autocompleteField"
+          md-no-cache="ctrl.noCache"
+          md-selected-item="ctrl.selectedSkill"
+          md-search-text-change="ctrl.searchTextChange(ctrl.searchTextSkills)"
+          md-search-text="ctrl.searchTextSkills"
+          md-selected-item-change="ctrl.selectedItemChange(item)"
+          md-items="item in ctrl.querySearchSkills(ctrl.searchTextSkills)"
+          md-item-text="item.name"
+          md-min-length="0"
+          md-floating-label="Pick a Skill"
+          md-menu-class="autocomplete-custom-template">
+            <md-item-template>
+              <span class="item-title">
+                <span> {{item.name}}</span>
+              </span>
+            </md-item-template>
+          </md-autocomplete>
+        </div>
+        <div class="col-sm-offset-2 col-sm-8">
+						<!-- <md-button ng-disabled="!ctrl.selectedSkill.name" class="md-raised md-primary" ng-click="ctrl.updateSkill(ctrl.skill)"
+						aria-label="Save">
+            <md-icon md-font-set="material-icons"> save </md-icon>
+          </md-button> -->
+
+						<md-button ng-disabled="!ctrl.selectedSkill.name" class="md-fab md-warn md-hue-2" ng-click="ctrl.showConfirmSkill($event)"
+						aria-label="Delete">
+            <md-icon md-font-set="material-icons"> delete_forever </md-icon>
+          </md-button>
+					</div>
+      </md-content>
+
+      <md-content style="height: 200px;" flex >
+        <div ng-repeat="item in ctrl.skills">
+          {{ item.name }}
+        </div>
+      </md-content>
+
+    </md-whiteframe>
+
+
+    <md-whiteframe class="md-whiteframe-10dp" layout="row" layout-align="center center" >
+      <div layout="column" layout-align="center center">
+      <p> New Gear </p>
+      <form name="gearForm" layout="row" layout-padding>
+        <md-input-container class="md-icon-float md-block">
+          <label>Gear</label>
+          <input ng-model="ctrl.gear.name" type="text" ng-required="true">
+        </md-input-container>
+      </form>
+        <md-button ng-disabled="gearForm.$invalid" class="md-fab md-primary md-hue-2" ng-click="ctrl.addGear(ctrl.gear)"
+        aria-label="Add Gear">
+        <md-icon md-font-set="material-icons"> add </md-icon>
+      </md-button>
+    </div>
+
+    <md-content layout="column" layout-align="center center">
+        <p>Delete Gear</p>
+        <div layout-padding>
+        <md-autocomplete flex required
+        md-input-name="autocompleteField"
+        md-no-cache="ctrl.noCache"
+        md-selected-item="ctrl.selectedGear"
+        md-search-text-change="ctrl.searchTextChange(ctrl.searchTextGear)"
+        md-search-text="ctrl.searchTextGear"
+        md-selected-item-change="ctrl.selectedItemChange(item)"
+        md-items="item in ctrl.querySearchGear(ctrl.searchTextGear)"
+        md-item-text="item.name"
+        md-min-length="0"
+        md-floating-label="Pick a Gear"
+        md-menu-class="autocomplete-custom-template">
+          <md-item-template>
+            <span class="item-title">
+              <span> {{item.name}}</span>
+            </span>
+          </md-item-template>
+        </md-autocomplete>
+      </div>
+      <div class="col-sm-offset-2 col-sm-8">
+          <!-- <md-button ng-disabled="!ctrl.selectedGear.name" class="md-raised md-primary" ng-click="ctrl.updateGear(ctrl.gear)"
+          aria-label="Save">
+          <md-icon md-font-set="material-icons"> save </md-icon>
+        </md-button> -->
+
+          <md-button ng-disabled="!ctrl.selectedGear.name" class="md-fab md-warn md-hue-2" ng-click="ctrl.showConfirmGear($event)"
+          aria-label="Delete">
+          <md-icon md-font-set="material-icons"> delete_forever </md-icon>
+        </md-button>
+        </div>
+    </md-content>
+
+    <md-content style="height: 200px;" flex>
+      <div ng-repeat="item in ctrl.listGear">
+        {{ item.name }}
+      </div>
+    </md-content>
+  </md-whiteframe>
+
+  <md-whiteframe class="md-whiteframe-10dp" layout="row" layout-align="center center" >
+    <div layout="column" layout-align="center center">
+      <p> New Region </p>
+      <form name="regionForm" layout="row" layout-padding>
+        <md-input-container class="md-icon-float md-block">
+          <label>Region</label>
+          <input ng-model="ctrl.region.name" type="text" ng-required="true">
+        </md-input-container>
+      </form>
+        <md-button ng-disabled="regionForm.$invalid" class="md-fab md-primary md-hue-2" ng-click="ctrl.addRegion(ctrl.region)"
+        aria-label="Add Region">
+        <md-icon md-font-set="material-icons"> add </md-icon>
+      </md-button>
+    </div>
+
+    <md-content layout="column" layout-align="center center">
+        <p>Delete Region</p>
+        <div layout-padding>
+        <md-autocomplete flex required
+        md-input-name="autocompleteField"
+        md-no-cache="ctrl.noCache"
+        md-selected-item="ctrl.selectedRegionEdit"
+        md-search-text-change="ctrl.searchTextChange(ctrl.searchTextRegionEdit)"
+        md-search-text="ctrl.searchTextRegionEdit"
+        md-selected-item-change="ctrl.selectedItemChange(item)"
+        md-items="item in ctrl.querySearch(ctrl.searchTextRegionEdit)"
+        md-item-text="item.name"
+        md-min-length="0"
+        md-floating-label="Pick a Region"
+        md-menu-class="autocomplete-custom-template">
+          <md-item-template>
+            <span class="item-title">
+              <span> {{item.name}}</span>
+            </span>
+          </md-item-template>
+        </md-autocomplete>
+      </div>
+      <div class="col-sm-offset-2 col-sm-8">
+          <!-- <md-button ng-disabled="!ctrl.selectedRegionEdit.name" class="md-raised md-primary" ng-click="ctrl.updateRegion(ctrl.region)"
+          aria-label="Save">
+          <md-icon md-font-set="material-icons"> save </md-icon> -->
+        </md-button>
+
+          <md-button ng-disabled="!ctrl.selectedRegionEdit.name" class="md-fab md-warn md-hue-2" ng-click="ctrl.showConfirmRegion($event)"
+          aria-label="Delete">
+          <md-icon md-font-set="material-icons"> delete_forever </md-icon>
+        </md-button>
+        </div>
+    </md-content>
+
+    <md-content style="height: 200px;" flex>
+      <div ng-repeat="item in ctrl.regions">
+        {{ item.name }}
+      </div>
+    </md-content>
+    </md-whiteframe>
+
+
+    <md-whiteframe class="md-whiteframe-10dp" layout="row" layout-align="center center" >
+      <div layout="column" layout-align="center center">
+        <p> New City </p>
+        <form name="cityForm" layout="column" layout-padding>
+          <div layout="row" layout-align="center center">
+          <md-input-container class="md-icon-float md-block">
+            <label>City</label>
+            <input ng-model="ctrl.city.name" type="text" ng-required="true">
+          </md-input-container>
+
+          <md-autocomplete flex required
+          md-input-name="autocompleteField"
+          ng-disabled="ctrl.isDisabled"
+          md-no-cache="ctrl.noCache"
+          md-selected-item="ctrl.city.region"
+          md-search-text-change="ctrl.searchTextChange(ctrl.searchText)"
+          md-search-text="ctrl.searchText"
+          md-selected-item-change="ctrl.selectedItemChange(item)"
+          md-items="item in ctrl.querySearch(ctrl.searchText)"
+          md-item-text="item.name"
+          md-min-length="0"
+          md-floating-label="Pick an Region"
+          md-menu-class="autocomplete-custom-template">
+            <md-item-template>
+              <span class="item-title">
+                <span> {{item.name}} </span>
+              </span>
+            </md-item-template>
+          </md-autocomplete>
+
+        </div>
+
+        <div layout="row" layout-align="center center">
+          <md-input-container class="md-icon-float md-block">
+  					<label>Latitude</label>
+  					<input ng-model="ctrl.city.latitude" type="text">
+  				</md-input-container>
+
+          <md-input-container md-no-float class="md-block">
+  				      <label>Longitude</label>
+        	       <input ng-model="ctrl.city.longitude" type="text">
+      	        </md-input-container>
+
+          </div>
+        </form>
+          <md-button ng-disabled="cityForm.$invalid" class="md-fab md-primary md-hue-2" ng-click="ctrl.addCity(ctrl.city)"
+          aria-label="Add City">
+          <md-icon md-font-set="material-icons"> add </md-icon>
+        </md-button>
+      </div>
+
+      <md-content layout="column" layout-align="center center">
+          <p>Delete City</p>
+          <div layout-padding>
+          <md-autocomplete flex required
+          md-input-name="autocompleteField"
+          md-no-cache="ctrl.noCache"
+          md-selected-item="ctrl.selectedCity"
+          md-search-text-change="ctrl.searchTextChange(ctrl.searchTextCity)"
+          md-search-text="ctrl.searchTextCity"
+          md-selected-item-change="ctrl.selectedItemChange(item)"
+          md-items="item in ctrl.querySearchCities(ctrl.searchTextCity)"
+          md-item-text="item.name"
+          md-min-length="0"
+          md-floating-label="Pick a City"
+          md-menu-class="autocomplete-custom-template">
+            <md-item-template>
+              <span class="item-title">
+                <span> {{item.name}}</span>
+              </span>
+            </md-item-template>
+          </md-autocomplete>
+        </div>
+        <div class="col-sm-offset-2 col-sm-8">
+            <!-- <md-button ng-disabled="!ctrl.selectedCity.name" class="md-raised md-primary" ng-click="ctrl.updateCity(ctrl.city)"
+            aria-label="Save">
+            <md-icon md-font-set="material-icons"> save </md-icon>
+          </md-button> -->
+
+            <md-button ng-disabled="!ctrl.selectedCity.name" class="md-fab md-warn md-hue-2" ng-click="ctrl.showConfirmCity($event)"
+            aria-label="Delete">
+            <md-icon md-font-set="material-icons"> delete_forever </md-icon>
+          </md-button>
+          </div>
+      </md-content>
+
+
+      <md-content style="height: 200px;" flex>
+        <div ng-repeat="item in ctrl.cities">
+          {{ item.name }}
+        </div>
+      </md-content>
+    </md-whiteframe>
+
+
+</div>
+
+    </div>
+</md-content>

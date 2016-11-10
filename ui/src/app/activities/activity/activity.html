@@ -1,0 +1,153 @@
+
+<div layout-padding ng-cloak layout="column" layout-align="center center">
+<md-whiteframe class="md-whiteframe-10dp" flex layout="column" style="width: 750px;" layout-align="center center" >
+  <br/>
+
+  <form style="width: 100%;" name="editActivity" ng-submit="ctrl.submit()">
+  <md-content class="md-no-momentum">
+    <div>
+    <md-checkbox ng-model="ctrl.activity.training" aria-label="Training:">
+      Training
+    </md-checkbox>
+    <md-icon ng-if="ctrl.activity.training" md-font-set="material-icons"> fitness_center </md-icon>
+    </div>
+<div layout="row">
+    		<md-input-container flex="70" class="md-icon-float md-block">
+      		<label>Name</label>
+					<md-icon md-font-set="material-icons"> star </md-icon>
+      		<input ng-model="ctrl.activity.name" type="text">
+    		</md-input-container>
+
+        <md-input-container md-no-float class="md-block">
+  				<label>Date</label>
+  				<md-datepicker ng-model="ctrl.activity.date"></md-datepicker>
+  			</md-input-container>
+</div>
+
+      <md-input-container class="md-block">
+        <label>Summary</label>
+  			<md-icon md-font-set="material-icons"> textsms </md-icon>
+        <textarea ng-model="ctrl.activity.summary" md-maxlength="150" rows="1" md-select-on-focus></textarea>
+      </md-input-container>
+
+
+
+  <div layout="row">
+      		<md-input-container flex="100" md-no-float class="md-block">
+  					<label>Address</label>
+            <md-icon md-font-set="material-icons"> home </md-icon>
+        		<input ng-model="ctrl.activity.address" type="text">
+      		</md-input-container>
+  </div>
+  <div layout="row">
+<div>
+  <form ng-submit="$event.preventDefault()">
+
+    <md-autocomplete flex required
+    md-input-name="autocompleteField"
+    ng-disabled="ctrl.isDisabled"
+    md-no-cache="ctrl.noCache"
+    md-selected-item="ctrl.activity.city"
+    md-search-text-change="ctrl.searchTextChange(ctrl.searchText)"
+    md-search-text="ctrl.searchText"
+    md-selected-item-change="ctrl.selectedItemChange(item)"
+    md-items="item in ctrl.querySearch(ctrl.searchText)"
+    md-item-text="item.name"
+    md-min-length="0"
+    md-floating-label="Pick an City"
+    md-menu-class="autocomplete-custom-template">
+      <md-item-template>
+        <span class="item-title">
+          <span> {{item.name}} </span>
+        </span>
+
+      </md-item-template>
+    </md-autocomplete>
+  </form>
+				<md-input-container class="md-icon-float md-block">
+					<label>Latitude</label>
+					<input ng-model="ctrl.activity.latitude" type="text">
+				</md-input-container>
+
+    	<md-input-container md-no-float class="md-block">
+				<label>Longitude</label>
+      	<input ng-model="ctrl.activity.longitude" type="text">
+    	</md-input-container>
+</div>
+
+
+<div style="height: 300px;">
+<mms-map></mms-map>
+</div>
+
+</div>
+		<md-input-container class="md-block">
+      <label>Brief</label>
+			<md-icon md-font-set="material-icons"> textsms </md-icon>
+      <textarea ng-model="ctrl.activity.brief" md-maxlength="800" rows="5" md-select-on-focus></textarea>
+    </md-input-container>
+
+    <md-input-container class="md-block">
+      <label>Debrief</label>
+			<md-icon md-font-set="material-icons"> textsms </md-icon>
+      <textarea ng-model="ctrl.activity.debrief" md-maxlength="800" rows="5" md-select-on-focus></textarea>
+    </md-input-container>
+
+<div layout="row">
+    <div layout="column" flex-xs flex="33">
+      <p> Members </p>
+    <div class="demo-select-all-checkboxes" flex="33" ng-repeat="item in ctrl.members">
+      <md-checkbox ng-checked="ctrl.isMember(ctrl.activity.members, item.id)" ng-click="ctrl.toggle(item, ctrl.activity.members)">
+        {{ item.firstName }} {{ item.lastName }}
+      </md-checkbox>
+    </div>
+    </div>
+
+    <div layout="column" flex-xs flex="33">
+      <p> Skills </p>
+    <div class="demo-select-all-checkboxes" flex="33" ng-repeat="item in ctrl.skills">
+      <md-checkbox ng-checked="ctrl.isMember(ctrl.activity.skills, item.id)" ng-click="ctrl.toggle(item, ctrl.activity.skills)">
+        {{ item.name }}
+      </md-checkbox>
+    </div>
+    </div>
+
+    <div layout="column" flex-xs flex="33">
+      <p> Gear </p>
+    <div class="demo-select-all-checkboxes" flex="33" ng-repeat="item in ctrl.gear">
+      <md-checkbox ng-checked="ctrl.isMember(ctrl.activity.gear, item.id)"
+       ng-click="ctrl.toggle(item, ctrl.activity.gear)">
+        {{ item.name }}
+      </md-checkbox>
+    </div>
+    </div>
+
+</div>
+  </md-content>
+
+<div>
+        <div class="col-sm-offset-2 col-sm-8">
+						<md-button ng-disabled="editActivity.$invalid" class="md-raised md-primary" ng-click="ctrl.update(ctrl.activity)"
+						aria-label="Save">
+            <md-icon md-font-set="material-icons"> save </md-icon>
+          </md-button>
+
+						<md-button class="md-raised md-warn" ng-click="ctrl.showConfirm($event)"
+						aria-label="Delete">
+            <md-icon md-font-set="material-icons"> delete_forever </md-icon>
+          </md-button>
+					</div>
+
+    </div>
+  </form>
+
+  <div ng-if="ctrl.status" id="status">
+    <b layout="row" layout-align="center center" class="md-padding">
+      {{ctrl.status}}
+    </b>
+  </div>
+</md-whiteframe>
+
+
+<pre>activity = {{ctrl.activity | json}}</pre>
+</div>

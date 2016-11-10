@@ -9,8 +9,9 @@ import logout from './logout/logout.module.js'
 import error from './error/error.module.js'
 import members from './members/members.module.js'
 import member from './members/member/member.module.js'
-import courses from './courses/courses.module.js'
-import course from './courses/course/course.module.js'
+import activities from './activities/activities.module.js'
+import activity from './activities/activity/activity.module.js'
+import more from './more/more.module.js'
 import homeRoute from './app.route.js'
 import AppService from './app.service.js'
 import AuthSharedService from './auth.service.js'
@@ -39,8 +40,9 @@ export default
       mmsMap,
       members,
       member,
-      courses,
-      course
+      activities,
+      activity,
+      more
     ])
     .constant('apiUrl', apiUrl)
     .constant('USER_ROLES', userRoles)

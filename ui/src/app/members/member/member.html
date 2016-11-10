@@ -124,11 +124,11 @@
     </div>
 
     <div layout="column" flex-xs flex="25">
-      <p> Courses </p>
+      <p> Activities </p>
 
-    <div class="demo-select-all-checkboxes" flex="25" ng-repeat="item in ctrl.memberCourses">
-      <md-checkbox ng-checked="ctrl.isMember(ctrl.member.courses, item.id)"
-       ng-click="ctrl.toggle(item, ctrl.member.courses)">
+    <div class="demo-select-all-checkboxes" flex="25" ng-repeat="item in ctrl.memberActivities">
+      <md-checkbox ng-checked="ctrl.isMember(ctrl.member.activities, item.id)"
+       ng-click="ctrl.toggle(item, ctrl.member.activities)">
         {{ item.name }}
       </md-checkbox>
     </div>
@@ -156,24 +156,9 @@
   </div>
 
   <div style="width: 700px;" layout-margin>
-    <p> Events </p>
+    <p> Activities </p>
     <mdt-table mdt-row="{
-                        'data': ctrl.memberEvents,
-                        'table-row-id-key': 'id',
-                        'column-keys': ['name', 'date', 'city.name']
-                        }">
-      <mdt-header-row>
-        <mdt-column align-rule="left" column-sort="true">Name</mdt-column>
-        <mdt-column align-rule="right" column-sort="true">Date</mdt-column>
-        <mdt-column align-rule="right" column-sort="true">City</mdt-column>
-      </mdt-header-row>
-    </mdt-table>
-  </div>
-
-  <div style="width: 700px;" layout-margin>
-    <p> Courses </p>
-    <mdt-table mdt-row="{
-                        'data': ctrl.memberCourses,
+                        'data': ctrl.memberActivities,
                         'table-row-id-key': 'id',
                         'column-keys': ['name', 'date', 'city.name']
                         }">

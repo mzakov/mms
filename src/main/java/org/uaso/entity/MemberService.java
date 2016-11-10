@@ -2,8 +2,7 @@ package org.uaso.entity;
 
 import java.util.List;
 
-import org.uaso.activity.Course;
-import org.uaso.activity.Event;
+import org.uaso.activity.Activity;
 
 public interface MemberService {
 
@@ -17,8 +16,6 @@ public interface MemberService {
 
 	Member delete(long id);
 
-	List<Course> indexCourses(long id);
-
-	List<Event> indexEvents(long id);
+	List<Activity> indexActivities(long id);
 
 }

@@ -12,15 +12,15 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
-import org.uaso.activity.Course;
-import org.uaso.activity.Event;
+import org.uaso.activity.Activity;
 import org.uaso.entity.Member;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@Table(name = "cities")
+@Table(name = "cities", uniqueConstraints=@UniqueConstraint(columnNames={"name", "region_id"}))
 public class City {
 
 	@Id
@@ -47,11 +47,7 @@ public class City {
 	
 	@OneToMany(mappedBy = "city", fetch=FetchType.LAZY)
 	@JsonIgnore
-	private Set<Course> courses;
-	
-	@OneToMany(mappedBy = "city", fetch=FetchType.LAZY)
-	@JsonIgnore
-	private Set<Event> events;
+	private Set<Activity> activities;
 
 	public long getId() {
 		return id;
@@ -101,20 +97,12 @@ public class City {
 		this.members = members;
 	}
 
-	public Set<Course> getCourses() {
-		return courses;
+	public Set<Activity> getActivities() {
+		return activities;
 	}
 
-	public void setCourses(Set<Course> courses) {
-		this.courses = courses;
-	}
-
-	public Set<Event> getEvents() {
-		return events;
-	}
-
-	public void setEvents(Set<Event> events) {
-		this.events = events;
+	public void setActivities(Set<Activity> activities) {
+		this.activities = activities;
 	}
 	
 }

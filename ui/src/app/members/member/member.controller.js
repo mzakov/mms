@@ -9,7 +9,7 @@ export default
 	var city_id;
   // ctrl.skills = []
   // ctrl.gear = []
-  // ctrl.courses = []
+  // ctrl.activities = []
 
 	MemberService.getMember($stateParams.id).then((result) => {
 		ctrl.member = result.data;
@@ -29,15 +29,10 @@ export default
 					ctrl.gear = result.data;
           console.dir(result.data)
 				}).then(() => {
-				MemberService.getMemberEvents($stateParams.id).then(function(result){
-					ctrl.events = result.data;
-          console.dir(result.data)
-				}).then(() => {
-				MemberService.getMemberCourses($stateParams.id).then(function(result){
-					ctrl.memberCourses = result.data;
+				MemberService.getMemberActivities($stateParams.id).then(function(result){
+					ctrl.memberActivities = result.data;
           console.dir(result.data)
 				})
-        })
         })
         })
         })

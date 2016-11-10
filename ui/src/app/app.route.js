@@ -35,17 +35,25 @@ function routes ($stateProvider, $urlRouterProvider, $mdIconProvider, $httpProvi
             authorizedRoles: [USER_ROLES.admin]
         }
     })
-    .state('courses', {
-      url: '/courses',
-      component: 'appCourses',
+    .state('activities', {
+      url: '/activities',
+      component: 'appActivities',
       access: {
             loginRequired: true,
             authorizedRoles: [USER_ROLES.admin]
         }
     })
-    .state('course', {
-      url: '/courses/:id',
-      component: 'appCourse',
+    .state('activity', {
+      url: '/activities/:id',
+      component: 'appActivity',
+      access: {
+            loginRequired: true,
+            authorizedRoles: [USER_ROLES.admin]
+        }
+    })
+    .state('more', {
+      url: '/more',
+      component: 'appMore',
       access: {
             loginRequired: true,
             authorizedRoles: [USER_ROLES.admin]

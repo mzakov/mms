@@ -13,9 +13,7 @@ export default
 
   getGear () { return this.$http.get('gear/') }
 
-  getMemberEvents (id) { return this.$http.get('members/' + id + '/events/') }
-
-  getMemberCourses (id) { return this.$http.get('members/' + id + '/courses/') }
+  getMemberActivities (id) { return this.$http.get('members/' + id + '/activities/') }
 
 	patchMember (member) { return this.$http.patch('members/' + member.id, member) };
 

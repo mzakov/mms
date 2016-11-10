@@ -8185,7 +8185,7 @@
 	
 	__webpack_require__(299);
 	
-	__webpack_require__(381);
+	__webpack_require__(386);
 
 /***/ },
 /* 299 */
@@ -8241,15 +8241,19 @@
 	
 	var _memberModule2 = _interopRequireDefault(_memberModule);
 	
-	var _coursesModule = __webpack_require__(368);
+	var _activitiesModule = __webpack_require__(368);
 	
-	var _coursesModule2 = _interopRequireDefault(_coursesModule);
+	var _activitiesModule2 = _interopRequireDefault(_activitiesModule);
 	
-	var _courseModule = __webpack_require__(373);
+	var _activityModule = __webpack_require__(373);
 	
-	var _courseModule2 = _interopRequireDefault(_courseModule);
+	var _activityModule2 = _interopRequireDefault(_activityModule);
 	
-	var _appRoute = __webpack_require__(378);
+	var _moreModule = __webpack_require__(378);
+	
+	var _moreModule2 = _interopRequireDefault(_moreModule);
+	
+	var _appRoute = __webpack_require__(383);
 	
 	var _appRoute2 = _interopRequireDefault(_appRoute);
 	
@@ -8261,17 +8265,17 @@
 	
 	var _authService2 = _interopRequireDefault(_authService);
 	
-	var _sessionService = __webpack_require__(379);
+	var _sessionService = __webpack_require__(384);
 	
 	var _sessionService2 = _interopRequireDefault(_sessionService);
 	
-	var _appRun = __webpack_require__(380);
+	var _appRun = __webpack_require__(385);
 	
 	var _appRun2 = _interopRequireDefault(_appRun);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	exports.default = angular.module('mms', ['ngAria', 'ngAnimate', 'ngMaterial', 'ngMessages', 'ngSanitize', 'ui.router', 'http-auth-interceptor', 'ngResource', 'mdDataTable', _loadingModule2.default, _loginModule2.default, _errorModule2.default, _logoutModule2.default, _homeModule2.default, _map2.default, _membersModule2.default, _memberModule2.default, _coursesModule2.default, _courseModule2.default]).constant('apiUrl', _api2.default).constant('USER_ROLES', _userRoles2.default).component('mmsApp', _appComponent2.default).config(_appRoute2.default).service('AppService', _appService2.default).service('AuthSharedService', _authService2.default).service('Session', _sessionService2.default).run(_appRun2.default).directive('access', ['AuthSharedService', function (AuthSharedService) {
+	exports.default = angular.module('mms', ['ngAria', 'ngAnimate', 'ngMaterial', 'ngMessages', 'ngSanitize', 'ui.router', 'http-auth-interceptor', 'ngResource', 'mdDataTable', _loadingModule2.default, _loginModule2.default, _errorModule2.default, _logoutModule2.default, _homeModule2.default, _map2.default, _membersModule2.default, _memberModule2.default, _activitiesModule2.default, _activityModule2.default, _moreModule2.default]).constant('apiUrl', _api2.default).constant('USER_ROLES', _userRoles2.default).component('mmsApp', _appComponent2.default).config(_appRoute2.default).service('AppService', _appService2.default).service('AuthSharedService', _authService2.default).service('Session', _sessionService2.default).run(_appRun2.default).directive('access', ['AuthSharedService', function (AuthSharedService) {
 	    return {
 	        restrict: 'A',
 	        link: function link(scope, element, attrs) {
@@ -8387,7 +8391,7 @@
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
 	/* @ngInject */
-	var MapController = function MapController(NgMap, $timeout, CourseService, $scope) {
+	var MapController = function MapController(NgMap, $timeout, $scope) {
 	  _classCallCheck(this, MapController);
 	
 	  var ctrl = this;
@@ -8412,7 +8416,7 @@
 	    var ll = event.latLng;
 	    ctrl.deleteMarkers();
 	    ctrl.markers.push({ lat: ll.lat(), lng: ll.lng() });
-	    $scope.$emit('courseLL', { lat: ll.lat(), lng: ll.lng() });
+	    $scope.$emit('activityLL', { lat: ll.lat(), lng: ll.lng() });
 	  };
 	  ctrl.deleteMarkers = function () {
 	    ctrl.markers = [];
@@ -8427,8 +8431,13 @@
 	      ctrl.map.markers[key].setMap(null);
 	    };
 	  };
+	
+	  $scope.$on('markerLL', function (event, data) {
+	    ctrl.deleteMarkers();
+	    ctrl.markers.push(data);
+	  });
 	};
-	MapController.$inject = ["NgMap", "$timeout", "CourseService", "$scope"];
+	MapController.$inject = ["NgMap", "$timeout", "$scope"];
 	
 	exports.default = MapController;
 
@@ -8518,7 +8527,7 @@
 /* 309 */
 /***/ function(module, exports) {
 
-	module.exports = "<!DOCTYPE html>\r\n<html ng-strict-di=\"true\">\r\n  <head>\r\n    <meta charset=\"utf-8\">\r\n    <title>MMS</title>\r\n    <link href=\"https://fonts.googleapis.com/icon?family=Material+Icons\"\r\n      rel=\"stylesheet\">\r\n  </head>\r\n  <body ng-app=\"mms\" ng-cloak class=\"ng-cloak\">\r\n    <div ng-if=\"authenticated\">\r\n      <md-toolbar>\r\n      <div layout=\"row\" layout-align=\"center center\" style=\"padding-top:20px;\">\r\n        <md-button class=\"md-raised md-primary\" href=\"#/home\">\r\n          <md-icon md-font-set=\"material-icons\"> home </md-icon>\r\n        </md-button>\r\n        <md-button class=\"md-raised md-primary\" href=\"#/members\">\r\n          <md-icon md-font-set=\"material-icons\"> person </md-icon>\r\n        </md-button>\r\n        <md-button class=\"md-raised md-primary\" href=\"#/courses\">\r\n          <md-icon md-font-set=\"material-icons\"> school </md-icon>\r\n        </md-button>\r\n        <md-button class=\"md-raised md-primary\" href=\"#/events\">\r\n          <md-icon md-font-set=\"material-icons\"> star </md-icon>\r\n        </md-button>\r\n        <md-button class=\"md-raised md-primary\" href=\"#/tools\">\r\n          <md-icon md-font-set=\"material-icons\"> build </md-icon>\r\n        </md-button>\r\n        <i md-menu-origin class=\"material-icons\">person</i>\r\n          {{account.firstName}} {{account.lastName}}\r\n        <md-button class=\"md-raised md-warn\" href=\"#/logout\">\r\n          <md-icon md-font-set=\"material-icons\"> exit_to_app </md-icon>\r\n        </md-button>\r\n      </div>\r\n    </md-toolbar>\r\n    </div>\r\n    <div class=\"container\">\r\n      <div style=\"position: relative\">\r\n        <div class=\"fade\">\r\n          <ui-view>\r\n          Loading...\r\n          </ui-view>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </body>\r\n</html>\r\n";
+	module.exports = "<!DOCTYPE html>\r\n<html ng-strict-di=\"true\">\r\n  <head>\r\n    <meta charset=\"utf-8\">\r\n    <title>MMS</title>\r\n    <link href=\"https://fonts.googleapis.com/icon?family=Material+Icons\"\r\n      rel=\"stylesheet\">\r\n  </head>\r\n  <body ng-app=\"mms\" ng-cloak class=\"ng-cloak\">\r\n    <div ng-if=\"authenticated\">\r\n      <md-toolbar>\r\n      <div layout=\"row\" layout-align=\"center center\" style=\"padding-top:20px;\">\r\n        <md-button class=\"md-raised md-primary\" href=\"#/home\">\r\n          <md-icon md-font-set=\"material-icons\"> home </md-icon>\r\n        </md-button>\r\n        <md-button class=\"md-raised md-primary\" href=\"#/members\">\r\n          <md-icon md-font-set=\"material-icons\"> person </md-icon>\r\n        </md-button>\r\n        <md-button class=\"md-raised md-primary\" href=\"#/activities\">\r\n          <md-icon md-font-set=\"material-icons\"> star </md-icon>\r\n        </md-button>\r\n        <md-button class=\"md-raised md-primary\" href=\"#/more\">\r\n          <md-icon md-font-set=\"material-icons\"> build </md-icon>\r\n        </md-button>\r\n        <i md-menu-origin class=\"material-icons\">perm_identity</i>\r\n          {{account.firstName}} {{account.lastName}}\r\n        <md-button class=\"md-raised md-warn\" href=\"#/logout\">\r\n          <md-icon md-font-set=\"material-icons\"> exit_to_app </md-icon>\r\n        </md-button>\r\n      </div>\r\n    </md-toolbar>\r\n    </div>\r\n    <div class=\"container\">\r\n      <div style=\"position: relative\">\r\n        <div class=\"fade\">\r\n          <ui-view>\r\n          Loading...\r\n          </ui-view>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </body>\r\n</html>\r\n";
 
 /***/ },
 /* 310 */
@@ -14739,7 +14748,7 @@
 /***/ function(module, exports) {
 
 	var path = 'C:/code/mms/ui/src/app/members/member/member.html';
-	var html = "<div flex layout-padding ng-cloak layout-align=\"center center\">\r\n<md-whiteframe class=\"md-whiteframe-10dp\" flex layout=\"column\" style=\"width: 750px;\" layout-align=\"center center\" >\r\n\r\n  <form name=\"editMember\" ng-submit=\"ctrl.submit()\">\r\n  <md-content style=\"width: 700px;\" class=\"md-no-momentum\">\r\n\t\t<div layout=\"row\">\r\n\t\t\t<div>\r\n    \t\t<md-input-container class=\"md-icon-float md-block\">\r\n      \t\t<!-- Use floating label instead of placeholder -->\r\n      \t\t<label>First Name</label>\r\n\t\t\t\t\t<md-icon md-font-set=\"material-icons\"> person </md-icon>\r\n      \t\t<input ng-model=\"ctrl.member.firstName\" type=\"text\">\r\n    \t\t</md-input-container>\r\n\t\t\t</div>\r\n\t\t\t<div>\r\n\t\t\t\t<md-input-container class=\"md-icon-float md-block\">\r\n\t\t\t\t\t<label>Middle Name</label>\r\n\t\t\t\t\t<input ng-model=\"ctrl.member.middleName\" type=\"text\">\r\n\t\t\t\t</md-input-container>\r\n\t\t\t</div>\r\n\t\t\t<div>\r\n\t\t\t\t<md-input-container class=\"md-icon-float md-block\">\r\n\t\t\t\t\t<label>Last Name</label>\r\n\t\t\t\t\t<input ng-model=\"ctrl.member.lastName\" type=\"text\">\r\n\t\t\t\t</md-input-container>\r\n\t\t\t</div>\r\n\t\t</div>\n\r\n\t\t<div layout=\"row\">\r\n    \t<md-input-container md-no-float class=\"md-block\">\r\n\t\t\t\t<label>Phone Number</label>\r\n\t\t\t\t<md-icon md-font-set=\"material-icons\"> phone </md-icon>\r\n      \t<input ng-model=\"ctrl.member.phoneNumber\" type=\"text\">\r\n    \t</md-input-container>\r\n\r\n    \t<md-input-container class=\"md-block\">\r\n      \t<!-- Use floating placeholder instead of label -->\r\n\t\t\t\t<label>Email</label>\r\n\t\t\t\t<md-icon md-font-set=\"material-icons\"> email </md-icon>\r\n      \t<input ng-model=\"ctrl.member.email\" type=\"email\" ng-required=\"true\">\r\n    \t</md-input-container>\r\n\r\n\t\t\t<md-input-container md-no-float class=\"md-block\">\r\n\t\t\t\t<label>Birth date</label>\r\n\t\t\t\t<md-datepicker ng-model=\"ctrl.member.birthDate\"></md-datepicker>\r\n\t\t\t</md-input-container>\r\n\t\t</div>\r\n\r\n\t\t<div layout=\"row\">\r\n      <div flex=\"60\">\r\n    \t\t<md-input-container md-no-float class=\"md-block\">\r\n\t\t\t\t\t<label>Address</label>\r\n          <md-icon md-font-set=\"material-icons\"> home </md-icon>\r\n      \t\t<input ng-model=\"ctrl.member.address\" type=\"text\">\r\n    \t\t</md-input-container>\r\n\t\t\t</div>\r\n\r\n\r\n      <div flex=\"30\">\r\n            <form ng-submit=\"$event.preventDefault()\">\r\n              <div layout=\"row\">\r\n              <md-autocomplete flex required\r\n              md-input-name=\"autocompleteField\"\r\n              ng-disabled=\"ctrl.isDisabled\"\r\n              md-no-cache=\"ctrl.noCache\"\r\n              md-selected-item=\"ctrl.member.city\"\r\n              md-search-text-change=\"ctrl.searchTextChange(ctrl.searchText)\"\r\n              md-search-text=\"ctrl.searchText\"\r\n              md-selected-item-change=\"ctrl.selectedItemChange(item)\"\r\n              md-items=\"item in ctrl.querySearch(ctrl.searchText)\"\r\n              md-item-text=\"item.name\"\r\n              md-min-length=\"0\"\r\n              md-floating-label=\"Pick an City\"\r\n              md-menu-class=\"autocomplete-custom-template\">\r\n                <md-item-template>\r\n                  <span class=\"item-title\">\r\n                    <span> {{item.name}} </span>\r\n                  </span>\r\n              </div>\r\n                </md-item-template>\r\n              </md-autocomplete>\r\n            </form>\r\n        </div>\r\n\t\t</div>\n\r\n\t\t<md-input-container class=\"md-block\">\r\n      <label>Biography</label>\r\n\t\t\t<md-icon md-font-set=\"material-icons\"> textsms </md-icon>\r\n      <textarea ng-model=\"ctrl.member.bio\" md-maxlength=\"150\" rows=\"5\" md-select-on-focus></textarea>\r\n    </md-input-container>\r\n\r\n<div layout=\"row\" layout-wrap flex>\r\n\r\n\r\n    <div flex-xs flex=\"50\">\r\n      <p> Skills </p>\r\n    <div class=\"demo-select-all-checkboxes\" flex=\"50\" ng-repeat=\"item in ctrl.skills\">\r\n      <md-checkbox ng-checked=\"ctrl.isMember(ctrl.member.skills, item.id)\"\r\n       ng-click=\"ctrl.toggle(item, ctrl.member.skills)\">\r\n        {{ item.name }}\r\n      </md-checkbox>\r\n    </div>\r\n    </div>\r\n\r\n    <div flex-xs flex=\"50\">\r\n      <p> Gear </p>\r\n    <div class=\"demo-select-all-checkboxes\" flex=\"50\" ng-repeat=\"item in ctrl.gear\">\r\n      <md-checkbox ng-checked=\"ctrl.isMember(ctrl.member.gear, item.id)\"\r\n       ng-click=\"ctrl.toggle(item, ctrl.member.gear)\">\r\n        {{ item.name }}\r\n      </md-checkbox>\r\n    </div>\r\n    </div>\r\n\r\n    <!-- <div layout=\"column\" flex-xs flex=\"25\">\r\n      <p> Events </p>\r\n\r\n    <div class=\"demo-select-all-checkboxes\" flex=\"25\" ng-repeat=\"item in ctrl.memberEvents\">\r\n      <md-checkbox ng-checked=\"ctrl.isMember(ctrl.member.events, item.id)\"\r\n       ng-click=\"ctrl.toggle(item, ctrl.member.events)\">\r\n        {{ item.name }}\r\n      </md-checkbox>\r\n    </div>\r\n    </div>\r\n\r\n    <div layout=\"column\" flex-xs flex=\"25\">\r\n      <p> Courses </p>\r\n\r\n    <div class=\"demo-select-all-checkboxes\" flex=\"25\" ng-repeat=\"item in ctrl.memberCourses\">\r\n      <md-checkbox ng-checked=\"ctrl.isMember(ctrl.member.courses, item.id)\"\r\n       ng-click=\"ctrl.toggle(item, ctrl.member.courses)\">\r\n        {{ item.name }}\r\n      </md-checkbox>\r\n    </div>\r\n    </div> -->\r\n\r\n</div>\r\n\r\n  </md-content>\r\n  <div class=\"col-sm-offset-2 col-sm-8\">\r\n\t\t\t\t\t\t<md-button ng-disabled=\"editMember.$invalid\" class=\"md-raised md-primary\" ng-click=\"ctrl.update(ctrl.member)\"\r\n\t\t\t\t\t\taria-label=\"Save\">\r\n            <md-icon md-font-set=\"material-icons\"> save </md-icon>\r\n          </md-button>\r\n\r\n\t\t\t\t\t\t<md-button class=\"md-raised md-warn\" ng-click=\"ctrl.showConfirm($event)\"\r\n\t\t\t\t\t\taria-label=\"Delete\">\r\n            <md-icon md-font-set=\"material-icons\"> delete_forever </md-icon>\r\n          </md-button>\r\n\t\t\t\t\t</div>\r\n  </form>\r\n  <div ng-if=\"ctrl.status\" id=\"status\">\r\n    <b layout=\"row\" layout-align=\"center center\" class=\"md-padding\">\r\n      {{ctrl.status}}\r\n    </b>\r\n  </div>\r\n\r\n  <div style=\"width: 700px;\" layout-margin>\r\n    <p> Events </p>\r\n    <mdt-table mdt-row=\"{\r\n                        'data': ctrl.memberEvents,\r\n                        'table-row-id-key': 'id',\r\n                        'column-keys': ['name', 'date', 'city.name']\r\n                        }\">\r\n      <mdt-header-row>\r\n        <mdt-column align-rule=\"left\" column-sort=\"true\">Name</mdt-column>\r\n        <mdt-column align-rule=\"right\" column-sort=\"true\">Date</mdt-column>\r\n        <mdt-column align-rule=\"right\" column-sort=\"true\">City</mdt-column>\r\n      </mdt-header-row>\r\n    </mdt-table>\r\n  </div>\r\n\r\n  <div style=\"width: 700px;\" layout-margin>\r\n    <p> Courses </p>\r\n    <mdt-table mdt-row=\"{\r\n                        'data': ctrl.memberCourses,\r\n                        'table-row-id-key': 'id',\r\n                        'column-keys': ['name', 'date', 'city.name']\r\n                        }\">\r\n      <mdt-header-row>\r\n        <mdt-column align-rule=\"left\" column-sort=\"true\">Name</mdt-column>\r\n        <mdt-column align-rule=\"right\" column-sort=\"true\">Date</mdt-column>\r\n        <mdt-column align-rule=\"right\" column-sort=\"true\">City</mdt-column>\r\n      </mdt-header-row>\r\n    </mdt-table>\r\n  </div>\r\n\r\n</md-whiteframe>\r\n\r\n\r\n\r\n<pre>member = {{ctrl.member | json}}</pre>\r\n</div>\r\n";
+	var html = "<div flex layout-padding ng-cloak layout-align=\"center center\">\r\n<md-whiteframe class=\"md-whiteframe-10dp\" flex layout=\"column\" style=\"width: 750px;\" layout-align=\"center center\" >\r\n\r\n  <form name=\"editMember\" ng-submit=\"ctrl.submit()\">\r\n  <md-content style=\"width: 700px;\" class=\"md-no-momentum\">\r\n\t\t<div layout=\"row\">\r\n\t\t\t<div>\r\n    \t\t<md-input-container class=\"md-icon-float md-block\">\r\n      \t\t<!-- Use floating label instead of placeholder -->\r\n      \t\t<label>First Name</label>\r\n\t\t\t\t\t<md-icon md-font-set=\"material-icons\"> person </md-icon>\r\n      \t\t<input ng-model=\"ctrl.member.firstName\" type=\"text\">\r\n    \t\t</md-input-container>\r\n\t\t\t</div>\r\n\t\t\t<div>\r\n\t\t\t\t<md-input-container class=\"md-icon-float md-block\">\r\n\t\t\t\t\t<label>Middle Name</label>\r\n\t\t\t\t\t<input ng-model=\"ctrl.member.middleName\" type=\"text\">\r\n\t\t\t\t</md-input-container>\r\n\t\t\t</div>\r\n\t\t\t<div>\r\n\t\t\t\t<md-input-container class=\"md-icon-float md-block\">\r\n\t\t\t\t\t<label>Last Name</label>\r\n\t\t\t\t\t<input ng-model=\"ctrl.member.lastName\" type=\"text\">\r\n\t\t\t\t</md-input-container>\r\n\t\t\t</div>\r\n\t\t</div>\n\r\n\t\t<div layout=\"row\">\r\n    \t<md-input-container md-no-float class=\"md-block\">\r\n\t\t\t\t<label>Phone Number</label>\r\n\t\t\t\t<md-icon md-font-set=\"material-icons\"> phone </md-icon>\r\n      \t<input ng-model=\"ctrl.member.phoneNumber\" type=\"text\">\r\n    \t</md-input-container>\r\n\r\n    \t<md-input-container class=\"md-block\">\r\n      \t<!-- Use floating placeholder instead of label -->\r\n\t\t\t\t<label>Email</label>\r\n\t\t\t\t<md-icon md-font-set=\"material-icons\"> email </md-icon>\r\n      \t<input ng-model=\"ctrl.member.email\" type=\"email\" ng-required=\"true\">\r\n    \t</md-input-container>\r\n\r\n\t\t\t<md-input-container md-no-float class=\"md-block\">\r\n\t\t\t\t<label>Birth date</label>\r\n\t\t\t\t<md-datepicker ng-model=\"ctrl.member.birthDate\"></md-datepicker>\r\n\t\t\t</md-input-container>\r\n\t\t</div>\r\n\r\n\t\t<div layout=\"row\">\r\n      <div flex=\"60\">\r\n    \t\t<md-input-container md-no-float class=\"md-block\">\r\n\t\t\t\t\t<label>Address</label>\r\n          <md-icon md-font-set=\"material-icons\"> home </md-icon>\r\n      \t\t<input ng-model=\"ctrl.member.address\" type=\"text\">\r\n    \t\t</md-input-container>\r\n\t\t\t</div>\r\n\r\n\r\n      <div flex=\"30\">\r\n            <form ng-submit=\"$event.preventDefault()\">\r\n              <div layout=\"row\">\r\n              <md-autocomplete flex required\r\n              md-input-name=\"autocompleteField\"\r\n              ng-disabled=\"ctrl.isDisabled\"\r\n              md-no-cache=\"ctrl.noCache\"\r\n              md-selected-item=\"ctrl.member.city\"\r\n              md-search-text-change=\"ctrl.searchTextChange(ctrl.searchText)\"\r\n              md-search-text=\"ctrl.searchText\"\r\n              md-selected-item-change=\"ctrl.selectedItemChange(item)\"\r\n              md-items=\"item in ctrl.querySearch(ctrl.searchText)\"\r\n              md-item-text=\"item.name\"\r\n              md-min-length=\"0\"\r\n              md-floating-label=\"Pick an City\"\r\n              md-menu-class=\"autocomplete-custom-template\">\r\n                <md-item-template>\r\n                  <span class=\"item-title\">\r\n                    <span> {{item.name}} </span>\r\n                  </span>\r\n              </div>\r\n                </md-item-template>\r\n              </md-autocomplete>\r\n            </form>\r\n        </div>\r\n\t\t</div>\n\r\n\t\t<md-input-container class=\"md-block\">\r\n      <label>Biography</label>\r\n\t\t\t<md-icon md-font-set=\"material-icons\"> textsms </md-icon>\r\n      <textarea ng-model=\"ctrl.member.bio\" md-maxlength=\"150\" rows=\"5\" md-select-on-focus></textarea>\r\n    </md-input-container>\r\n\r\n<div layout=\"row\" layout-wrap flex>\r\n\r\n\r\n    <div flex-xs flex=\"50\">\r\n      <p> Skills </p>\r\n    <div class=\"demo-select-all-checkboxes\" flex=\"50\" ng-repeat=\"item in ctrl.skills\">\r\n      <md-checkbox ng-checked=\"ctrl.isMember(ctrl.member.skills, item.id)\"\r\n       ng-click=\"ctrl.toggle(item, ctrl.member.skills)\">\r\n        {{ item.name }}\r\n      </md-checkbox>\r\n    </div>\r\n    </div>\r\n\r\n    <div flex-xs flex=\"50\">\r\n      <p> Gear </p>\r\n    <div class=\"demo-select-all-checkboxes\" flex=\"50\" ng-repeat=\"item in ctrl.gear\">\r\n      <md-checkbox ng-checked=\"ctrl.isMember(ctrl.member.gear, item.id)\"\r\n       ng-click=\"ctrl.toggle(item, ctrl.member.gear)\">\r\n        {{ item.name }}\r\n      </md-checkbox>\r\n    </div>\r\n    </div>\r\n\r\n    <!-- <div layout=\"column\" flex-xs flex=\"25\">\r\n      <p> Events </p>\r\n\r\n    <div class=\"demo-select-all-checkboxes\" flex=\"25\" ng-repeat=\"item in ctrl.memberEvents\">\r\n      <md-checkbox ng-checked=\"ctrl.isMember(ctrl.member.events, item.id)\"\r\n       ng-click=\"ctrl.toggle(item, ctrl.member.events)\">\r\n        {{ item.name }}\r\n      </md-checkbox>\r\n    </div>\r\n    </div>\r\n\r\n    <div layout=\"column\" flex-xs flex=\"25\">\r\n      <p> Activities </p>\r\n\r\n    <div class=\"demo-select-all-checkboxes\" flex=\"25\" ng-repeat=\"item in ctrl.memberActivities\">\r\n      <md-checkbox ng-checked=\"ctrl.isMember(ctrl.member.activities, item.id)\"\r\n       ng-click=\"ctrl.toggle(item, ctrl.member.activities)\">\r\n        {{ item.name }}\r\n      </md-checkbox>\r\n    </div>\r\n    </div> -->\r\n\r\n</div>\r\n\r\n  </md-content>\r\n  <div class=\"col-sm-offset-2 col-sm-8\">\r\n\t\t\t\t\t\t<md-button ng-disabled=\"editMember.$invalid\" class=\"md-raised md-primary\" ng-click=\"ctrl.update(ctrl.member)\"\r\n\t\t\t\t\t\taria-label=\"Save\">\r\n            <md-icon md-font-set=\"material-icons\"> save </md-icon>\r\n          </md-button>\r\n\r\n\t\t\t\t\t\t<md-button class=\"md-raised md-warn\" ng-click=\"ctrl.showConfirm($event)\"\r\n\t\t\t\t\t\taria-label=\"Delete\">\r\n            <md-icon md-font-set=\"material-icons\"> delete_forever </md-icon>\r\n          </md-button>\r\n\t\t\t\t\t</div>\r\n  </form>\r\n  <div ng-if=\"ctrl.status\" id=\"status\">\r\n    <b layout=\"row\" layout-align=\"center center\" class=\"md-padding\">\r\n      {{ctrl.status}}\r\n    </b>\r\n  </div>\r\n\r\n  <div style=\"width: 700px;\" layout-margin>\r\n    <p> Activities </p>\r\n    <mdt-table mdt-row=\"{\r\n                        'data': ctrl.memberActivities,\r\n                        'table-row-id-key': 'id',\r\n                        'column-keys': ['name', 'date', 'city.name']\r\n                        }\">\r\n      <mdt-header-row>\r\n        <mdt-column align-rule=\"left\" column-sort=\"true\">Name</mdt-column>\r\n        <mdt-column align-rule=\"right\" column-sort=\"true\">Date</mdt-column>\r\n        <mdt-column align-rule=\"right\" column-sort=\"true\">City</mdt-column>\r\n      </mdt-header-row>\r\n    </mdt-table>\r\n  </div>\r\n\r\n</md-whiteframe>\r\n\r\n\r\n\r\n<pre>member = {{ctrl.member | json}}</pre>\r\n</div>\r\n";
 	window.angular.module('ng').run(['$templateCache', function(c) { c.put(path, html) }]);
 	module.exports = path;
 
@@ -14766,7 +14775,7 @@
 	  var city_id;
 	  // ctrl.skills = []
 	  // ctrl.gear = []
-	  // ctrl.courses = []
+	  // ctrl.activities = []
 	
 	  MemberService.getMember($stateParams.id).then(function (result) {
 	    ctrl.member = result.data;
@@ -14786,14 +14795,9 @@
 	          ctrl.gear = result.data;
 	          console.dir(result.data);
 	        }).then(function () {
-	          MemberService.getMemberEvents($stateParams.id).then(function (result) {
-	            ctrl.events = result.data;
+	          MemberService.getMemberActivities($stateParams.id).then(function (result) {
+	            ctrl.memberActivities = result.data;
 	            console.dir(result.data);
-	          }).then(function () {
-	            MemberService.getMemberCourses($stateParams.id).then(function (result) {
-	              ctrl.memberCourses = result.data;
-	              console.dir(result.data);
-	            });
 	          });
 	        });
 	      });
@@ -14980,14 +14984,9 @@
 				return this.$http.get('gear/');
 			}
 		}, {
-			key: 'getMemberEvents',
-			value: function getMemberEvents(id) {
-				return this.$http.get('members/' + id + '/events/');
-			}
-		}, {
-			key: 'getMemberCourses',
-			value: function getMemberCourses(id) {
-				return this.$http.get('members/' + id + '/courses/');
+			key: 'getMemberActivities',
+			value: function getMemberActivities(id) {
+				return this.$http.get('members/' + id + '/activities/');
 			}
 		}, {
 			key: 'patchMember',
@@ -15021,17 +15020,17 @@
 	  value: true
 	});
 	
-	var _coursesComponent = __webpack_require__(369);
+	var _activitiesComponent = __webpack_require__(369);
 	
-	var _coursesComponent2 = _interopRequireDefault(_coursesComponent);
+	var _activitiesComponent2 = _interopRequireDefault(_activitiesComponent);
 	
-	var _coursesService = __webpack_require__(372);
+	var _activitiesService = __webpack_require__(372);
 	
-	var _coursesService2 = _interopRequireDefault(_coursesService);
+	var _activitiesService2 = _interopRequireDefault(_activitiesService);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	exports.default = angular.module('courses', []).component('appCourses', _coursesComponent2.default).service('CoursesService', _coursesService2.default).name;
+	exports.default = angular.module('activities', []).component('appActivities', _activitiesComponent2.default).service('ActivitiesService', _activitiesService2.default).name;
 
 /***/ },
 /* 369 */
@@ -15043,19 +15042,19 @@
 	  value: true
 	});
 	
-	var _courses = __webpack_require__(370);
+	var _activities = __webpack_require__(370);
 	
-	var _courses2 = _interopRequireDefault(_courses);
+	var _activities2 = _interopRequireDefault(_activities);
 	
-	var _coursesController = __webpack_require__(371);
+	var _activitiesController = __webpack_require__(371);
 	
-	var _coursesController2 = _interopRequireDefault(_coursesController);
+	var _activitiesController2 = _interopRequireDefault(_activitiesController);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	exports.default = {
-	  templateUrl: _courses2.default,
-	  controller: _coursesController2.default,
+	  templateUrl: _activities2.default,
+	  controller: _activitiesController2.default,
 	  controllerAs: 'ctrl'
 	};
 
@@ -15063,8 +15062,8 @@
 /* 370 */
 /***/ function(module, exports) {
 
-	var path = 'C:/code/mms/ui/src/app/courses/courses.html';
-	var html = "<md-content ng-cloak layout-padding layout-align=\"center center\">\r\n<!--  <div style=\"height: 300px; width: 100%;\">\r\n  <mms-map></mms-map>\r\n</div>-->\r\n<md-whiteframe layout-padding class=\"md-whiteframe-10dp\" layout=\"column\" layout-align=\"center center\" >\r\n\r\n  <p> New Course </p>\r\n\r\n  <div layout=\"row\">\r\n    <div>\r\n  <form name=\"courseForm\" layout=\"row\" layout-padding>\r\n    <div>\r\n      <md-input-container md-no-float class=\"md-block\">\r\n\t\t\t\t<label>Date</label>\r\n\t\t\t\t<md-datepicker ng-model=\"ctrl.course.date\" ng-required=\"true\"></md-datepicker>\r\n\t\t\t</md-input-container>\r\n    </div>\r\n<div>\r\n  <md-input-container class=\"md-icon-float md-block\">\r\n    <label>Name</label>\r\n    <input ng-model=\"ctrl.course.name\" type=\"text\" ng-required=\"true\">\r\n  </md-input-container>\r\n\r\n<!--  <md-input-container class=\"md-block\">\r\n    <input required name=\"latitude\"\r\n     placeholder=\"Latitude\" ng-model=\"ctrl.course.latitude\">\r\n  </md-input-container>\r\n\r\n  <md-input-container class=\"md-block\">\r\n    <input required type=\"number\" name=\"longitude\"\r\n     placeholder=\"Longitude\" ng-model=\"ctrl.course.longitude\">\r\n  </md-input-container> -->\r\n</div>\r\n</form>\r\n\r\n<div layout=\"column\" layout-align=\"center center\">\r\n    <md-button ng-disabled=\"courseForm.$invalid\" class=\"md-fab md-primary md-hue-2\" ng-click=\"ctrl.addCourse(ctrl.course)\"\r\n    aria-label=\"Add Course\">\r\n    <md-icon md-font-set=\"material-icons\"> add </md-icon>\r\n  </md-button>\r\n  </div>\r\n\r\n</div>\r\n<!--\r\n<div style=\"height: 300px; width: 500px;\">\r\n  <mms-map></mms-map>\r\n</div>\r\n-->\r\n</div>\r\n\r\n\r\n</md-whiteframe>\r\n\r\n\r\n\r\n\r\n<md-whiteframe class=\"md-whiteframe-10dp\" layout-padding layout=\"column\" layout-align=\"center center\" >\r\n<md-content layout=\"column\" layout-align=\"center center\">\r\n\r\n    <p>View/Edit Course</p>\r\n\r\n    <div layout-padding>\r\n    <md-autocomplete flex required\r\n    md-input-name=\"autocompleteField\"\r\n    ng-disabled=\"ctrl.isDisabled\"\r\n    md-no-cache=\"ctrl.noCache\"\r\n    md-selected-item=\"ctrl.selectedItem\"\r\n    md-search-text-change=\"ctrl.searchTextChange(ctrl.searchText)\"\r\n    md-search-text=\"ctrl.searchText\"\r\n    md-selected-item-change=\"ctrl.selectedItemChange(item)\"\r\n    md-items=\"item in ctrl.querySearch(ctrl.searchText)\"\r\n    md-item-text=\"item.value\"\r\n    md-min-length=\"0\"\r\n    md-floating-label=\"Pick an Course\"\r\n    md-menu-class=\"autocomplete-custom-template\">\r\n      <md-item-template>\r\n        <span class=\"item-title\">\r\n          <span> {{item.name}}</span>\r\n        </span>\r\n\r\n    <!-- <span class=\"item-metadata\">\r\n          <span class=\"item-metastat\">\r\n            <strong>{{item.watchers}}</strong> watchers\r\n          </span>\r\n          <span class=\"item-metastat\">\r\n            <strong>{{item.forks}}</strong> forks\r\n          </span>\r\n        </span>-->\r\n      </md-item-template>\r\n    </md-autocomplete>\r\n  </div>\r\n    <div layout-padding>\r\n    <md-button ng-disabled=\"!ctrl.selectedItem.value\"\r\n        ng-click=\"ctrl.redirect('courses/' + ctrl.selectedItem.id)\" class=\"md-fab md-primary md-hue-2\" aria-label=\"View Course\">\r\n        <md-icon md-font-set=\"material-icons\"> school </md-icon>\r\n      </md-button>\r\n    </div>\r\n</md-content>\r\n</md-whiteframe>\r\n\r\n\r\n<div layout-margin>\r\n\r\n  <mdt-table mdt-row=\"{\r\n                      'data': ctrl.courses,\r\n                      'table-row-id-key': 'id',\r\n                      'column-keys': ['date', 'name', 'summary', 'members', 'skills', 'gear', 'training']\r\n                      }\">\r\n    <mdt-header-row>\r\n      <mdt-column align-rule=\"left\" column-sort=\"true\">Date</mdt-column>\r\n      <mdt-column align-rule=\"right\" column-sort=\"true\">Name</mdt-column>\r\n      <mdt-column align-rule=\"right\" column-sort=\"true\">Summary</mdt-column>\r\n      <mdt-column align-rule=\"right\" column-sort=\"true\">Members</mdt-column>\r\n      <mdt-column align-rule=\"right\" column-sort=\"true\">Skills</mdt-column>\r\n      <mdt-column align-rule=\"right\" column-sort=\"true\">Gear</mdt-column>\r\n      <mdt-column align-rule=\"right\" column-sort=\"true\">Training</mdt-column>\r\n    </mdt-header-row>\r\n  </mdt-table>\r\n</div>\r\n</md-content>\r\n";
+	var path = 'C:/code/mms/ui/src/app/activities/activities.html';
+	var html = "<md-content ng-cloak layout-padding layout-align=\"center center\">\r\n<!--  <div style=\"height: 300px; width: 100%;\">\r\n  <mms-map></mms-map>\r\n</div>-->\r\n<md-whiteframe layout-padding class=\"md-whiteframe-10dp\" layout=\"column\" layout-align=\"center center\" >\r\n\r\n  <p> New Activity </p>\r\n\r\n  <div layout=\"row\">\r\n    <div>\r\n  <form name=\"activityForm\" layout=\"row\" layout-padding>\r\n    <div>\r\n      <md-input-container md-no-float class=\"md-block\">\r\n\t\t\t\t<label>Date</label>\r\n\t\t\t\t<md-datepicker ng-model=\"ctrl.activity.date\" ng-required=\"true\"></md-datepicker>\r\n\t\t\t</md-input-container>\r\n    </div>\r\n<div>\r\n  <md-input-container class=\"md-icon-float md-block\">\r\n    <label>Name</label>\r\n    <input ng-model=\"ctrl.activity.name\" type=\"text\" ng-required=\"true\">\r\n  </md-input-container>\r\n\r\n<!--  <md-input-container class=\"md-block\">\r\n    <input required name=\"latitude\"\r\n     placeholder=\"Latitude\" ng-model=\"ctrl.activity.latitude\">\r\n  </md-input-container>\r\n\r\n  <md-input-container class=\"md-block\">\r\n    <input required type=\"number\" name=\"longitude\"\r\n     placeholder=\"Longitude\" ng-model=\"ctrl.activity.longitude\">\r\n  </md-input-container> -->\r\n</div>\r\n</form>\r\n\r\n<div layout=\"column\" layout-align=\"center center\">\r\n    <md-button ng-disabled=\"activityForm.$invalid\" class=\"md-fab md-primary md-hue-2\" ng-click=\"ctrl.addActivity(ctrl.activity)\"\r\n    aria-label=\"Add Activity\">\r\n    <md-icon md-font-set=\"material-icons\"> add </md-icon>\r\n  </md-button>\r\n  </div>\r\n\r\n</div>\r\n<!--\r\n<div style=\"height: 300px; width: 500px;\">\r\n  <mms-map></mms-map>\r\n</div>\r\n-->\r\n</div>\r\n\r\n\r\n</md-whiteframe>\r\n\r\n\r\n\r\n\r\n<md-whiteframe class=\"md-whiteframe-10dp\" layout-padding layout=\"column\" layout-align=\"center center\" >\r\n<md-content layout=\"column\" layout-align=\"center center\">\r\n\r\n    <p>View/Edit Activity</p>\r\n\r\n    <div layout-padding>\r\n    <md-autocomplete flex required\r\n    md-input-name=\"autocompleteField\"\r\n    ng-disabled=\"ctrl.isDisabled\"\r\n    md-no-cache=\"ctrl.noCache\"\r\n    md-selected-item=\"ctrl.selectedItem\"\r\n    md-search-text-change=\"ctrl.searchTextChange(ctrl.searchText)\"\r\n    md-search-text=\"ctrl.searchText\"\r\n    md-selected-item-change=\"ctrl.selectedItemChange(item)\"\r\n    md-items=\"item in ctrl.querySearch(ctrl.searchText)\"\r\n    md-item-text=\"item.value\"\r\n    md-min-length=\"0\"\r\n    md-floating-label=\"Pick an Activity\"\r\n    md-menu-class=\"autocomplete-custom-template\">\r\n      <md-item-template>\r\n        <span class=\"item-title\">\r\n          <span> {{item.name}}</span>\r\n        </span>\r\n\r\n    <!-- <span class=\"item-metadata\">\r\n          <span class=\"item-metastat\">\r\n            <strong>{{item.watchers}}</strong> watchers\r\n          </span>\r\n          <span class=\"item-metastat\">\r\n            <strong>{{item.forks}}</strong> forks\r\n          </span>\r\n        </span>-->\r\n      </md-item-template>\r\n    </md-autocomplete>\r\n  </div>\r\n    <div layout-padding>\r\n    <md-button ng-disabled=\"!ctrl.selectedItem.value\"\r\n        ng-click=\"ctrl.redirect('activities/' + ctrl.selectedItem.id)\" class=\"md-fab md-primary md-hue-2\" aria-label=\"View Activity\">\r\n        <md-icon md-font-set=\"material-icons\"> star </md-icon>\r\n      </md-button>\r\n    </div>\r\n</md-content>\r\n</md-whiteframe>\r\n\r\n\r\n<div layout-margin>\r\n\r\n  <mdt-table mdt-row=\"{\r\n                      'data': ctrl.activities,\r\n                      'table-row-id-key': 'id',\r\n                      'column-keys': ['date', 'name', 'summary', 'members', 'skills', 'gear', 'training']\r\n                      }\">\r\n    <mdt-header-row>\r\n      <mdt-column align-rule=\"left\" column-sort=\"true\">Date</mdt-column>\r\n      <mdt-column align-rule=\"right\" column-sort=\"true\">Name</mdt-column>\r\n      <mdt-column align-rule=\"right\" column-sort=\"true\">Summary</mdt-column>\r\n      <mdt-column align-rule=\"right\" column-sort=\"true\">Members</mdt-column>\r\n      <mdt-column align-rule=\"right\" column-sort=\"true\">Skills</mdt-column>\r\n      <mdt-column align-rule=\"right\" column-sort=\"true\">Gear</mdt-column>\r\n      <mdt-column align-rule=\"right\" column-sort=\"true\">Training</mdt-column>\r\n    </mdt-header-row>\r\n  </mdt-table>\r\n</div>\r\n</md-content>\r\n";
 	window.angular.module('ng').run(['$templateCache', function(c) { c.put(path, html) }]);
 	module.exports = path;
 
@@ -15081,17 +15080,17 @@
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
 	/* @ngInject */
-	var CoursesController = function CoursesController(CoursesService, $log, $scope, $location) {
-	  _classCallCheck(this, CoursesController);
+	var ActivitiesController = function ActivitiesController(ActivitiesService, $log, $scope, $location) {
+	  _classCallCheck(this, ActivitiesController);
 	
 	  $scope.loaded = false;
 	
-	  $log.debug('CoursesController instantiated!');
+	  $log.debug('ActivitiesController instantiated!');
 	
 	  var ctrl = this;
 	
 	  //
-	  // let courses = []
+	  // let activities = []
 	
 	  ctrl.redirect = function (url, refresh) {
 	    console.dir('It gets to the controller');
@@ -15102,19 +15101,19 @@
 	    }
 	  };
 	
-	  CoursesService.getAllCourses().then(function (result) {
-	    ctrl.courses = result.data;
+	  ActivitiesService.getAllActivities().then(function (result) {
+	    ctrl.activities = result.data;
 	  });
 	
-	  ctrl.course = {};
+	  ctrl.activity = {};
 	
-	  ctrl.addCourse = function (course) {
-	    CoursesService.postCourse(course).then(function (result) {
-	      ctrl.course = result.data;
-	      ctrl.course.date = new Date(ctrl.course.date);
-	      ctrl.courses.push(ctrl.course);
+	  ctrl.addActivity = function (activity) {
+	    ActivitiesService.postActivity(activity).then(function (result) {
+	      ctrl.activity = result.data;
+	      ctrl.activity.date = new Date(ctrl.activity.date);
+	      ctrl.activities.push(ctrl.activity);
 	      // ctrl.member = {middleName: ''}
-	      ctrl.redirect('courses/' + result.data.id);
+	      ctrl.redirect('activities/' + result.data.id);
 	      // 	$state.go('members/')
 	    });
 	  };
@@ -15131,8 +15130,8 @@
 	  ctrl.isDisabled = false;
 	
 	  ctrl.repos = loadAll();
-	  ctrl.repos.then(function (courses) {
-	    ctrl.allCourses = courses;
+	  ctrl.repos.then(function (activities) {
+	    ctrl.activities = activities;
 	  });
 	  ctrl.querySearch = querySearch;
 	  ctrl.selectedItemChange = selectedItemChange;
@@ -15149,7 +15148,7 @@
 	
 	  function querySearch(query) {
 	    console.dir(ctrl.repos);
-	    ctrl.repos = ctrl.allCourses;
+	    ctrl.repos = ctrl.activities;
 	    console.dir(ctrl.repos);
 	    var result = query ? ctrl.repos.filter(createFilterFor(query)) : ctrl.repos;
 	    return result;
@@ -15167,13 +15166,13 @@
 	   * Build `components` list of key/value pairs
 	   */
 	  function loadAll() {
-	    var courses = void 0;
-	    return CoursesService.getAllCourses().then(function (res) {
-	      courses = res.data;
+	    var activities = void 0;
+	    return ActivitiesService.getAllActivities().then(function (res) {
+	      activities = res.data;
 	
-	      return courses.map(function (course) {
-	        course.value = course.name;
-	        return course;
+	      return activities.map(function (activity) {
+	        activity.value = activity.name;
+	        return activity;
 	      });
 	    });
 	  }
@@ -15191,9 +15190,9 @@
 	  //////////////////////////////////////////////
 	  $scope.loaded = true;
 	};
-	CoursesController.$inject = ["CoursesService", "$log", "$scope", "$location"];
+	ActivitiesController.$inject = ["ActivitiesService", "$log", "$scope", "$location"];
 	
-	exports.default = CoursesController;
+	exports.default = ActivitiesController;
 
 /***/ },
 /* 372 */
@@ -15210,30 +15209,30 @@
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
 	/* @ngInject */
-	var CoursesService = function () {
-	  CoursesService.$inject = ["$http"];
-	  function CoursesService($http) {
-	    _classCallCheck(this, CoursesService);
+	var ActivitiesService = function () {
+	  ActivitiesService.$inject = ["$http"];
+	  function ActivitiesService($http) {
+	    _classCallCheck(this, ActivitiesService);
 	
 	    this.$http = $http;
 	  }
 	
-	  _createClass(CoursesService, [{
-	    key: 'getAllCourses',
-	    value: function getAllCourses() {
-	      return this.$http.get('courses/');
+	  _createClass(ActivitiesService, [{
+	    key: 'getAllActivities',
+	    value: function getAllActivities() {
+	      return this.$http.get('activities/');
 	    }
 	  }, {
-	    key: 'postCourse',
-	    value: function postCourse(course) {
-	      return this.$http.post('courses/', course);
+	    key: 'postActivity',
+	    value: function postActivity(activity) {
+	      return this.$http.post('activities/', activity);
 	    }
 	  }]);
 	
-	  return CoursesService;
+	  return ActivitiesService;
 	}();
 	
-	exports.default = CoursesService;
+	exports.default = ActivitiesService;
 
 /***/ },
 /* 373 */
@@ -15245,17 +15244,17 @@
 	  value: true
 	});
 	
-	var _courseComponent = __webpack_require__(374);
+	var _activityComponent = __webpack_require__(374);
 	
-	var _courseComponent2 = _interopRequireDefault(_courseComponent);
+	var _activityComponent2 = _interopRequireDefault(_activityComponent);
 	
-	var _courseService = __webpack_require__(377);
+	var _activityService = __webpack_require__(377);
 	
-	var _courseService2 = _interopRequireDefault(_courseService);
+	var _activityService2 = _interopRequireDefault(_activityService);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	exports.default = angular.module('course', []).component('appCourse', _courseComponent2.default).service('CourseService', _courseService2.default).name;
+	exports.default = angular.module('activity', []).component('appActivity', _activityComponent2.default).service('ActivityService', _activityService2.default).name;
 
 /***/ },
 /* 374 */
@@ -15267,19 +15266,19 @@
 	  value: true
 	});
 	
-	var _course = __webpack_require__(375);
+	var _activity = __webpack_require__(375);
 	
-	var _course2 = _interopRequireDefault(_course);
+	var _activity2 = _interopRequireDefault(_activity);
 	
-	var _courseController = __webpack_require__(376);
+	var _activityController = __webpack_require__(376);
 	
-	var _courseController2 = _interopRequireDefault(_courseController);
+	var _activityController2 = _interopRequireDefault(_activityController);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	exports.default = {
-	  templateUrl: _course2.default,
-	  controller: _courseController2.default,
+	  templateUrl: _activity2.default,
+	  controller: _activityController2.default,
 	  controllerAs: 'ctrl'
 	
 	};
@@ -15288,8 +15287,8 @@
 /* 375 */
 /***/ function(module, exports) {
 
-	var path = 'C:/code/mms/ui/src/app/courses/course/course.html';
-	var html = "\r\n<div layout-padding ng-cloak layout=\"column\" layout-align=\"center center\">\r\n<md-whiteframe class=\"md-whiteframe-10dp\" flex layout=\"column\" style=\"width: 750px;\" layout-align=\"center center\" >\r\n  <br/>\r\n\r\n  <form style=\"width: 100%;\" name=\"editCourse\" ng-submit=\"ctrl.submit()\">\r\n  <md-content class=\"md-no-momentum\">\r\n    <div>\r\n    <md-checkbox ng-model=\"ctrl.course.training\" aria-label=\"Training:\">\r\n      Training\r\n    </md-checkbox>\r\n    <md-icon ng-if=\"ctrl.course.training\" md-font-set=\"material-icons\"> fitness_center </md-icon>\r\n    </div>\r\n<div layout=\"row\">\r\n    \t\t<md-input-container flex=\"70\" class=\"md-icon-float md-block\">\r\n      \t\t<label>Name</label>\r\n\t\t\t\t\t<md-icon md-font-set=\"material-icons\"> school </md-icon>\r\n      \t\t<input ng-model=\"ctrl.course.name\" type=\"text\">\r\n    \t\t</md-input-container>\r\n\r\n        <md-input-container md-no-float class=\"md-block\">\r\n  \t\t\t\t<label>Date</label>\r\n  \t\t\t\t<md-datepicker ng-model=\"ctrl.course.date\"></md-datepicker>\r\n  \t\t\t</md-input-container>\r\n</div>\r\n\r\n      <md-input-container class=\"md-block\">\r\n        <label>Summary</label>\r\n  \t\t\t<md-icon md-font-set=\"material-icons\"> textsms </md-icon>\r\n        <textarea ng-model=\"ctrl.course.summary\" md-maxlength=\"150\" rows=\"1\" md-select-on-focus></textarea>\r\n      </md-input-container>\r\n\r\n\r\n\r\n  <div layout=\"row\">\r\n      \t\t<md-input-container flex=\"100\" md-no-float class=\"md-block\">\r\n  \t\t\t\t\t<label>Address</label>\r\n            <md-icon md-font-set=\"material-icons\"> home </md-icon>\r\n        \t\t<input ng-model=\"ctrl.course.address\" type=\"text\">\r\n      \t\t</md-input-container>\r\n  </div>\r\n  <div layout=\"row\">\r\n<div>\r\n  <form ng-submit=\"$event.preventDefault()\">\r\n\r\n    <md-autocomplete flex required\r\n    md-input-name=\"autocompleteField\"\r\n    ng-disabled=\"ctrl.isDisabled\"\r\n    md-no-cache=\"ctrl.noCache\"\r\n    md-selected-item=\"ctrl.course.city\"\r\n    md-search-text-change=\"ctrl.searchTextChange(ctrl.searchText)\"\r\n    md-search-text=\"ctrl.searchText\"\r\n    md-selected-item-change=\"ctrl.selectedItemChange(item)\"\r\n    md-items=\"item in ctrl.querySearch(ctrl.searchText)\"\r\n    md-item-text=\"item.name\"\r\n    md-min-length=\"0\"\r\n    md-floating-label=\"Pick an City\"\r\n    md-menu-class=\"autocomplete-custom-template\">\r\n      <md-item-template>\r\n        <span class=\"item-title\">\r\n          <span> {{item.name}} </span>\r\n        </span>\r\n\r\n      </md-item-template>\r\n    </md-autocomplete>\r\n  </form>\r\n\t\t\t\t<md-input-container class=\"md-icon-float md-block\">\r\n\t\t\t\t\t<label>Latitude</label>\r\n\t\t\t\t\t<input ng-model=\"ctrl.course.latitude\" type=\"text\">\r\n\t\t\t\t</md-input-container>\r\n\r\n    \t<md-input-container md-no-float class=\"md-block\">\r\n\t\t\t\t<label>Longitude</label>\r\n      \t<input ng-model=\"ctrl.course.longitude\" type=\"text\">\r\n    \t</md-input-container>\r\n</div>\r\n\r\n\r\n<div style=\"height: 300px;\">\r\n<mms-map></mms-map>\r\n</div>\r\n\r\n</div>\r\n\t\t<md-input-container class=\"md-block\">\r\n      <label>Brief</label>\r\n\t\t\t<md-icon md-font-set=\"material-icons\"> textsms </md-icon>\r\n      <textarea ng-model=\"ctrl.course.brief\" md-maxlength=\"800\" rows=\"5\" md-select-on-focus></textarea>\r\n    </md-input-container>\r\n\r\n    <md-input-container class=\"md-block\">\r\n      <label>Debrief</label>\r\n\t\t\t<md-icon md-font-set=\"material-icons\"> textsms </md-icon>\r\n      <textarea ng-model=\"ctrl.course.debrief\" md-maxlength=\"800\" rows=\"5\" md-select-on-focus></textarea>\r\n    </md-input-container>\r\n\r\n<div layout=\"row\">\r\n    <div layout=\"column\" flex-xs flex=\"33\">\r\n      <p> Members </p>\r\n    <div class=\"demo-select-all-checkboxes\" flex=\"33\" ng-repeat=\"item in ctrl.members\">\r\n      <md-checkbox ng-checked=\"ctrl.isMember(ctrl.course.members, item.id)\" ng-click=\"ctrl.toggle(item, ctrl.course.members)\">\r\n        {{ item.firstName }} {{ item.lastName }}\r\n      </md-checkbox>\r\n    </div>\r\n    </div>\r\n\r\n    <div layout=\"column\" flex-xs flex=\"33\">\r\n      <p> Skills </p>\r\n    <div class=\"demo-select-all-checkboxes\" flex=\"33\" ng-repeat=\"item in ctrl.skills\">\r\n      <md-checkbox ng-checked=\"ctrl.isMember(ctrl.course.skills, item.id)\" ng-click=\"ctrl.toggle(item, ctrl.course.skills)\">\r\n        {{ item.name }}\r\n      </md-checkbox>\r\n    </div>\r\n    </div>\r\n\r\n    <div layout=\"column\" flex-xs flex=\"33\">\r\n      <p> Gear </p>\r\n    <div class=\"demo-select-all-checkboxes\" flex=\"33\" ng-repeat=\"item in ctrl.gear\">\r\n      <md-checkbox ng-checked=\"ctrl.isMember(ctrl.course.gear, item.id)\"\r\n       ng-click=\"ctrl.toggle(item, ctrl.course.gear)\">\r\n        {{ item.name }}\r\n      </md-checkbox>\r\n    </div>\r\n    </div>\r\n\r\n</div>\r\n  </md-content>\r\n\r\n<div>\r\n        <div class=\"col-sm-offset-2 col-sm-8\">\r\n\t\t\t\t\t\t<md-button ng-disabled=\"editCourse.$invalid\" class=\"md-raised md-primary\" ng-click=\"ctrl.update(ctrl.course)\"\r\n\t\t\t\t\t\taria-label=\"Save\">\r\n            <md-icon md-font-set=\"material-icons\"> save </md-icon>\r\n          </md-button>\r\n\r\n\t\t\t\t\t\t<md-button class=\"md-raised md-warn\" ng-click=\"ctrl.showConfirm($event)\"\r\n\t\t\t\t\t\taria-label=\"Delete\">\r\n            <md-icon md-font-set=\"material-icons\"> delete_forever </md-icon>\r\n          </md-button>\r\n\t\t\t\t\t</div>\r\n\r\n    </div>\r\n  </form>\r\n\r\n  <div ng-if=\"ctrl.status\" id=\"status\">\r\n    <b layout=\"row\" layout-align=\"center center\" class=\"md-padding\">\r\n      {{ctrl.status}}\r\n    </b>\r\n  </div>\r\n</md-whiteframe>\r\n\r\n\r\n<pre>course = {{ctrl.course | json}}</pre>\r\n</div>\r\n";
+	var path = 'C:/code/mms/ui/src/app/activities/activity/activity.html';
+	var html = "\r\n<div layout-padding ng-cloak layout=\"column\" layout-align=\"center center\">\r\n<md-whiteframe class=\"md-whiteframe-10dp\" flex layout=\"column\" style=\"width: 750px;\" layout-align=\"center center\" >\r\n  <br/>\r\n\r\n  <form style=\"width: 100%;\" name=\"editActivity\" ng-submit=\"ctrl.submit()\">\r\n  <md-content class=\"md-no-momentum\">\r\n    <div>\r\n    <md-checkbox ng-model=\"ctrl.activity.training\" aria-label=\"Training:\">\r\n      Training\r\n    </md-checkbox>\r\n    <md-icon ng-if=\"ctrl.activity.training\" md-font-set=\"material-icons\"> fitness_center </md-icon>\r\n    </div>\r\n<div layout=\"row\">\r\n    \t\t<md-input-container flex=\"70\" class=\"md-icon-float md-block\">\r\n      \t\t<label>Name</label>\r\n\t\t\t\t\t<md-icon md-font-set=\"material-icons\"> star </md-icon>\r\n      \t\t<input ng-model=\"ctrl.activity.name\" type=\"text\">\r\n    \t\t</md-input-container>\r\n\r\n        <md-input-container md-no-float class=\"md-block\">\r\n  \t\t\t\t<label>Date</label>\r\n  \t\t\t\t<md-datepicker ng-model=\"ctrl.activity.date\"></md-datepicker>\r\n  \t\t\t</md-input-container>\r\n</div>\r\n\r\n      <md-input-container class=\"md-block\">\r\n        <label>Summary</label>\r\n  \t\t\t<md-icon md-font-set=\"material-icons\"> textsms </md-icon>\r\n        <textarea ng-model=\"ctrl.activity.summary\" md-maxlength=\"150\" rows=\"1\" md-select-on-focus></textarea>\r\n      </md-input-container>\r\n\r\n\r\n\r\n  <div layout=\"row\">\r\n      \t\t<md-input-container flex=\"100\" md-no-float class=\"md-block\">\r\n  \t\t\t\t\t<label>Address</label>\r\n            <md-icon md-font-set=\"material-icons\"> home </md-icon>\r\n        \t\t<input ng-model=\"ctrl.activity.address\" type=\"text\">\r\n      \t\t</md-input-container>\r\n  </div>\r\n  <div layout=\"row\">\r\n<div>\r\n  <form ng-submit=\"$event.preventDefault()\">\r\n\r\n    <md-autocomplete flex required\r\n    md-input-name=\"autocompleteField\"\r\n    ng-disabled=\"ctrl.isDisabled\"\r\n    md-no-cache=\"ctrl.noCache\"\r\n    md-selected-item=\"ctrl.activity.city\"\r\n    md-search-text-change=\"ctrl.searchTextChange(ctrl.searchText)\"\r\n    md-search-text=\"ctrl.searchText\"\r\n    md-selected-item-change=\"ctrl.selectedItemChange(item)\"\r\n    md-items=\"item in ctrl.querySearch(ctrl.searchText)\"\r\n    md-item-text=\"item.name\"\r\n    md-min-length=\"0\"\r\n    md-floating-label=\"Pick an City\"\r\n    md-menu-class=\"autocomplete-custom-template\">\r\n      <md-item-template>\r\n        <span class=\"item-title\">\r\n          <span> {{item.name}} </span>\r\n        </span>\r\n\r\n      </md-item-template>\r\n    </md-autocomplete>\r\n  </form>\r\n\t\t\t\t<md-input-container class=\"md-icon-float md-block\">\r\n\t\t\t\t\t<label>Latitude</label>\r\n\t\t\t\t\t<input ng-model=\"ctrl.activity.latitude\" type=\"text\">\r\n\t\t\t\t</md-input-container>\r\n\r\n    \t<md-input-container md-no-float class=\"md-block\">\r\n\t\t\t\t<label>Longitude</label>\r\n      \t<input ng-model=\"ctrl.activity.longitude\" type=\"text\">\r\n    \t</md-input-container>\r\n</div>\r\n\r\n\r\n<div style=\"height: 300px;\">\r\n<mms-map></mms-map>\r\n</div>\r\n\r\n</div>\r\n\t\t<md-input-container class=\"md-block\">\r\n      <label>Brief</label>\r\n\t\t\t<md-icon md-font-set=\"material-icons\"> textsms </md-icon>\r\n      <textarea ng-model=\"ctrl.activity.brief\" md-maxlength=\"800\" rows=\"5\" md-select-on-focus></textarea>\r\n    </md-input-container>\r\n\r\n    <md-input-container class=\"md-block\">\r\n      <label>Debrief</label>\r\n\t\t\t<md-icon md-font-set=\"material-icons\"> textsms </md-icon>\r\n      <textarea ng-model=\"ctrl.activity.debrief\" md-maxlength=\"800\" rows=\"5\" md-select-on-focus></textarea>\r\n    </md-input-container>\r\n\r\n<div layout=\"row\">\r\n    <div layout=\"column\" flex-xs flex=\"33\">\r\n      <p> Members </p>\r\n    <div class=\"demo-select-all-checkboxes\" flex=\"33\" ng-repeat=\"item in ctrl.members\">\r\n      <md-checkbox ng-checked=\"ctrl.isMember(ctrl.activity.members, item.id)\" ng-click=\"ctrl.toggle(item, ctrl.activity.members)\">\r\n        {{ item.firstName }} {{ item.lastName }}\r\n      </md-checkbox>\r\n    </div>\r\n    </div>\r\n\r\n    <div layout=\"column\" flex-xs flex=\"33\">\r\n      <p> Skills </p>\r\n    <div class=\"demo-select-all-checkboxes\" flex=\"33\" ng-repeat=\"item in ctrl.skills\">\r\n      <md-checkbox ng-checked=\"ctrl.isMember(ctrl.activity.skills, item.id)\" ng-click=\"ctrl.toggle(item, ctrl.activity.skills)\">\r\n        {{ item.name }}\r\n      </md-checkbox>\r\n    </div>\r\n    </div>\r\n\r\n    <div layout=\"column\" flex-xs flex=\"33\">\r\n      <p> Gear </p>\r\n    <div class=\"demo-select-all-checkboxes\" flex=\"33\" ng-repeat=\"item in ctrl.gear\">\r\n      <md-checkbox ng-checked=\"ctrl.isMember(ctrl.activity.gear, item.id)\"\r\n       ng-click=\"ctrl.toggle(item, ctrl.activity.gear)\">\r\n        {{ item.name }}\r\n      </md-checkbox>\r\n    </div>\r\n    </div>\r\n\r\n</div>\r\n  </md-content>\r\n\r\n<div>\r\n        <div class=\"col-sm-offset-2 col-sm-8\">\r\n\t\t\t\t\t\t<md-button ng-disabled=\"editActivity.$invalid\" class=\"md-raised md-primary\" ng-click=\"ctrl.update(ctrl.activity)\"\r\n\t\t\t\t\t\taria-label=\"Save\">\r\n            <md-icon md-font-set=\"material-icons\"> save </md-icon>\r\n          </md-button>\r\n\r\n\t\t\t\t\t\t<md-button class=\"md-raised md-warn\" ng-click=\"ctrl.showConfirm($event)\"\r\n\t\t\t\t\t\taria-label=\"Delete\">\r\n            <md-icon md-font-set=\"material-icons\"> delete_forever </md-icon>\r\n          </md-button>\r\n\t\t\t\t\t</div>\r\n\r\n    </div>\r\n  </form>\r\n\r\n  <div ng-if=\"ctrl.status\" id=\"status\">\r\n    <b layout=\"row\" layout-align=\"center center\" class=\"md-padding\">\r\n      {{ctrl.status}}\r\n    </b>\r\n  </div>\r\n</md-whiteframe>\r\n\r\n\r\n<pre>activity = {{ctrl.activity | json}}</pre>\r\n</div>\r\n";
 	window.angular.module('ng').run(['$templateCache', function(c) { c.put(path, html) }]);
 	module.exports = path;
 
@@ -15306,12 +15305,12 @@
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
 	/* ngInject */
-	var CourseController = function CourseController(CourseService, $log, $state, $scope, $http, $mdDialog, $stateParams, $location) {
-	  _classCallCheck(this, CourseController);
+	var ActivityController = function ActivityController(ActivityService, $log, $state, $scope, $http, $mdDialog, $stateParams, $location) {
+	  _classCallCheck(this, ActivityController);
 	
-	  $log.debug('CourseController instantiated!');
+	  $log.debug('ActivityController instantiated!');
 	  var ctrl = this;
-	  ctrl.course = {};
+	  ctrl.activity = {};
 	
 	  $scope.loaded = false;
 	  var city_id;
@@ -15319,35 +15318,33 @@
 	  // ctrl.gear = []
 	  // ctrl.members = []
 	
-	  $scope.$watch('ctrl.course.city.latitude', function () {
-	    $scope.$broadcast('cityLL', { lat: ctrl.course.city.latitude, lng: ctrl.course.city.longitude });
+	  $scope.$watch('ctrl.activity.city.latitude', function () {
+	    $scope.$broadcast('cityLL', { lat: ctrl.activity.city.latitude, lng: ctrl.activity.city.longitude });
 	  });
 	
-	  CourseService.getCourse($stateParams.id).then(function (result) {
-	    ctrl.course = result.data;
-	    ctrl.course.date = new Date(ctrl.course.date);
-	    console.dir('The birth date is: ' + ctrl.course.date);
+	  ActivityService.getActivity($stateParams.id).then(function (result) {
+	    ctrl.activity = result.data;
+	    ctrl.activity.date = new Date(ctrl.activity.date);
+	    if (ctrl.activity.latitude && ctrl.activity.longitude) {
+	      $scope.$broadcast('markerLL', { lat: ctrl.activity.latitude, lng: ctrl.activity.longitude });
+	    }
+	    console.dir('The birth date is: ' + ctrl.activity.date);
 	  }).then(function () {
-	    CourseService.getCities().then(function (result) {
+	    ActivityService.getCities().then(function (result) {
 	      ctrl.cities = result.data;
 	      console.dir(result.data);
 	    }).then(function () {
-	      CourseService.getSkills().then(function (result) {
+	      ActivityService.getSkills().then(function (result) {
 	        ctrl.skills = result.data;
 	        console.dir(result.data);
 	      }).then(function () {
-	        CourseService.getGear().then(function (result) {
+	        ActivityService.getGear().then(function (result) {
 	          ctrl.gear = result.data;
 	          console.dir(result.data);
 	        }).then(function () {
-	          CourseService.getEvents().then(function (result) {
-	            ctrl.events = result.data;
+	          ActivityService.getMembers().then(function (result) {
+	            ctrl.members = result.data;
 	            console.dir(result.data);
-	          }).then(function () {
-	            CourseService.getMembers().then(function (result) {
-	              ctrl.members = result.data;
-	              console.dir(result.data);
-	            });
 	          });
 	        });
 	      });
@@ -15367,9 +15364,9 @@
 	    }
 	  };
 	
-	  $scope.$on('courseLL', function (event, data) {
-	    ctrl.course.latitude = data.lat;
-	    ctrl.course.longitude = data.lng;
+	  $scope.$on('activityLL', function (event, data) {
+	    ctrl.activity.latitude = data.lat;
+	    ctrl.activity.longitude = data.lng;
 	  });
 	
 	  ctrl.isMember = function (group, member_id) {
@@ -15379,22 +15376,22 @@
 	    return groupIds.includes(member_id);
 	  };
 	
-	  ctrl.update = function (course) {
-	    delete course.city.value;
-	    CourseService.patchCourse(course).then(function () {
-	      ctrl.status = 'Course saved!';
+	  ctrl.update = function (activity) {
+	    delete activity.city.value;
+	    ActivityService.patchActivity(activity).then(function () {
+	      ctrl.status = 'Activity saved!';
 	    });
 	  };
 	
-	  ctrl.post = function (course) {
+	  ctrl.post = function (activity) {
 	    delete person.id;
-	    CourseService.postCourse(course);
-	    $state.go('courses');
+	    ActivityService.postActivity(activity);
+	    $state.go('activities');
 	  };
 	
-	  ctrl.deleteCourse = function (id) {
-	    CourseService.deleteCourse(id).then(function () {
-	      $state.go('courses');
+	  ctrl.deleteActivity = function (id) {
+	    ActivityService.deleteActivity(id).then(function () {
+	      $state.go('activities');
 	    });
 	  };
 	
@@ -15413,7 +15410,7 @@
 	
 	  ctrl.repos = loadAll();
 	  ctrl.repos.then(function (cities) {
-	    ctrl.allCities = cities;
+	    ctrl.cities = cities;
 	  });
 	  ctrl.querySearch = querySearch;
 	  ctrl.selectedItemChange = selectedItemChange;
@@ -15430,7 +15427,7 @@
 	
 	  function querySearch(query) {
 	    console.dir(ctrl.repos);
-	    ctrl.repos = ctrl.allCities;
+	    ctrl.repos = ctrl.cities;
 	    console.dir(ctrl.repos);
 	    var result = query ? ctrl.repos.filter(createFilterFor(query)) : ctrl.repos;
 	    return result;
@@ -15449,7 +15446,7 @@
 	   */
 	  function loadAll() {
 	    var cities = void 0;
-	    return CourseService.getCities().then(function (res) {
+	    return ActivityService.getCities().then(function (res) {
 	      cities = res.data;
 	
 	      return cities.map(function (city) {
@@ -15474,12 +15471,12 @@
 	
 	  ctrl.showConfirm = function (ev) {
 	    // Appending dialog to document.body to cover sidenav in docs app
-	    var confirm = $mdDialog.confirm().title('Would you like to delete this course?').textContent('It is irreversable').ariaLabel('Delete course').targetEvent(ev).ok('Yes!').cancel('NO');
+	    var confirm = $mdDialog.confirm().title('Would you like to delete this activity?').textContent('It is irreversable').ariaLabel('Delete activity').targetEvent(ev).ok('Yes!').cancel('NO');
 	
 	    $mdDialog.show(confirm).then(function () {
-	      ctrl.deleteCourse(ctrl.course.id);
+	      ctrl.deleteActivity(ctrl.activity.id);
 	    }, function () {
-	      ctrl.status = 'You did not delete the course';
+	      ctrl.status = 'You did not delete the activity';
 	    });
 	  };
 	
@@ -15487,7 +15484,7 @@
 	  $scope.loaded = true;
 	};
 	
-	exports.default = CourseController;
+	exports.default = ActivityController;
 
 /***/ },
 /* 377 */
@@ -15504,17 +15501,17 @@
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
 	/* ngInject */
-	var CourseService = function () {
-	  function CourseService($http) {
-	    _classCallCheck(this, CourseService);
+	var ActivityService = function () {
+	  function ActivityService($http) {
+	    _classCallCheck(this, ActivityService);
 	
 	    this.$http = $http;
 	  }
 	
-	  _createClass(CourseService, [{
-	    key: 'getCourse',
-	    value: function getCourse(id) {
-	      return this.$http.get('courses/' + id);
+	  _createClass(ActivityService, [{
+	    key: 'getActivity',
+	    value: function getActivity(id) {
+	      return this.$http.get('activities/' + id);
 	    }
 	  }, {
 	    key: 'getCities',
@@ -15542,29 +15539,456 @@
 	      return this.$http.get('members/');
 	    }
 	  }, {
-	    key: 'patchCourse',
-	    value: function patchCourse(course) {
-	      return this.$http.patch('courses/' + course.id, course);
+	    key: 'patchActivity',
+	    value: function patchActivity(activity) {
+	      return this.$http.patch('activities/' + activity.id, activity);
 	    }
 	  }, {
-	    key: 'postCourse',
-	    value: function postCourse(course) {
-	      return this.$http.post('courses/', course);
+	    key: 'postActivity',
+	    value: function postActivity(activity) {
+	      return this.$http.post('activities/', activity);
 	    }
 	  }, {
-	    key: 'deleteCourse',
-	    value: function deleteCourse(id) {
-	      return this.$http.delete('courses/' + id);
+	    key: 'deleteActivity',
+	    value: function deleteActivity(id) {
+	      return this.$http.delete('activities/' + id);
 	    }
 	  }]);
 	
-	  return CourseService;
+	  return ActivityService;
 	}();
 	
-	exports.default = CourseService;
+	exports.default = ActivityService;
 
 /***/ },
 /* 378 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _moreComponent = __webpack_require__(379);
+	
+	var _moreComponent2 = _interopRequireDefault(_moreComponent);
+	
+	var _moreService = __webpack_require__(382);
+	
+	var _moreService2 = _interopRequireDefault(_moreService);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = angular.module('more', []).component('appMore', _moreComponent2.default).service('MoreService', _moreService2.default).name;
+
+/***/ },
+/* 379 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _more = __webpack_require__(380);
+	
+	var _more2 = _interopRequireDefault(_more);
+	
+	var _moreController = __webpack_require__(381);
+	
+	var _moreController2 = _interopRequireDefault(_moreController);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = {
+	  templateUrl: _more2.default,
+	  controller: _moreController2.default,
+	  controllerAs: 'ctrl'
+	};
+
+/***/ },
+/* 380 */
+/***/ function(module, exports) {
+
+	var path = 'C:/code/mms/ui/src/app/more/more.html';
+	var html = "<md-content layout-padding layout-align=\"center center\">\r\n    <div ng-if=\"ctrl.status\" id=\"status\">\r\n    <b layout=\"row\" layout-align=\"center center\" class=\"md-padding\">\r\n      {{ctrl.status}}\r\n    </b>\r\n    </div>\r\n    <div layout-padding  layout=\"column\" layout-align=\"center center\" >\r\n\r\n\r\n    <md-whiteframe class=\"md-whiteframe-10dp\" layout=\"row\" layout-align=\"center center\" >\r\n      <div layout=\"column\" layout-align=\"center center\">\r\n        <p> New Skill </p>\r\n        <form name=\"skillForm\" layout=\"row\" layout-padding>\r\n          <md-input-container class=\"md-icon-float md-block\">\r\n            <label>Skill</label>\r\n            <input ng-model=\"ctrl.skill.name\" type=\"text\" ng-required=\"true\">\r\n          </md-input-container>\r\n        </form>\r\n        <md-button ng-disabled=\"skillForm.$invalid\" class=\"md-fab md-primary md-hue-2\" ng-click=\"ctrl.addSkill(ctrl.skill)\"\r\n          aria-label=\"Add Skill\">\r\n          <md-icon md-font-set=\"material-icons\"> add </md-icon>\r\n        </md-button>\r\n      </div>\r\n\r\n      <md-content layout=\"column\" layout-align=\"center center\">\r\n          <p>Edit Skill</p>\r\n          <div layout-padding>\r\n          <md-autocomplete flex required\r\n          md-input-name=\"autocompleteField\"\r\n          md-no-cache=\"ctrl.noCache\"\r\n          md-selected-item=\"ctrl.selectedSkill\"\r\n          md-search-text-change=\"ctrl.searchTextChange(ctrl.searchTextSkills)\"\r\n          md-search-text=\"ctrl.searchTextSkills\"\r\n          md-selected-item-change=\"ctrl.selectedItemChange(item)\"\r\n          md-items=\"item in ctrl.querySearchSkills(ctrl.searchTextSkills)\"\r\n          md-item-text=\"item.name\"\r\n          md-min-length=\"0\"\r\n          md-floating-label=\"Pick a Skill\"\r\n          md-menu-class=\"autocomplete-custom-template\">\r\n            <md-item-template>\r\n              <span class=\"item-title\">\r\n                <span> {{item.name}}</span>\r\n              </span>\r\n            </md-item-template>\r\n          </md-autocomplete>\r\n        </div>\r\n        <div class=\"col-sm-offset-2 col-sm-8\">\r\n\t\t\t\t\t\t<!-- <md-button ng-disabled=\"!ctrl.selectedSkill.name\" class=\"md-raised md-primary\" ng-click=\"ctrl.updateSkill(ctrl.skill)\"\r\n\t\t\t\t\t\taria-label=\"Save\">\r\n            <md-icon md-font-set=\"material-icons\"> save </md-icon>\r\n          </md-button> -->\r\n\r\n\t\t\t\t\t\t<md-button ng-disabled=\"!ctrl.selectedSkill.name\" class=\"md-fab md-warn md-hue-2\" ng-click=\"ctrl.showConfirmSkill($event)\"\r\n\t\t\t\t\t\taria-label=\"Delete\">\r\n            <md-icon md-font-set=\"material-icons\"> delete_forever </md-icon>\r\n          </md-button>\r\n\t\t\t\t\t</div>\r\n      </md-content>\r\n\r\n      <md-content style=\"height: 200px;\" flex >\r\n        <div ng-repeat=\"item in ctrl.skills\">\r\n          {{ item.name }}\r\n        </div>\r\n      </md-content>\r\n\r\n    </md-whiteframe>\r\n\r\n\r\n    <md-whiteframe class=\"md-whiteframe-10dp\" layout=\"row\" layout-align=\"center center\" >\r\n      <div layout=\"column\" layout-align=\"center center\">\r\n      <p> New Gear </p>\r\n      <form name=\"gearForm\" layout=\"row\" layout-padding>\r\n        <md-input-container class=\"md-icon-float md-block\">\r\n          <label>Gear</label>\r\n          <input ng-model=\"ctrl.gear.name\" type=\"text\" ng-required=\"true\">\r\n        </md-input-container>\r\n      </form>\r\n        <md-button ng-disabled=\"gearForm.$invalid\" class=\"md-fab md-primary md-hue-2\" ng-click=\"ctrl.addGear(ctrl.gear)\"\r\n        aria-label=\"Add Gear\">\r\n        <md-icon md-font-set=\"material-icons\"> add </md-icon>\r\n      </md-button>\r\n    </div>\r\n\r\n    <md-content layout=\"column\" layout-align=\"center center\">\r\n        <p>Edit Gear</p>\r\n        <div layout-padding>\r\n        <md-autocomplete flex required\r\n        md-input-name=\"autocompleteField\"\r\n        md-no-cache=\"ctrl.noCache\"\r\n        md-selected-item=\"ctrl.selectedGear\"\r\n        md-search-text-change=\"ctrl.searchTextChange(ctrl.searchTextGear)\"\r\n        md-search-text=\"ctrl.searchTextGear\"\r\n        md-selected-item-change=\"ctrl.selectedItemChange(item)\"\r\n        md-items=\"item in ctrl.querySearchGear(ctrl.searchTextGear)\"\r\n        md-item-text=\"item.name\"\r\n        md-min-length=\"0\"\r\n        md-floating-label=\"Pick a Gear\"\r\n        md-menu-class=\"autocomplete-custom-template\">\r\n          <md-item-template>\r\n            <span class=\"item-title\">\r\n              <span> {{item.name}}</span>\r\n            </span>\r\n          </md-item-template>\r\n        </md-autocomplete>\r\n      </div>\r\n      <div class=\"col-sm-offset-2 col-sm-8\">\r\n          <!-- <md-button ng-disabled=\"!ctrl.selectedGear.name\" class=\"md-raised md-primary\" ng-click=\"ctrl.updateGear(ctrl.gear)\"\r\n          aria-label=\"Save\">\r\n          <md-icon md-font-set=\"material-icons\"> save </md-icon>\r\n        </md-button> -->\r\n\r\n          <md-button ng-disabled=\"!ctrl.selectedGear.name\" class=\"md-fab md-warn md-hue-2\" ng-click=\"ctrl.showConfirmGear($event)\"\r\n          aria-label=\"Delete\">\r\n          <md-icon md-font-set=\"material-icons\"> delete_forever </md-icon>\r\n        </md-button>\r\n        </div>\r\n    </md-content>\r\n\r\n    <md-content style=\"height: 200px;\" flex>\r\n      <div ng-repeat=\"item in ctrl.listGear\">\r\n        {{ item.name }}\r\n      </div>\r\n    </md-content>\r\n  </md-whiteframe>\r\n\r\n  <md-whiteframe class=\"md-whiteframe-10dp\" layout=\"row\" layout-align=\"center center\" >\r\n    <div layout=\"column\" layout-align=\"center center\">\r\n      <p> New Region </p>\r\n      <form name=\"regionForm\" layout=\"row\" layout-padding>\r\n        <md-input-container class=\"md-icon-float md-block\">\r\n          <label>Region</label>\r\n          <input ng-model=\"ctrl.region.name\" type=\"text\" ng-required=\"true\">\r\n        </md-input-container>\r\n      </form>\r\n        <md-button ng-disabled=\"regionForm.$invalid\" class=\"md-fab md-primary md-hue-2\" ng-click=\"ctrl.addRegion(ctrl.region)\"\r\n        aria-label=\"Add Region\">\r\n        <md-icon md-font-set=\"material-icons\"> add </md-icon>\r\n      </md-button>\r\n    </div>\r\n\r\n    <md-content layout=\"column\" layout-align=\"center center\">\r\n        <p>Edit Region</p>\r\n        <div layout-padding>\r\n        <md-autocomplete flex required\r\n        md-input-name=\"autocompleteField\"\r\n        md-no-cache=\"ctrl.noCache\"\r\n        md-selected-item=\"ctrl.selectedRegionEdit\"\r\n        md-search-text-change=\"ctrl.searchTextChange(ctrl.searchTextRegionEdit)\"\r\n        md-search-text=\"ctrl.searchTextRegionEdit\"\r\n        md-selected-item-change=\"ctrl.selectedItemChange(item)\"\r\n        md-items=\"item in ctrl.querySearch(ctrl.searchTextRegionEdit)\"\r\n        md-item-text=\"item.name\"\r\n        md-min-length=\"0\"\r\n        md-floating-label=\"Pick a Region\"\r\n        md-menu-class=\"autocomplete-custom-template\">\r\n          <md-item-template>\r\n            <span class=\"item-title\">\r\n              <span> {{item.name}}</span>\r\n            </span>\r\n          </md-item-template>\r\n        </md-autocomplete>\r\n      </div>\r\n      <div class=\"col-sm-offset-2 col-sm-8\">\r\n          <!-- <md-button ng-disabled=\"!ctrl.selectedRegionEdit.name\" class=\"md-raised md-primary\" ng-click=\"ctrl.updateRegion(ctrl.region)\"\r\n          aria-label=\"Save\">\r\n          <md-icon md-font-set=\"material-icons\"> save </md-icon> -->\r\n        </md-button>\r\n\r\n          <md-button ng-disabled=\"!ctrl.selectedRegionEdit.name\" class=\"md-fab md-warn md-hue-2\" ng-click=\"ctrl.showConfirmRegion($event)\"\r\n          aria-label=\"Delete\">\r\n          <md-icon md-font-set=\"material-icons\"> delete_forever </md-icon>\r\n        </md-button>\r\n        </div>\r\n    </md-content>\r\n\r\n    <md-content style=\"height: 200px;\" flex>\r\n      <div ng-repeat=\"item in ctrl.regions\">\r\n        {{ item.name }}\r\n      </div>\r\n    </md-content>\r\n    </md-whiteframe>\r\n\r\n\r\n    <md-whiteframe class=\"md-whiteframe-10dp\" layout=\"row\" layout-align=\"center center\" >\r\n      <div layout=\"column\" layout-align=\"center center\">\r\n        <p> New City </p>\r\n        <form name=\"cityForm\" layout=\"column\" layout-padding>\r\n          <div layout=\"row\" layout-align=\"center center\">\r\n          <md-input-container class=\"md-icon-float md-block\">\r\n            <label>City</label>\r\n            <input ng-model=\"ctrl.city.name\" type=\"text\" ng-required=\"true\">\r\n          </md-input-container>\r\n\r\n          <md-autocomplete flex required\r\n          md-input-name=\"autocompleteField\"\r\n          ng-disabled=\"ctrl.isDisabled\"\r\n          md-no-cache=\"ctrl.noCache\"\r\n          md-selected-item=\"ctrl.city.region\"\r\n          md-search-text-change=\"ctrl.searchTextChange(ctrl.searchText)\"\r\n          md-search-text=\"ctrl.searchText\"\r\n          md-selected-item-change=\"ctrl.selectedItemChange(item)\"\r\n          md-items=\"item in ctrl.querySearch(ctrl.searchText)\"\r\n          md-item-text=\"item.name\"\r\n          md-min-length=\"0\"\r\n          md-floating-label=\"Pick an Region\"\r\n          md-menu-class=\"autocomplete-custom-template\">\r\n            <md-item-template>\r\n              <span class=\"item-title\">\r\n                <span> {{item.name}} </span>\r\n              </span>\r\n            </md-item-template>\r\n          </md-autocomplete>\r\n\r\n        </div>\r\n\r\n        <div layout=\"row\" layout-align=\"center center\">\r\n          <md-input-container class=\"md-icon-float md-block\">\r\n  \t\t\t\t\t<label>Latitude</label>\r\n  \t\t\t\t\t<input ng-model=\"ctrl.city.latitude\" type=\"text\">\r\n  \t\t\t\t</md-input-container>\r\n\r\n          <md-input-container md-no-float class=\"md-block\">\r\n  \t\t\t\t      <label>Longitude</label>\r\n        \t       <input ng-model=\"ctrl.city.longitude\" type=\"text\">\r\n      \t        </md-input-container>\r\n\r\n          </div>\r\n        </form>\r\n          <md-button ng-disabled=\"cityForm.$invalid\" class=\"md-fab md-primary md-hue-2\" ng-click=\"ctrl.addCity(ctrl.city)\"\r\n          aria-label=\"Add City\">\r\n          <md-icon md-font-set=\"material-icons\"> add </md-icon>\r\n        </md-button>\r\n      </div>\r\n\r\n      <md-content layout=\"column\" layout-align=\"center center\">\r\n          <p>Edit Gear</p>\r\n          <div layout-padding>\r\n          <md-autocomplete flex required\r\n          md-input-name=\"autocompleteField\"\r\n          md-no-cache=\"ctrl.noCache\"\r\n          md-selected-item=\"ctrl.selectedCity\"\r\n          md-search-text-change=\"ctrl.searchTextChange(ctrl.searchTextCity)\"\r\n          md-search-text=\"ctrl.searchTextCity\"\r\n          md-selected-item-change=\"ctrl.selectedItemChange(item)\"\r\n          md-items=\"item in ctrl.querySearchCities(ctrl.searchTextCity)\"\r\n          md-item-text=\"item.name\"\r\n          md-min-length=\"0\"\r\n          md-floating-label=\"Pick a City\"\r\n          md-menu-class=\"autocomplete-custom-template\">\r\n            <md-item-template>\r\n              <span class=\"item-title\">\r\n                <span> {{item.name}}</span>\r\n              </span>\r\n            </md-item-template>\r\n          </md-autocomplete>\r\n        </div>\r\n        <div class=\"col-sm-offset-2 col-sm-8\">\r\n            <!-- <md-button ng-disabled=\"!ctrl.selectedCity.name\" class=\"md-raised md-primary\" ng-click=\"ctrl.updateCity(ctrl.city)\"\r\n            aria-label=\"Save\">\r\n            <md-icon md-font-set=\"material-icons\"> save </md-icon>\r\n          </md-button> -->\r\n\r\n            <md-button ng-disabled=\"!ctrl.selectedCity.name\" class=\"md-fab md-warn md-hue-2\" ng-click=\"ctrl.showConfirmCity($event)\"\r\n            aria-label=\"Delete\">\r\n            <md-icon md-font-set=\"material-icons\"> delete_forever </md-icon>\r\n          </md-button>\r\n          </div>\r\n      </md-content>\r\n\r\n\r\n      <md-content style=\"height: 200px;\" flex>\r\n        <div ng-repeat=\"item in ctrl.cities\">\r\n          {{ item.name }}\r\n        </div>\r\n      </md-content>\r\n    </md-whiteframe>\r\n\r\n\r\n</div>\r\n\r\n    </div>\r\n</md-content>\r\n";
+	window.angular.module('ng').run(['$templateCache', function(c) { c.put(path, html) }]);
+	module.exports = path;
+
+/***/ },
+/* 381 */
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	/* ngInject */
+	var MoreController = function MoreController($log, MoreService, $mdDialog, $state) {
+	  _classCallCheck(this, MoreController);
+	
+	  $log.debug('MoreController instantiated!');
+	  var ctrl = this;
+	
+	  MoreService.getAllCities().then(function (result) {
+	    ctrl.cities = result.data;
+	    console.dir(result.data);
+	  }).then(function () {
+	    MoreService.getAllSkills().then(function (result) {
+	      ctrl.skills = result.data;
+	      console.dir(result.data);
+	    }).then(function () {
+	      MoreService.getAllGear().then(function (result) {
+	        ctrl.listGear = result.data;
+	        console.dir(result.data);
+	      }).then(function () {
+	        MoreService.getAllRegions().then(function (result) {
+	          ctrl.regions = result.data;
+	          console.dir(result.data);
+	        });
+	      });
+	    });
+	  });
+	
+	  ctrl.addSkill = function (item) {
+	    MoreService.postSkill(item).then(function (result) {
+	      ctrl.skill = result.data;
+	      ctrl.skills.push(ctrl.skill);
+	      ctrl.status = 'Skill saved!';
+	    });
+	  };
+	
+	  ctrl.addGear = function (item) {
+	    MoreService.postGear(item).then(function (result) {
+	      ctrl.gear = result.data;
+	      ctrl.listGear.push(ctrl.gear);
+	      ctrl.status = 'Gear saved!';
+	    });
+	  };
+	  ctrl.addCity = function (item) {
+	    MoreService.postCity(item).then(function (result) {
+	      ctrl.city = result.data;
+	      ctrl.cities.push(ctrl.city);
+	      ctrl.status = 'City saved!';
+	    });
+	  };
+	  ctrl.addRegion = function (item) {
+	    MoreService.postRegion(item).then(function (result) {
+	      ctrl.region = result.data;
+	      ctrl.regions.push(ctrl.region);
+	      ctrl.status = 'Region saved!';
+	    });
+	  };
+	  ctrl.deleteSkill = function (id) {
+	    MoreService.deleteSkill(id).then(function () {
+	      ctrl.skills.splice(ctrl.skills.indexOf(ctrl.selectedSkill), 1);
+	      ctrl.status = 'Skill deleted!';
+	    });
+	  };
+	  ctrl.updateSkill = function (item) {
+	    MoreService.patchSkill(item).then(function () {
+	      ctrl.status = 'Skill saved!';
+	    });
+	  };
+	
+	  ctrl.deleteGear = function (id) {
+	    MoreService.deleteGear(id).then(function () {
+	      ctrl.listGear.splice(ctrl.listGear.indexOf(ctrl.selectedGear), 1);
+	      ctrl.status = 'Gear deleted!';
+	    });
+	  };
+	  ctrl.updateGear = function (item) {
+	    MoreService.patchGear(item).then(function () {
+	      ctrl.status = 'Gear saved!';
+	    });
+	  };
+	
+	  ctrl.deleteCity = function (id) {
+	    MoreService.deleteCity(id).then(function () {
+	      ctrl.cities.splice(ctrl.cities.indexOf(ctrl.selectedCity), 1);
+	      ctrl.status = 'City deleted!';
+	    });
+	  };
+	  ctrl.updateCity = function (item) {
+	    MoreService.patchCity(item).then(function () {
+	      ctrl.status = 'City saved!';
+	    });
+	  };
+	
+	  ctrl.deleteRegion = function (id) {
+	    MoreService.deleteRegion(id).then(function () {
+	      ctrl.regions.splice(ctrl.regions.indexOf(ctrl.selectedRegionEdit), 1);
+	      ctrl.status = 'Region deleted!';
+	    });
+	  };
+	  ctrl.updateRegion = function (item) {
+	    MoreService.patchRegion(item).then(function () {
+	      ctrl.status = 'Region saved!';
+	    });
+	  };
+	  ////////////////////////////////////////////////////////////
+	  ctrl.repos = loadAll();
+	  ctrl.repos.then(function (regions) {
+	    ctrl.regions = regions;
+	  });
+	  ctrl.querySearch = querySearch;
+	
+	  ctrl.selectedItemChange = selectedItemChange;
+	  ctrl.searchTextChange = searchTextChange;
+	
+	  function querySearch(query) {
+	    ctrl.repos = ctrl.regions;
+	    var result = query ? ctrl.repos.filter(createFilterFor(query)) : ctrl.repos;
+	    return result;
+	  }
+	
+	  function searchTextChange(text) {
+	    $log.info('Text changed to ' + text);
+	  }
+	
+	  function selectedItemChange(item) {
+	    $log.info('Item changed to ' + JSON.stringify(item));
+	  }
+	
+	  function loadAll() {
+	    var regions = void 0;
+	    return MoreService.getAllRegions().then(function (res) {
+	      regions = res.data;
+	
+	      return regions;
+	    });
+	  }
+	
+	  function createFilterFor(query) {
+	    var lowercaseQuery = angular.lowercase(query);
+	
+	    return function filterFn(item) {
+	      return item.name.indexOf(lowercaseQuery) === 0;
+	    };
+	  }
+	  //////////////////////////////////////////////
+	  ctrl.skillsRepo = loadAllSkills();
+	  ctrl.skillsRepo.then(function (result) {
+	    ctrl.skills = result;
+	  });
+	  ctrl.querySearchSkills = querySearchSkills;
+	  function querySearchSkills(query) {
+	    ctrl.skillsRepo = ctrl.skills;
+	    var result = query ? ctrl.skillsRepo.filter(createFilterFor(query)) : ctrl.skillsRepo;
+	    return result;
+	  }
+	  function loadAllSkills() {
+	    var result = void 0;
+	    return MoreService.getAllSkills().then(function (res) {
+	      result = res.data;
+	      return result;
+	    });
+	  }
+	  //////////////////////////////////////////////////
+	
+	  ctrl.gearRepo = loadAllGear();
+	  ctrl.gearRepo.then(function (result) {
+	    ctrl.gear = result;
+	  });
+	  ctrl.querySearchGear = querySearchGear;
+	  function querySearchGear(query) {
+	    ctrl.gearRepo = ctrl.gear;
+	    var result = query ? ctrl.gearRepo.filter(createFilterFor(query)) : ctrl.gearRepo;
+	    return result;
+	  }
+	  function loadAllGear() {
+	    var result = void 0;
+	    return MoreService.getAllGear().then(function (res) {
+	      result = res.data;
+	      return result;
+	    });
+	  }
+	
+	  //////////////////////////////////////////////////
+	
+	  ctrl.citiesRepo = loadAllCities();
+	  ctrl.citiesRepo.then(function (result) {
+	    ctrl.cities = result;
+	  });
+	  ctrl.querySearchCities = querySearchCities;
+	  function querySearchCities(query) {
+	    ctrl.citiesRepo = ctrl.cities;
+	    var result = query ? ctrl.citiesRepo.filter(createFilterFor(query)) : ctrl.citiesRepo;
+	    return result;
+	  }
+	  function loadAllCities() {
+	    var result = void 0;
+	    return MoreService.getAllCities().then(function (res) {
+	      result = res.data;
+	      return result;
+	    });
+	  }
+	
+	  ////////////////////////////////////////////////////////
+	  ctrl.showConfirmSkill = function (ev) {
+	    // Appending dialog to document.body to cover sidenav in docs app
+	    var confirm = $mdDialog.confirm().title('Would you like to delete this skill?').textContent('It is irreversable').ariaLabel('Delete skill').targetEvent(ev).ok('Yes!').cancel('NO');
+	
+	    $mdDialog.show(confirm).then(function () {
+	      ctrl.deleteSkill(ctrl.selectedSkill.id);
+	    }, function () {
+	      ctrl.status = 'You did not delete a skill';
+	    });
+	  };
+	
+	  ctrl.showConfirmGear = function (ev) {
+	    // Appending dialog to document.body to cover sidenav in docs app
+	    var confirm = $mdDialog.confirm().title('Would you like to delete this peace of gear?').textContent('It is irreversable').ariaLabel('Delete gear').targetEvent(ev).ok('Yes!').cancel('NO');
+	
+	    $mdDialog.show(confirm).then(function () {
+	      ctrl.deleteGear(ctrl.selectedGear.id);
+	    }, function () {
+	      ctrl.status = 'You did not delete a peace of gear';
+	    });
+	  };
+	
+	  ctrl.showConfirmCity = function (ev) {
+	    // Appending dialog to document.body to cover sidenav in docs app
+	    var confirm = $mdDialog.confirm().title('Would you like to delete this city?').textContent('It is irreversable').ariaLabel('Delete city').targetEvent(ev).ok('Yes!').cancel('NO');
+	
+	    $mdDialog.show(confirm).then(function () {
+	      ctrl.deleteCity(ctrl.selectedCity.id);
+	    }, function () {
+	      ctrl.status = 'You did not delete a city';
+	    });
+	  };
+	
+	  ctrl.showConfirmRegion = function (ev) {
+	    // Appending dialog to document.body to cover sidenav in docs app
+	    var confirm = $mdDialog.confirm().title('Would you like to delete this region?').textContent('It is irreversable').ariaLabel('Delete region').targetEvent(ev).ok('Yes!').cancel('NO');
+	
+	    $mdDialog.show(confirm).then(function () {
+	      ctrl.deleteRegion(ctrl.selectedRegionEdit.id);
+	    }, function () {
+	      ctrl.status = 'You did not delete a region';
+	    });
+	  };
+	};
+	
+	exports.default = MoreController;
+
+/***/ },
+/* 382 */
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	/* ngInject */
+	var MoreService = function () {
+	  function MoreService($http) {
+	    _classCallCheck(this, MoreService);
+	
+	    this.$http = $http;
+	  }
+	
+	  _createClass(MoreService, [{
+	    key: 'getAllRegions',
+	    value: function getAllRegions() {
+	      return this.$http.get('regions/');
+	    }
+	  }, {
+	    key: 'postRegion',
+	    value: function postRegion(region) {
+	      return this.$http.post('regions/', region);
+	    }
+	  }, {
+	    key: 'patchRegion',
+	    value: function patchRegion(region) {
+	      return this.$http.patch('regions/' + region.id, region);
+	    }
+	  }, {
+	    key: 'deleteRegion',
+	    value: function deleteRegion(id) {
+	      return this.$http.delete('regions/' + id);
+	    }
+	  }, {
+	    key: 'getAllCities',
+	    value: function getAllCities() {
+	      return this.$http.get('cities/');
+	    }
+	  }, {
+	    key: 'postCity',
+	    value: function postCity(city) {
+	      return this.$http.post('cities/', city);
+	    }
+	  }, {
+	    key: 'patchCity',
+	    value: function patchCity(city) {
+	      return this.$http.patch('cities/' + city.id, city);
+	    }
+	  }, {
+	    key: 'deleteCity',
+	    value: function deleteCity(id) {
+	      return this.$http.delete('cities/' + id);
+	    }
+	  }, {
+	    key: 'getAllSkills',
+	    value: function getAllSkills() {
+	      return this.$http.get('skills/');
+	    }
+	  }, {
+	    key: 'postSkill',
+	    value: function postSkill(skill) {
+	      return this.$http.post('skills/', skill);
+	    }
+	  }, {
+	    key: 'patchSkill',
+	    value: function patchSkill(skill) {
+	      return this.$http.patch('skills/' + skill.id, skill);
+	    }
+	  }, {
+	    key: 'deleteSkill',
+	    value: function deleteSkill(id) {
+	      return this.$http.delete('skills/' + id);
+	    }
+	  }, {
+	    key: 'getAllGear',
+	    value: function getAllGear() {
+	      return this.$http.get('gear/');
+	    }
+	  }, {
+	    key: 'postGear',
+	    value: function postGear(gear) {
+	      return this.$http.post('gear/', gear);
+	    }
+	  }, {
+	    key: 'patchGear',
+	    value: function patchGear(gear) {
+	      return this.$http.patch('gear/' + gear.id, gear);
+	    }
+	  }, {
+	    key: 'deleteGear',
+	    value: function deleteGear(id) {
+	      return this.$http.delete('gear/' + id);
+	    }
+	  }]);
+	
+	  return MoreService;
+	}();
+	
+	exports.default = MoreService;
+
+/***/ },
+/* 383 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -15606,16 +16030,23 @@
 	            loginRequired: true,
 	            authorizedRoles: [USER_ROLES.admin]
 	        }
-	    }).state('courses', {
-	        url: '/courses',
-	        component: 'appCourses',
+	    }).state('activities', {
+	        url: '/activities',
+	        component: 'appActivities',
 	        access: {
 	            loginRequired: true,
 	            authorizedRoles: [USER_ROLES.admin]
 	        }
-	    }).state('course', {
-	        url: '/courses/:id',
-	        component: 'appCourse',
+	    }).state('activity', {
+	        url: '/activities/:id',
+	        component: 'appActivity',
+	        access: {
+	            loginRequired: true,
+	            authorizedRoles: [USER_ROLES.admin]
+	        }
+	    }).state('more', {
+	        url: '/more',
+	        component: 'appMore',
 	        access: {
 	            loginRequired: true,
 	            authorizedRoles: [USER_ROLES.admin]
@@ -15662,7 +16093,7 @@
 	}
 
 /***/ },
-/* 379 */
+/* 384 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -15712,7 +16143,7 @@
 	exports.default = SessionService;
 
 /***/ },
-/* 380 */
+/* 385 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -15791,11 +16222,11 @@
 	}
 
 /***/ },
-/* 381 */
+/* 386 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ }
 /******/ ]);
-//# sourceMappingURL=main.js.map?86971f6f5643434c9d34
+//# sourceMappingURL=main.js.map?4478be8c16abca49b1af

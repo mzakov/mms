@@ -21,8 +21,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.UniqueConstraint;
 
-import org.uaso.activity.Course;
-import org.uaso.activity.Event;
+import org.uaso.activity.Activity;
 import org.uaso.attribute.Gear;
 import org.uaso.attribute.Skill;
 import org.uaso.location.City;
@@ -96,11 +95,7 @@ public class Member {
 	
 	@JsonIgnore
 	@ManyToMany(mappedBy = "members")
-	private List<Event> events;
-	
-	@JsonIgnore
-	@ManyToMany(mappedBy = "members")
-	private List<Course> courses;
+	private List<Activity> activities;
 	
 	public Date getCreated() {
 		return created;
@@ -190,20 +185,12 @@ public class Member {
 		this.skills = skills;
 	}
 
-	public List<Event> getEvents() {
-		return events;
+	public List<Activity> getActivities() {
+		return activities;
 	}
 
-	public void setEvents(List<Event> events) {
-		this.events = events;
-	}
-
-	public List<Course> getCourses() {
-		return courses;
-	}
-
-	public void setCourses(List<Course> courses) {
-		this.courses = courses;
+	public void setActivities(List<Activity> activities) {
+		this.activities = activities;
 	}
 
 	public City getCity() {

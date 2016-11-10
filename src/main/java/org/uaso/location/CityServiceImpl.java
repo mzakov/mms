@@ -21,4 +21,27 @@ public class CityServiceImpl implements CityService{
 		return cityRepo.findAll();
 	}
 
+	@Override
+	public City create(City city) {
+		return cityRepo.save(city);
+	}
+
+	@Override
+	public City read(long id) {
+		return cityRepo.findOne(id);
+	}
+
+	@Override
+	public City update(long id, City cityToUpdate) {
+		cityToUpdate.setId(id);
+		return cityRepo.save(cityToUpdate);
+	}
+
+	@Override
+	public City delete(long id) {
+		City result = this.read(id);
+		cityRepo.delete(id);
+		return result;
+	}
+
 }

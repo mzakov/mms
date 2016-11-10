@@ -14,14 +14,15 @@ import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.UniqueConstraint;
 
-import org.uaso.activity.Course;
+import org.uaso.activity.Activity;
 import org.uaso.entity.Member;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@Table(name = "skills")
+@Table(name = "skills", uniqueConstraints=@UniqueConstraint(columnNames={"name"}))
 public class Skill {
 	
 	Date created;
@@ -57,11 +58,7 @@ public class Skill {
 
 	@JsonIgnore
 	@ManyToMany(mappedBy = "skills")
-	private Set<Course> courses;
-	
-	@JsonIgnore
-	@ManyToMany(mappedBy = "skills")
-	private Set<Course> events;
+	private Set<Activity> activities;
 	
 	public Date getCreated() {
 		return created;
@@ -103,20 +100,12 @@ public class Skill {
 		this.members = members;
 	}
 
-	public Set<Course> getCourses() {
-		return courses;
+	public Set<Activity> getActivities() {
+		return activities;
 	}
 
-	public void setCourses(Set<Course> courses) {
-		this.courses = courses;
-	}
-
-	public Set<Course> getEvents() {
-		return events;
-	}
-
-	public void setEvents(Set<Course> events) {
-		this.events = events;
+	public void setActivities(Set<Activity> activities) {
+		this.activities = activities;
 	}
 
 }

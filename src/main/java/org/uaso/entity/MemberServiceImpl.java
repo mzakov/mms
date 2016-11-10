@@ -4,24 +4,20 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.uaso.activity.Course;
-import org.uaso.activity.CourseRepository;
-import org.uaso.activity.Event;
-import org.uaso.activity.EventRepository;
+import org.uaso.activity.Activity;
+import org.uaso.activity.ActivityRepository;
 
 @Service
 public class MemberServiceImpl implements MemberService {
 
 	private final MemberRepository memberRepo;
-	private final CourseRepository courseRepo;
-	private final EventRepository eventRepo;
+	private final ActivityRepository activityRepo;
 	
 	@Autowired
-	public MemberServiceImpl (MemberRepository memberRepo, CourseRepository courseRepo, EventRepository eventRepo) {
+	public MemberServiceImpl (MemberRepository memberRepo, ActivityRepository activityRepo) {
 		super();
 		this.memberRepo = memberRepo;
-		this.courseRepo = courseRepo;
-		this.eventRepo = eventRepo;
+		this.activityRepo = activityRepo;
 	}
 	
 	@Override
@@ -53,13 +49,9 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public List<Course> indexCourses(long id) {
-		return courseRepo.findAllByMembers_id(id);
+	public List<Activity> indexActivities(long id) {
+		return activityRepo.findAllByMembers_id(id);
 	}
 
-	@Override
-	public List<Event> indexEvents(long id) {
-		return eventRepo.findAllByMembers_id(id);
-	}
 
 }

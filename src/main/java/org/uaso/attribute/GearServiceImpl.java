@@ -21,4 +21,26 @@ public class GearServiceImpl implements GearService{
 		return gearRepo.findAll();
 	}
 
+	@Override
+	public Gear create(Gear gear) {
+		return gearRepo.save(gear);
+	}
+
+	@Override
+	public Gear read(long id) {
+		return gearRepo.findOne(id);
+	}
+
+	@Override
+	public Gear update(long id, Gear gearToUpdate) {
+		gearToUpdate.setId(id);
+		return gearRepo.save(gearToUpdate);
+	}
+
+	@Override
+	public Gear delete(long id) {
+		Gear result = this.read(id);
+		gearRepo.delete(id);
+		return result;
+	}
 }

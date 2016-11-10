@@ -1,7 +1,7 @@
 export default
 /* @ngInject */
 class MapController {
-  constructor (NgMap, $timeout, CourseService, $scope) {
+  constructor (NgMap, $timeout, $scope) {
     let ctrl = this
     // ctrl.center = [42.666280, 25.775170]
     // ctrl.zoom = 7   {lat:ctrl.course.latitude, lng:ctrl.course.longitude}
@@ -20,11 +20,13 @@ class MapController {
           ctrl.map.setZoom(12)
         })
 
+
+
     ctrl.addMarker = function(event) {
         var ll = event.latLng;
         ctrl.deleteMarkers()
         ctrl.markers.push({lat:ll.lat(), lng: ll.lng()});
-        $scope.$emit('courseLL', {lat:ll.lat(), lng: ll.lng()})
+        $scope.$emit('activityLL', {lat:ll.lat(), lng: ll.lng()})
       }
       ctrl.deleteMarkers = function() {
         ctrl.markers = [];
@@ -39,5 +41,10 @@ class MapController {
           ctrl.map.markers[key].setMap(null);
         };
       };
+
+      $scope.$on('markerLL', function (event, data) {
+        ctrl.deleteMarkers()
+        ctrl.markers.push(data)
+      })
   }
 }
